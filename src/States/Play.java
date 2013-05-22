@@ -8,7 +8,6 @@ package States;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -17,12 +16,11 @@ import org.newdawn.slick.state.StateBasedGame;
  *
  * @author root
  */
-public class Menu extends BasicGameState {
+public class Play extends BasicGameState {
 
     int ID;
-    StateBasedGame game;
 
-    public Menu(int ID){
+    public Play(int ID){
         this.ID = ID;
     }
 
@@ -32,7 +30,7 @@ public class Menu extends BasicGameState {
     }
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        this.game = sbg;
+        
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
@@ -41,26 +39,7 @@ public class Menu extends BasicGameState {
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
         graphics.setColor(Color.lightGray);
-        graphics.drawString("Legend of Murrrrr!", 50, 50);
-
-        graphics.drawString("1. Play game!", 50, 120);
-        graphics.drawString("2. Exit", 50, 140);
-    }
-
-    @Override
-    public void keyReleased(int key, char c){
-        switch( key ){
-            case Input.KEY_1:
-                game.enterState(legendofmurrgame.LegendOfMurr.PLAY_ID);
-                break;
-
-            case Input.KEY_2:
-                System.exit(1);
-                break;
-
-            default:
-                break;
-        }
+        graphics.drawString("Playing game...!", 50, 50);
     }
 
 }

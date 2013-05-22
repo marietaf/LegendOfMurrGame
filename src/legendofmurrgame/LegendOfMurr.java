@@ -6,6 +6,7 @@
 package legendofmurrgame;
 
 import States.Menu;
+import States.Play;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -17,8 +18,12 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class LegendOfMurr extends StateBasedGame {
 
+    //State numbers
+    public final static int MENU_ID = 0;
+    public final static int PLAY_ID = 1;
+    public final static int GAMEOVER_ID = 2;
+    public final static int TUTORIAL_ID = 3;
 
-    final static int MENU_ID = 0;
 
     /**
      * @param args the command line arguments
@@ -38,6 +43,7 @@ public class LegendOfMurr extends StateBasedGame {
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
         addState(new Menu(MENU_ID));
+        addState(new Play(PLAY_ID));
 
         this.enterState(MENU_ID);
     }
