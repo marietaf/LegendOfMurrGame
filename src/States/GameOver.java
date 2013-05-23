@@ -17,12 +17,11 @@ import org.newdawn.slick.state.StateBasedGame;
  *
  * @author root
  */
-public class Menu extends BasicGameState {
+public class GameOver extends BasicGameState {
 
     int ID;
-    StateBasedGame game;
 
-    public Menu(int ID){
+    public GameOver(int ID){
         this.ID = ID;
     }
 
@@ -32,43 +31,24 @@ public class Menu extends BasicGameState {
     }
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        this.game = sbg;
+
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-        
+
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
+        int appWidth = legendofmurrgame.LegendOfMurr.WIDTH;
+        int appHeight = legendofmurrgame.LegendOfMurr.HEIGHT;
         graphics.setColor(Color.lightGray);
-        graphics.drawString("Legend of Murrrrr!", 200, 100);
-
-        graphics.drawString("1. Play game!", 100, 200);
-	graphics.drawString("2. Tutorial", 100, 220);
-        graphics.drawString("3. Exit", 100, 240);
-
-        graphics.drawString("4. Test Game Over State", 100, 280);
+        graphics.drawString("Game Over!", (appWidth/2) - 40, (appHeight/2) - 20);
+        graphics.drawString("Please try again.", (appWidth/2) - 75, (appHeight/2));
     }
 
     @Override
-    public void keyReleased(int key, char c){
+    public void keyPressed(int key, char c){
         switch( key ){
-            case Input.KEY_1:
-                game.enterState(legendofmurrgame.LegendOfMurr.PLAY_ID);
-                break;
-
-            case Input.KEY_2:
-                game.enterState(legendofmurrgame.LegendOfMurr.TUTORIAL_ID);
-                break;
-
-            case Input.KEY_3:
-                System.exit(1);
-                break;
-
-            case Input.KEY_4:
-                game.enterState(legendofmurrgame.LegendOfMurr.GAMEOVER_ID);
-                break;
-
             case Input.KEY_ESCAPE:
                 System.exit(1);
                 break;

@@ -1,16 +1,22 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * By Marieta Farova, Kadin Choi and Aron Yoo
+ * During the month of May 2013 and onward.
+ * Created as a project for Computer Science ICS4UI to show development of skills
+ * and to present knowledge of object oriented programming learned in class.
  */
 
 package legendofmurrgame;
 
+import States.GameOver;
 import States.Menu;
 import States.Play;
+import States.Tutorial;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.Log;
 
 /**
  *
@@ -18,11 +24,15 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class LegendOfMurr extends StateBasedGame {
 
+    //DECLARE FINAL VARIABLES
     //State numbers
     public final static int MENU_ID = 0;
     public final static int PLAY_ID = 1;
     public final static int GAMEOVER_ID = 2;
     public final static int TUTORIAL_ID = 3;
+    //Application specific final variables
+    public final static int WIDTH = 800;
+    public final static int HEIGHT = 600;
 
 
     /**
@@ -30,10 +40,16 @@ public class LegendOfMurr extends StateBasedGame {
      */
     public static void main(String[] args) throws SlickException {
         //WOOOHHH the game has begun!
+
+        Log.info("Game start!");
+
         AppGameContainer app = new AppGameContainer(new LegendOfMurr("Legend of Murr"));
-        app.setDisplayMode(500, 400, false);
+        app.setDisplayMode(WIDTH, HEIGHT, false);
         //app.setShowFPS(false);
+        //app.setFullscreen(true);
         app.start();
+
+        Log.info("App successfully created.");
     }
 
     public LegendOfMurr(String name){
@@ -44,7 +60,10 @@ public class LegendOfMurr extends StateBasedGame {
     public void initStatesList(GameContainer gc) throws SlickException {
         addState(new Menu(MENU_ID));
         addState(new Play(PLAY_ID));
+        addState(new GameOver(GAMEOVER_ID));
+        addState(new Tutorial(TUTORIAL_ID));
 
+        //Enter the main menu at first
         this.enterState(MENU_ID);
     }
 

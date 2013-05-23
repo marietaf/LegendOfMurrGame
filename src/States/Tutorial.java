@@ -15,32 +15,33 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  *
- * @author root
+ * @author choik8962
  */
-public class Play extends BasicGameState {
+public class Tutorial extends BasicGameState {
 
-    int ID;
+     int ID;
 
-    public Play(int ID){
-        this.ID = ID;
-    }
+     public Tutorial(int ID)
+     {
+         this.ID = ID;
+     }
 
-    @Override
+     @Override
     public int getID() {
         return ID;
     }
 
-    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        
+     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-        
+
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
         graphics.setColor(Color.lightGray);
-        graphics.drawString("Playing game...!", 50, 50);
+        graphics.drawString("Use 'W', 'A', 'S', 'D' to control your character!", 100, 200);
     }
 
     @Override
