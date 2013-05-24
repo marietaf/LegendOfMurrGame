@@ -20,6 +20,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Play extends BasicGameState {
 
     int ID;
+    StateBasedGame game;
 
     public Play(int ID){
         this.ID = ID;
@@ -31,7 +32,7 @@ public class Play extends BasicGameState {
     }
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        
+        this.game = sbg;
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
@@ -44,10 +45,10 @@ public class Play extends BasicGameState {
     }
 
     @Override
-    public void keyPressed(int key, char c){
+    public void keyReleased(int key, char c){
         switch( key ){
             case Input.KEY_ESCAPE:
-                System.exit(1);
+                game.enterState(legendofmurrgame.LegendOfMurr.MENU_ID);
                 break;
 
             default:
