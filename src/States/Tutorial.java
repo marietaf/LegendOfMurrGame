@@ -40,6 +40,7 @@ public class Tutorial extends BasicGameState {
     DebugDrawJ2D debugDrawJ2D;
     boolean debugMode;
     Camera camera = new Camera(400, 300, 60);
+    boolean worldPause;
 
     public Tutorial(int ID) {
         this.ID = ID;
@@ -52,22 +53,25 @@ public class Tutorial extends BasicGameState {
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         this.game = sbg;
-        debugMode = false;
+        debugMode = true;
+        worldPause = true;
 
         //TEST JBOX2D for Tutorial!
         Vec2 gravity = new Vec2(0.0f, -9.81f);
         tutorialWorld = new World(gravity);
+        tutorialWorld.step(timeStep, velocityIterations, positionInterations);
+
 
         debugDrawJ2D = new DebugDrawJ2D(gc);
         tutorialWorld.setDebugDraw(debugDrawJ2D);
 
         {  //GROUND
             PolygonShape polygonShape = new PolygonShape();
-            polygonShape.setAsBox(400, 1);
+            polygonShape.setAsBox(40, 1);
 
             BodyDef bd = new BodyDef();
             bd.type = BodyType.STATIC;
-            bd.position.set(-10.0f, -4.0f);
+            bd.position.set(40.0f, 1.0f);
 
             FixtureDef fd = new FixtureDef();
             fd.shape = polygonShape;
@@ -79,11 +83,11 @@ public class Tutorial extends BasicGameState {
 
         {  // PLAYER
             PolygonShape polygonShape = new PolygonShape();
-            polygonShape.setAsBox(1, 2);
+            polygonShape.setAsBox(5, 10);
 
             BodyDef bd = new BodyDef();
             bd.type = BodyType.DYNAMIC;
-            bd.position.set(-8.0f, 0.0f);
+            bd.position.set(50.0f, 1.0f);
 
             FixtureDef fd = new FixtureDef();
             fd.shape = polygonShape;
@@ -99,12 +103,33 @@ public class Tutorial extends BasicGameState {
 
             BodyDef bd = new BodyDef();
             bd.type = BodyType.DYNAMIC;
-            bd.position.set(10.0f, 10.0f);
+            bd.position.set(10.0f, 50.0f);
 
             FixtureDef fd = new FixtureDef();
             fd.shape = circleShape;
             fd.userData = "circle";
 
+            circle = tutorialWorld.createBody(bd);
+            circle.createFixture(fd);
+        }
+        
+        {   //X and Y axis lines
+            PolygonShape polygonShape = new PolygonShape();
+            polygonShape.setAsBox(5, 0);
+
+            BodyDef bd = new BodyDef();
+            bd.type = BodyType.DYNAMIC;
+            bd.position.set(0.0f, 0.0f);
+
+            FixtureDef fd = new FixtureDef();
+            fd.shape = polygonShape;
+            fd.userData = "xaxis";
+
+            circle = tutorialWorld.createBody(bd);
+            circle.createFixture(fd);
+            
+            polygonShape.setAsBox(5, 0);
+            fd.userData = "yaxis";
             circle = tutorialWorld.createBody(bd);
             circle.createFixture(fd);
         }
@@ -116,18 +141,17 @@ public class Tutorial extends BasicGameState {
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         this.game = sbg;
         for (int j = 0; j < 60; j++) {
-            tutorialWorld.step(timeStep, velocityIterations, positionInterations);
             Vec2 playerPosition = player.getPosition();
             System.out.println("Player Position: " + playerPosition);
             Vec2 circlePosition = circle.getPosition();
             System.out.println("Circle Position: " + circlePosition);
         }
-
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
         graphics.setColor(Color.lightGray);
         graphics.drawString("Use 'W', 'A', 'S', 'D' to control your character!", 100, 200);
+        graphics.drawString("Press Q to view debug mode.", 100, 220);
         debugDrawJ2D.drawCircle(new Vec2(0, 0), 2, Color3f.WHITE);
         tutorialWorld.drawDebugData();
     }
@@ -143,6 +167,15 @@ public class Tutorial extends BasicGameState {
                 else if( !debugMode ){
                     debugDrawJ2D.setFlags( DebugDraw.e_shapeBit );
                     debugMode = true;
+                }
+                break;
+
+            case Input.KEY_P:
+                if( worldPause ){
+                    tutorialWorld.step(timeStep, velocityIterations, positionInterations);
+                }
+                else if( !worldPause ){
+                    tutorialWorld.step(0, 0, 0);
                 }
                 break;
 

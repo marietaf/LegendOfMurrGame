@@ -23,12 +23,15 @@ import org.newdawn.slick.geom.Polygon;
  */
 public class DebugDrawJ2D extends DebugDraw {
 
-    public static int circlePoints = 20;
+    final public static int CIRCLE_POINTS = 20;
     GameContainer gameContainer;
     Graphics g;
     int scale;
     //drawSolidPolygon
     private final Vec2 temp = new Vec2();
+    private final Vec2 temp2 = new Vec2();
+    private final Vec2 sp1 = new Vec2();
+    private final Vec2 sp2 = new Vec2();
     private final static IntArray xIntsPool = new IntArray();
     private final static IntArray yIntsPool = new IntArray();
     //drawCircle
@@ -48,7 +51,14 @@ public class DebugDrawJ2D extends DebugDraw {
     }
 
     @Override
-    public void drawPoint(Vec2 point, float radiusOnScreen, Color3f color) {
+    public void drawPoint(Vec2 argPoint, float argRadiusOnScreen, Color3f color) {
+        getWorldToScreenToOut(argPoint, sp1);
+            g.setColor(new Color(color.x,color.y,color.z));
+
+            sp1.x -= argRadiusOnScreen;
+            sp1.y -= argRadiusOnScreen;
+            g.fillOval((int)sp1.x, (int)sp1.y, (int)argRadiusOnScreen*2, (int)argRadiusOnScreen*2);
+            g.setColor(Color.white);
     }
 
     @Override
@@ -56,20 +66,18 @@ public class DebugDrawJ2D extends DebugDraw {
         // inside
         int[] xInts = xIntsPool.get(vertexCount);
         int[] yInts = yIntsPool.get(vertexCount);
+        Polygon polygon = new Polygon();
 
         for (int i = 0; i < vertexCount; i++) {
             getWorldToScreenToOut(vertices[i], temp);
             xInts[i] = (int) temp.x;
             yInts[i] = (int) temp.y;
+            polygon.addPoint(xInts[i], yInts[i]);
         }
 
         g.setColor(new Color(color.x, color.y, color.z));
-
-        Polygon polygon = new Polygon();
-        for (int i = 0; i < vertexCount; i++) {
-            polygon.addPoint(xInts[i], yInts[i]);
-        }
         g.fill(polygon);
+        g.setColor(Color.white);
 
         // outside
         drawPolygon(vertices, vertexCount, color);
@@ -77,20 +85,16 @@ public class DebugDrawJ2D extends DebugDraw {
 
     @Override
     public void drawCircle(Vec2 center, float radius, Color3f color) {
-        Color oldColor = g.getColor();
-        g.setColor(new Color(color.x / 255, color.y / 255, color.z / 255));
-        Vec2 v = new Vec2(center.x - radius, center.y - radius);
-        viewportTransform.getWorldToScreen(v, v);
-        int r = (int) (radius * scale);
-        g.drawArc((int) v.x, (int) v.y, 2 * r, 2 * r, 0, 360);
-        g.setColor(oldColor);
+        final Vec2[] vecs = vec2Array.get(CIRCLE_POINTS );
+        generateCircle(center, radius, vecs, CIRCLE_POINTS);
+        drawPolygon(vecs, CIRCLE_POINTS, color);
     }
 
     @Override
     public void drawSolidCircle(Vec2 center, float radius, Vec2 axis, Color3f color) {
-        Vec2[] vecs = vec2Array.get(circlePoints);
-        generateCircle(center, radius, vecs, circlePoints);
-        drawSolidPolygon(vecs, circlePoints, color);
+        Vec2[] vecs = vec2Array.get(CIRCLE_POINTS);
+        generateCircle(center, radius, vecs, CIRCLE_POINTS);
+        drawSolidPolygon(vecs, CIRCLE_POINTS, color);
         if (axis != null) {
             saxis.set(axis).mulLocal(radius).addLocal(center);
             drawSegment(center, saxis, color);
@@ -100,14 +104,41 @@ public class DebugDrawJ2D extends DebugDraw {
 
     @Override
     public void drawSegment(Vec2 p1, Vec2 p2, Color3f color) {
+        getWorldToScreenToOut(p1, sp1);
+        getWorldToScreenToOut(p2, sp2);
+        g.setColor(new Color(color.x,color.y,color.z));
+
+        g.drawLine((int)sp1.x, (int)sp1.y, (int)sp2.x, (int)sp2.y);
+        g.setColor(Color.white);
     }
 
     @Override
-    public void drawTransform(Transform xf) {
+    public void drawTransform(final Transform xf) {
+        getWorldToScreen(xf.p.x, temp.x);
+        temp2.setZero();
+        final float k_axisScale = 0.4f;
+
+        g.setColor(new Color(1, 0, 0));
+        //things missing - check https://gist.github.com/liamzebedee/3074904
+        temp2.x = xf.p.x + k_axisScale;
+        temp2.y = xf.p.y + k_axisScale;
+        getWorldToScreenToOut(temp2, temp2);
+        g.drawLine((int)temp.x, (int)temp.y, (int)temp2.x, (int)temp2.y);
+
+        g.setColor(new Color(0, 1, 0));
+        temp2.x = xf.p.x + k_axisScale;
+        temp2.y = xf.p.y + k_axisScale;
+        getWorldToScreenToOut(temp2, temp2);
+        g.drawLine((int)temp.x, (int)temp.y, (int)temp2.x, (int)temp2.y);
+        g.setColor(Color.white);
+
     }
 
     @Override
-    public void drawString(float f, float f1, String string, Color3f color) {
+    public void drawString(float x, float y, String s, Color3f color) {
+        g.setColor(new Color(color.x, color.y, color.z));
+        g.drawString(s, x, y);
+        g.setColor(Color.white);
     }
 
     private void generateCircle(Vec2 argCenter, float argRadius, Vec2[] argPoints, int argNumPoints) {
@@ -129,7 +160,7 @@ public class DebugDrawJ2D extends DebugDraw {
 //
 //    Graphics2D g;
 //    private final float scale;
-//    public static int circlePoints = 13;
+//    public static int CIRCLE_POINTS = 13;
 //    private final Vec2Array vec2Array = new Vec2Array();
 //    private final Vec2 temp2 = new Vec2();
 //
@@ -142,9 +173,9 @@ public class DebugDrawJ2D extends DebugDraw {
 //
 //    @Override
 //    public void drawCircle(Vec2 center, float radius, Color3f color) {
-////        Vec2[] vecs = vec2Array.get(circlePoints);
-////        generateCirle(center, radius, vecs, circlePoints);
-////        drawPolygon(vecs, circlePoints, color);
+////        Vec2[] vecs = vec2Array.get(CIRCLE_POINTS);
+////        generateCirle(center, radius, vecs, CIRCLE_POINTS);
+////        drawPolygon(vecs, CIRCLE_POINTS, color);
 //
 //        Color oldColor = g.getColor();
 //        g.setColor(new Color(color.x / 255, color.y / 255, color.z / 255));
@@ -188,9 +219,9 @@ public class DebugDrawJ2D extends DebugDraw {
 //
 //    @Override
 //    public void drawSolidCircle(Vec2 center, float radius, Vec2 axis, Color3f color) {
-//        Vec2[] vecs = vec2Array.get(circlePoints);
-//        generateCirle(center, radius, vecs, circlePoints);
-//        drawSolidPolygon(vecs, circlePoints, color);
+//        Vec2[] vecs = vec2Array.get(CIRCLE_POINTS);
+//        generateCirle(center, radius, vecs, CIRCLE_POINTS);
+//        drawSolidPolygon(vecs, CIRCLE_POINTS, color);
 //        if (axis != null) {
 //            saxis.set(axis).mulLocal(radius).addLocal(center);
 //            drawSegment(center, saxis, color);
