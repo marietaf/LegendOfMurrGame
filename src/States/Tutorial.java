@@ -157,24 +157,38 @@ public class Tutorial extends BasicGameState {
     public void keyPressed(int key, char c){
         Vec2 f, p;
         float velChange, impulse;
+        float verticalVel = player.getLinearVelocity().y;
         switch(key){
             case Input.KEY_W:
-                f = player.getWorldVector(new Vec2(0f, 20f));
+                f = player.getWorldVector(new Vec2(0f, 15f));
                 p = player.getWorldPoint(player.getLocalCenter().addLocal(0, 0));
                 player.applyLinearImpulse(f, p);
                 break;
 
             case Input.KEY_D:
-                velChange = 15 - player.getLinearVelocity().x;
-                impulse = player.getMass() * velChange;
+                if (player.getLinearVelocity().x<0)
+                {
+                    player.setLinearVelocity(new Vec2(0.0f,player.getLinearVelocity().y));
+                    break;
+                }
+                player.setLinearVelocity(new Vec2(0, verticalVel));
+
+                velChange = 10 - player.getLinearVelocity().x;
+                impulse = player.getMass() * velChange*0.5f;
                 f = player.getWorldVector(new Vec2(impulse, 0f));
                 p = player.getWorldPoint(player.getLocalCenter());
                 player.applyLinearImpulse(f, p);
                 break;
 
             case Input.KEY_A:
-                velChange = Math.max( -15 - player.getLinearVelocity().x, -15.0f );
-                impulse = player.getMass() * velChange;
+                if (player.getLinearVelocity().x>0)
+                {
+                    player.setLinearVelocity(new Vec2(0.0f,player.getLinearVelocity().y));
+                    break;
+                }
+                player.setLinearVelocity(new Vec2(0, verticalVel));
+                velChange = Math.max( -10 - player.getLinearVelocity().x, -10.0f );
+                impulse = player.getMass() * velChange*0.5f;
                 f = player.getWorldVector(new Vec2(impulse, 0f));
                 p = player.getWorldPoint(player.getLocalCenter().addLocal(0, 0));
                 player.applyLinearImpulse(f, p);
