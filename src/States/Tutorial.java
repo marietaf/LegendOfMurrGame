@@ -32,7 +32,7 @@ public class Tutorial extends BasicGameState {
 
     int ID;
     StateBasedGame game;
-    float timeStep = 1.0f / 60.0f;
+    float timeStep = 1.0f / 120.0f;
     int velocityIterations = 6;
     int positionInterations = 2;
     World tutorialWorld;
@@ -59,13 +59,13 @@ public class Tutorial extends BasicGameState {
         //TEST JBOX2D for Tutorial!
         Vec2 gravity = new Vec2(0.0f, -9.81f);
         tutorialWorld = new World(gravity);
-        tutorialWorld.step(timeStep, velocityIterations, positionInterations);
+        tutorialWorld.step(0, 0, 0);
 
 
         debugDrawJ2D = new DebugDrawJ2D(gc);
         tutorialWorld.setDebugDraw(debugDrawJ2D);
 
-        {  //GROUND
+        {  //WALLS
             PolygonShape polygonShape = new PolygonShape();
             polygonShape.setAsBox(40, 1);
 
@@ -75,19 +75,39 @@ public class Tutorial extends BasicGameState {
 
             FixtureDef fd = new FixtureDef();
             fd.shape = polygonShape;
-            fd.userData = "ground";
+            fd.userData = "wall";
 
-            Body groundBody = tutorialWorld.createBody(bd);
-            groundBody.createFixture(fd);
+            Body bottomWall = tutorialWorld.createBody(bd);
+            bottomWall.createFixture(fd);
+
+            //TOP
+            polygonShape.setAsBox(40, 1);
+            bd.position.set(40.0f, 2.0f);
+            Body topWall = tutorialWorld.createBody(bd);
+            topWall.createFixture(fd);
+
+            //LEFT
+            polygonShape.setAsBox(1, 40);
+            bd.position.set(0.0f, 0.0f);
+            tutorialWorld.createBody(bd);
+            Body leftWall = tutorialWorld.createBody(bd);
+            topWall.createFixture(fd);
+
+            //RIGHT
+            polygonShape.setAsBox(1, 20);
+            bd.position.set(160.0f, 0.0f);
+            tutorialWorld.createBody(bd);
+            Body rightWall = tutorialWorld.createBody(bd);
+            topWall.createFixture(fd);
         }
 
         {  // PLAYER
             PolygonShape polygonShape = new PolygonShape();
-            polygonShape.setAsBox(5, 10);
+            polygonShape.setAsBox(3, 5);
 
             BodyDef bd = new BodyDef();
             bd.type = BodyType.DYNAMIC;
-            bd.position.set(50.0f, 1.0f);
+            bd.position.set(50.0f, 20.0f);
 
             FixtureDef fd = new FixtureDef();
             fd.shape = polygonShape;
@@ -108,28 +128,8 @@ public class Tutorial extends BasicGameState {
             FixtureDef fd = new FixtureDef();
             fd.shape = circleShape;
             fd.userData = "circle";
+            fd.restitution = 1.0f;
 
-            circle = tutorialWorld.createBody(bd);
-            circle.createFixture(fd);
-        }
-        
-        {   //X and Y axis lines
-            PolygonShape polygonShape = new PolygonShape();
-            polygonShape.setAsBox(5, 0);
-
-            BodyDef bd = new BodyDef();
-            bd.type = BodyType.DYNAMIC;
-            bd.position.set(0.0f, 0.0f);
-
-            FixtureDef fd = new FixtureDef();
-            fd.shape = polygonShape;
-            fd.userData = "xaxis";
-
-            circle = tutorialWorld.createBody(bd);
-            circle.createFixture(fd);
-            
-            polygonShape.setAsBox(5, 0);
-            fd.userData = "yaxis";
             circle = tutorialWorld.createBody(bd);
             circle.createFixture(fd);
         }
@@ -140,11 +140,8 @@ public class Tutorial extends BasicGameState {
 
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         this.game = sbg;
-        for (int j = 0; j < 60; j++) {
-            Vec2 playerPosition = player.getPosition();
-            System.out.println("Player Position: " + playerPosition);
-            Vec2 circlePosition = circle.getPosition();
-            System.out.println("Circle Position: " + circlePosition);
+        if( !worldPause ){
+            tutorialWorld.step(timeStep, velocityIterations, positionInterations);
         }
     }
 
@@ -154,6 +151,35 @@ public class Tutorial extends BasicGameState {
         graphics.drawString("Press Q to view debug mode.", 100, 220);
         debugDrawJ2D.drawCircle(new Vec2(0, 0), 2, Color3f.WHITE);
         tutorialWorld.drawDebugData();
+    }
+
+    @Override
+    public void keyPressed(int key, char c){
+        Vec2 f, p;
+        float velChange, impulse;
+        switch(key){
+            case Input.KEY_W:
+                f = player.getWorldVector(new Vec2(0f, 20f));
+                p = player.getWorldPoint(player.getLocalCenter().addLocal(0, 0));
+                player.applyLinearImpulse(f, p);
+                break;
+
+            case Input.KEY_D:
+                velChange = 15 - player.getLinearVelocity().x;
+                impulse = player.getMass() * velChange;
+                f = player.getWorldVector(new Vec2(impulse, 0f));
+                p = player.getWorldPoint(player.getLocalCenter());
+                player.applyLinearImpulse(f, p);
+                break;
+
+            case Input.KEY_A:
+                velChange = Math.max( -15 - player.getLinearVelocity().x, -15.0f );
+                impulse = player.getMass() * velChange;
+                f = player.getWorldVector(new Vec2(impulse, 0f));
+                p = player.getWorldPoint(player.getLocalCenter().addLocal(0, 0));
+                player.applyLinearImpulse(f, p);
+                break;
+        }
     }
 
     @Override
@@ -173,9 +199,11 @@ public class Tutorial extends BasicGameState {
             case Input.KEY_P:
                 if( worldPause ){
                     tutorialWorld.step(timeStep, velocityIterations, positionInterations);
+                    worldPause = false;
                 }
                 else if( !worldPause ){
-                    tutorialWorld.step(0, 0, 0);
+                    tutorialWorld.step(0, velocityIterations, positionInterations);
+                    worldPause = true;
                 }
                 break;
 
