@@ -30,8 +30,10 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class Tutorial extends BasicGameState {
 
+    //State
     int ID;
     StateBasedGame game;
+    //Physics
     float timeStep = 1.0f / 120.0f;
     int velocityIterations = 6;
     int positionInterations = 2;
@@ -41,6 +43,11 @@ public class Tutorial extends BasicGameState {
     boolean debugMode;
     Camera camera = new Camera(400, 300, 60);
     boolean worldPause;
+    //Key presseing + releasing
+    boolean keyAPressed, keyDPressed;
+    Vec2 f, p;
+    float velChange, impulse;
+    float verticalVel;
 
     public Tutorial(int ID) {
         this.ID = ID;
@@ -166,6 +173,22 @@ public class Tutorial extends BasicGameState {
 
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         this.game = sbg;
+
+        if( keyAPressed ){
+            velChange = Math.max( -10 - player.getLinearVelocity().x, -10.0f );
+            impulse = player.getMass() * velChange * 0.5f;
+            f = player.getWorldVector(new Vec2(impulse, 0f));
+            p = player.getWorldPoint(player.getLocalCenter().addLocal(0, 0));
+            player.applyLinearImpulse(f, p);
+        }
+        if(keyDPressed){
+            velChange = 10 - player.getLinearVelocity().x;
+            impulse = player.getMass() * velChange*0.5f;
+            f = player.getWorldVector(new Vec2(impulse, 0f));
+            p = player.getWorldPoint(player.getLocalCenter());
+            player.applyLinearImpulse(f, p);
+        }
+
         if( !worldPause ){
             tutorialWorld.step(timeStep, velocityIterations, positionInterations);
         }
@@ -181,9 +204,7 @@ public class Tutorial extends BasicGameState {
 
     @Override
     public void keyPressed(int key, char c){
-        Vec2 f, p;
-        float velChange, impulse;
-        float verticalVel = player.getLinearVelocity().y;
+        
         switch(key){
             case Input.KEY_W:
                 f = player.getWorldVector(new Vec2(0f, 15f));
@@ -196,30 +217,24 @@ public class Tutorial extends BasicGameState {
             case Input.KEY_D:
                 if (player.getLinearVelocity().x<0)
                 {
-                    player.setLinearVelocity(new Vec2(0.0f,player.getLinearVelocity().y));
+                    verticalVel = player.getLinearVelocity().y;
+                    player.setLinearVelocity(new Vec2(0, verticalVel));
                     break;
                 }
-                player.setLinearVelocity(new Vec2(0, verticalVel));
-
-                velChange = 10 - player.getLinearVelocity().x;
-                impulse = player.getMass() * velChange*0.5f;
-                f = player.getWorldVector(new Vec2(impulse, 0f));
-                p = player.getWorldPoint(player.getLocalCenter());
-                player.applyLinearImpulse(f, p);
+                keyDPressed = true;
                 break;
 
             case Input.KEY_A:
                 if (player.getLinearVelocity().x>0)
                 {
-                    player.setLinearVelocity(new Vec2(0.0f,player.getLinearVelocity().y));
+                    verticalVel = player.getLinearVelocity().y;
+                    player.setLinearVelocity(new Vec2(0, verticalVel));
                     break;
                 }
-                player.setLinearVelocity(new Vec2(0, verticalVel));
-                velChange = Math.max( -10 - player.getLinearVelocity().x, -10.0f );
-                impulse = player.getMass() * velChange*0.5f;
-                f = player.getWorldVector(new Vec2(impulse, 0f));
-                p = player.getWorldPoint(player.getLocalCenter().addLocal(0, 0));
-                player.applyLinearImpulse(f, p);
+                keyAPressed = true;
+                break;
+
+            default:
                 break;
         }
     }
@@ -251,6 +266,18 @@ public class Tutorial extends BasicGameState {
 
             case Input.KEY_ESCAPE:
                 game.enterState(legendofmurrgame.LegendOfMurr.MENU_ID);
+                break;
+
+            default:
+                break;
+        }
+        switch(key){
+            case Input.KEY_D:
+                keyDPressed = false;
+                break;
+
+            case Input.KEY_A:
+                keyAPressed = false;
                 break;
 
             default:
