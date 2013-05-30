@@ -66,39 +66,65 @@ public class Tutorial extends BasicGameState {
         tutorialWorld.setDebugDraw(debugDrawJ2D);
 
         {  //WALLS
-            PolygonShape polygonShape = new PolygonShape();
-            polygonShape.setAsBox(40, 1);
+            //BOTTOM
+            PolygonShape psBot = new PolygonShape();
+            psBot.setAsBox(40, 1);
 
-            BodyDef bd = new BodyDef();
-            bd.type = BodyType.STATIC;
-            bd.position.set(40.0f, 1.0f);
+            BodyDef bdBot = new BodyDef();
+            bdBot.type = BodyType.STATIC;
+            bdBot.position.set(40.0f, 0.0f);
 
-            FixtureDef fd = new FixtureDef();
-            fd.shape = polygonShape;
-            fd.userData = "wall";
+            FixtureDef fdBot = new FixtureDef();
+            fdBot.shape = psBot;
+            fdBot.userData = "wall";
 
-            Body bottomWall = tutorialWorld.createBody(bd);
-            bottomWall.createFixture(fd);
+            Body bottomWall = tutorialWorld.createBody(bdBot);
+            bottomWall.createFixture(fdBot);
 
             //TOP
-            polygonShape.setAsBox(40, 1);
-            bd.position.set(40.0f, 2.0f);
-            Body topWall = tutorialWorld.createBody(bd);
-            topWall.createFixture(fd);
+            PolygonShape psTop = new PolygonShape();
+            psTop.setAsBox(40, 1);
+
+            BodyDef bdTop = new BodyDef();
+            bdTop.type = BodyType.STATIC;
+            bdTop.position.set(40.0f, 60.0f);
+
+            FixtureDef fdTop = new FixtureDef();
+            fdTop.shape = psTop;
+            fdTop.userData = "wall";
+
+            Body topWall = tutorialWorld.createBody(bdTop);
+            topWall.createFixture(fdTop);
 
             //LEFT
-            polygonShape.setAsBox(1, 40);
-            bd.position.set(0.0f, 0.0f);
-            tutorialWorld.createBody(bd);
-            Body leftWall = tutorialWorld.createBody(bd);
-            topWall.createFixture(fd);
+            PolygonShape psLeft = new PolygonShape();
+            psLeft.setAsBox(1, 30);
+
+            BodyDef bdLeft = new BodyDef();
+            bdLeft.type = BodyType.STATIC;
+            bdLeft.position.set(0.0f, 30.0f);
+
+            FixtureDef fdLeft = new FixtureDef();
+            fdLeft.shape = psLeft;
+            fdLeft.userData = "wall";
+
+            Body leftWall = tutorialWorld.createBody(bdLeft);
+            leftWall.createFixture(fdLeft);
 
             //RIGHT
-            polygonShape.setAsBox(1, 20);
-            bd.position.set(160.0f, 0.0f);
-            tutorialWorld.createBody(bd);
-            Body rightWall = tutorialWorld.createBody(bd);
-            topWall.createFixture(fd);
+            PolygonShape psRight = new PolygonShape();
+            psRight.setAsBox(1, 30);
+
+            BodyDef bdRight = new BodyDef();
+            bdRight.type = BodyType.STATIC;
+            bdRight.position.set(80.0f, 30.0f);
+
+            FixtureDef fdRight = new FixtureDef();
+            fdRight.shape = psRight;
+            fdRight.userData = "wall";
+
+            Body rightWall = tutorialWorld.createBody(bdRight);
+            rightWall.createFixture(fdRight);
         }
 
         {  // PLAYER
@@ -165,6 +191,8 @@ public class Tutorial extends BasicGameState {
                 player.applyLinearImpulse(f, p);
                 break;
 
+        }
+        switch(key){
             case Input.KEY_D:
                 if (player.getLinearVelocity().x<0)
                 {
