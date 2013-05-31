@@ -38,7 +38,7 @@ public class Tutorial extends BasicGameState {
     int velocityIterations = 6;
     int positionInterations = 2;
     World tutorialWorld;
-    Body player, circle;
+    Body player, circle, star;
     DebugDrawJ2D debugDrawJ2D;
     boolean debugMode;
     Camera camera = new Camera(400, 300, 60);
@@ -150,6 +150,24 @@ public class Tutorial extends BasicGameState {
             player.createFixture(fd);
         }
 
+        //test Star
+        {
+            CircleShape pointShape = new CircleShape();
+            pointShape.m_radius = 1.0f;
+
+            BodyDef bd = new BodyDef();
+            bd.type = BodyType.STATIC;
+            bd.position.set(12.0f, 15.0f);
+
+            FixtureDef fd = new FixtureDef();
+            fd.userData = "circle1";
+            fd.shape = pointShape;
+
+            star = tutorialWorld.createBody(bd);
+            star.createFixture(fd);
+
+        }
+
         {   //test circle
             CircleShape circleShape = new CircleShape();
             circleShape.m_radius = 5.0f;
@@ -192,6 +210,11 @@ public class Tutorial extends BasicGameState {
         if( !worldPause ){
             tutorialWorld.step(timeStep, velocityIterations, positionInterations);
         }
+        if (player.shouldCollide(star)){
+            star.setLinearVelocity(new Vec2(1.0f, 2.0f));
+        }
+
+
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
