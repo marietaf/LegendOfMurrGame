@@ -143,6 +143,7 @@ public class Tutorial extends BasicGameState {
             bd.position.set(50.0f, 20.0f);
 
             FixtureDef fd = new FixtureDef();
+            fd.friction = 10.0f;
             fd.shape = polygonShape;
             fd.userData = "player";
 
@@ -242,7 +243,6 @@ public class Tutorial extends BasicGameState {
                 {
                     verticalVel = player.getLinearVelocity().y;
                     player.setLinearVelocity(new Vec2(0, verticalVel));
-                    break;
                 }
                 keyDPressed = true;
                 break;
@@ -252,7 +252,6 @@ public class Tutorial extends BasicGameState {
                 {
                     verticalVel = player.getLinearVelocity().y;
                     player.setLinearVelocity(new Vec2(0, verticalVel));
-                    break;
                 }
                 keyAPressed = true;
                 break;
