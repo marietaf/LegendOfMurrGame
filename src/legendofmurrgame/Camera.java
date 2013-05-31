@@ -35,6 +35,7 @@ public class Camera {
     public void updateCamera(){
         sx = x + LegendOfMurr.WIDTH;
         sy = y + LegendOfMurr.HEIGHT;
+
     }
 
     public void moveCamera( int mx, int my ){
@@ -45,6 +46,7 @@ public class Camera {
         else if( mx <= LegendOfMurr.WIDTH && mx >= LegendOfMurr.WIDTH - 80 ){
             this.x += 2;
         }
+
         //Also move on the y axis if near the border
         if( my >= 0 && my <= 80 ){
             this.y += 2;

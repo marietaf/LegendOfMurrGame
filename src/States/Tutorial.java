@@ -14,6 +14,7 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.newdawn.slick.Color;
@@ -143,7 +144,7 @@ public class Tutorial extends BasicGameState {
             bd.position.set(50.0f, 20.0f);
 
             FixtureDef fd = new FixtureDef();
-            fd.friction = 10.0f;
+            fd.friction = 100.0f;
             fd.shape = polygonShape;
             fd.userData = "player";
 
@@ -162,12 +163,15 @@ public class Tutorial extends BasicGameState {
 
             FixtureDef fd = new FixtureDef();
             fd.userData = "circle1";
+            fd.isSensor = true;
             fd.shape = pointShape;
 
             star = tutorialWorld.createBody(bd);
             star.createFixture(fd);
 
         }
+
+
 
         {   //test circle
             CircleShape circleShape = new CircleShape();
@@ -190,6 +194,7 @@ public class Tutorial extends BasicGameState {
         
     }
 
+
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         this.game = sbg;
 
@@ -211,9 +216,11 @@ public class Tutorial extends BasicGameState {
         if( !worldPause ){
             tutorialWorld.step(timeStep, velocityIterations, positionInterations);
         }
-        if (player.shouldCollide(star)){
-            star.setLinearVelocity(new Vec2(1.0f, 2.0f));
-        }
+        Camera cam = new Camera();
+        cam.x=(int)player.getWorldPoint(new Vec2 (0.0f, 0.0f)).x;
+        cam.updateCamera();
+        cam.moveCamera(cam.x, cam.y);
+
 
 
     }
