@@ -31,7 +31,7 @@ public class LegendOfMurr extends StateBasedGame {
     public final static int TUTORIAL_ID = 3;
     //Application specific final variables
     public final static int WIDTH = 800;
-    public final static int HEIGHT = 600;
+    public final static int HEIGHT = 480;
 
 
     /**

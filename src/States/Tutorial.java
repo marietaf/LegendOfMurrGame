@@ -69,11 +69,10 @@ public class Tutorial extends BasicGameState {
         tutorialWorld = new World(gravity);
         tutorialWorld.step(0, 0, 0);
 
-
         debugDrawJ2D = new DebugDrawJ2D(gc);
         tutorialWorld.setDebugDraw(debugDrawJ2D);
 
-        {  //WALLS
+        {  //WALLS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             //BOTTOM
             PolygonShape psBot = new PolygonShape();
             psBot.setAsBox(40, 1);
@@ -135,7 +134,7 @@ public class Tutorial extends BasicGameState {
             rightWall.createFixture(fdRight);
         }
 
-        {  // PLAYER
+        {  // PLAYER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             PolygonShape polygonShape = new PolygonShape();
             polygonShape.setAsBox(3, 5);
 
@@ -151,7 +150,6 @@ public class Tutorial extends BasicGameState {
             player = tutorialWorld.createBody(bd);
             player.createFixture(fd);
         }
-
         //test Star
         {
             CircleShape pointShape = new CircleShape();
@@ -171,9 +169,7 @@ public class Tutorial extends BasicGameState {
 
         }
 
-
-
-        {   //test circle
+        {   //Circle ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             CircleShape circleShape = new CircleShape();
             circleShape.m_radius = 5.0f;
 
@@ -213,16 +209,13 @@ public class Tutorial extends BasicGameState {
             player.applyLinearImpulse(f, p);
         }
 
-        if( !worldPause ){
+        if( !worldPause )
             tutorialWorld.step(timeStep, velocityIterations, positionInterations);
-        }
+        
         Camera cam = new Camera();
         cam.x=(int)player.getWorldPoint(new Vec2 (0.0f, 0.0f)).x;
         cam.updateCamera();
         cam.moveCamera(cam.x, cam.y);
-
-
-
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
