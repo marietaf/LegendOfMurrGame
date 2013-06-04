@@ -35,16 +35,14 @@ public class Tutorial extends BasicGameState {
     int ID;
     StateBasedGame game;
     //Physics
-    float timeStep = 1.0f / 120.0f;
+    float timeStep = 1.0f / 30.0f;
     int velocityIterations = 6;
     int positionInterations = 2;
     World tutorialWorld;
     Body player, circle, star;
     DebugDrawJ2D debugDrawJ2D;
     boolean debugMode;
-    Camera camera = new Camera(400, 300, 60);
-    boolean worldPause;
-    //Key presseing + releasing
+    boolean worldPause;  //Key presseing + releasing
     boolean keyAPressed, keyDPressed;
     Vec2 f, p;
     float velChange, impulse;
@@ -71,6 +69,7 @@ public class Tutorial extends BasicGameState {
 
         debugDrawJ2D = new DebugDrawJ2D(gc);
         tutorialWorld.setDebugDraw(debugDrawJ2D);
+        debugDrawJ2D.getViewportTranform();
 
         {  //WALLS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             //BOTTOM
@@ -212,10 +211,7 @@ public class Tutorial extends BasicGameState {
         if( !worldPause )
             tutorialWorld.step(timeStep, velocityIterations, positionInterations);
         
-        Camera cam = new Camera();
-        cam.x=(int)player.getWorldPoint(new Vec2 (0.0f, 0.0f)).x;
-        cam.updateCamera();
-        cam.moveCamera(cam.x, cam.y);
+        debugDrawJ2D.setCamera(player.getPosition().x,legendofmurrgame.LegendOfMurr.HEIGHT/20, 10.0f);
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {

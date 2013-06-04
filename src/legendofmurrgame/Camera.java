@@ -6,18 +6,18 @@
 package legendofmurrgame;
 
 import org.jbox2d.common.Vec2;
+import org.jbox2d.common.IViewportTransform;
 
 /**
  *
  * @author Marieta
  */
-public class Camera {
+public class Camera implements IViewportTransform{
 
-    public int x, y, sx, sy;
-    //number of pixels per meter (because jbox2d uses meters)
-    public static final float PIXEL_PER_METER = 50.0f;
-    //Use to flip between coordinate system of JBox2D and screen (they have opposite y directions)
-    float yFlip = -1.0f;
+    public float x, y, sx, sy, Scale;
+    public static final float PIXEL_PER_METER = 50.0f; //number of pixels per meter (because jbox2d uses meters
+    float yFlip = -1.0f;    //Use to flip between coordinate system of JBox2D and screen (they have opposite y directions)
+    Vec2 Center = new Vec2();
 
     public Camera(){
         x = 0;
@@ -26,7 +26,7 @@ public class Camera {
         sy = y + LegendOfMurr.HEIGHT;
     }
 
-    public Camera( int x, int y, float pixelsPerMeter ){
+    public Camera( float x, float y, float pixelsPerMeter ){
         this.x = x;
         this.y = y;
         sx = x + LegendOfMurr.WIDTH;
@@ -38,7 +38,7 @@ public class Camera {
 
     }
 
-    public void moveCamera( int mx, int my ){
+    public void moveCamera( float mx, float my ){
         //If the coordinates are near 80 pixels of the border, move the camera accordingly
         if( mx >= 0 && mx <= 80 ){
             this.x -= 2;
@@ -75,6 +75,62 @@ public class Camera {
     public Vec2 worldToScreen( Vec2 worldVector ){
         return new Vec2( ( worldVector.x - this.x ) * PIXEL_PER_METER ,
                 ( yFlip * worldVector.y - this.y ) * PIXEL_PER_METER );
+    }
+
+    public boolean isYFlip() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setYFlip(boolean arg0) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Vec2 getExtents() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setExtents(Vec2 arg0) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setExtents(float arg0, float arg1) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Vec2 getCenter() {
+        return Center;
+    }
+
+    public void setCenter(Vec2 centre) {
+        Center = new Vec2(centre);
+    }
+
+    public void setCenter(float argx, float argy) {
+        Center = new Vec2(argx, argy);
+        x = argx;
+        y = argy;
+    }
+
+    public void setCamera(float argx, float argy, float argScale) {
+        Center.set(argx, argy);
+        Scale = argScale;
+
+    }
+
+    public void getWorldVectorToScreen(Vec2 arg0, Vec2 arg1) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void getScreenVectorToWorld(Vec2 arg0, Vec2 arg1) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void getWorldToScreen(Vec2 arg0, Vec2 arg1) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void getScreenToWorld(Vec2 arg0, Vec2 arg1) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }
