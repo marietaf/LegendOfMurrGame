@@ -3,10 +3,9 @@
  * and open the template in the editor.
  */
 package States;
-
-import legendofmurrgame.Camera;
-import legendofmurrgame.DebugDrawJ2D;
-import org.jbox2d.callbacks.DebugDraw;
+ 
+import legendofmurrgame.DebugDrawJ2D;       //Imports from classes within the code
+import org.jbox2d.callbacks.DebugDraw;      //JBox2D imports
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Color3f;
@@ -14,10 +13,9 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
-import org.newdawn.slick.Color;
+import org.newdawn.slick.Color;         //Slick 2D imports
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -74,12 +72,12 @@ public class Tutorial extends BasicGameState {
         {  //WALLS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             //BOTTOM
             PolygonShape psBot = new PolygonShape();
-            psBot.setAsBox(40, 1);
+            psBot.setAsBox(40, 1);  //Dimensions of the wall
 
             BodyDef bdBot = new BodyDef();
             bdBot.type = BodyType.STATIC;
-            bdBot.position.set(40.0f, 0.0f);
-
+            bdBot.position.set(40.0f, 0.0f); //The coordinates for the position of the bottom wall 
+                                             //Starts with the bottom right corner
             FixtureDef fdBot = new FixtureDef();
             fdBot.shape = psBot;
             fdBot.userData = "wall";
@@ -113,6 +111,7 @@ public class Tutorial extends BasicGameState {
             FixtureDef fdLeft = new FixtureDef();
             fdLeft.shape = psLeft;
             fdLeft.userData = "wall";
+            fdLeft.friction = 0.0f;
 
             Body leftWall = tutorialWorld.createBody(bdLeft);
             leftWall.createFixture(fdLeft);
@@ -128,6 +127,7 @@ public class Tutorial extends BasicGameState {
             FixtureDef fdRight = new FixtureDef();
             fdRight.shape = psRight;
             fdRight.userData = "wall";
+            fdRight.friction = 0.0f;
 
             Body rightWall = tutorialWorld.createBody(bdRight);
             rightWall.createFixture(fdRight);
@@ -218,6 +218,7 @@ public class Tutorial extends BasicGameState {
         graphics.setColor(Color.lightGray);
         graphics.drawString("Use 'W', 'A', 'S', 'D' to control your character!", 100, 200);
         graphics.drawString("Press Q to view debug mode.", 100, 220);
+        graphics.drawString("Time Step " + timeStep, 100, 240);
         debugDrawJ2D.drawCircle(new Vec2(0, 0), 2, Color3f.WHITE);
         tutorialWorld.drawDebugData();
     }
