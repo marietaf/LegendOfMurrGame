@@ -32,6 +32,7 @@ public class Tutorial extends BasicGameState {
     //State
     int ID;
     StateBasedGame game;
+    GameContainer gc;
     //Physics
     float timeStep = 1.0f / 30.0f;
     int velocityIterations = 6;
@@ -57,7 +58,13 @@ public class Tutorial extends BasicGameState {
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         this.game = sbg;
-        debugMode = true;
+        this.gc = gc;
+        reset();
+        
+    }
+    
+    public void reset()
+    {
         worldPause = true;
 
         //TEST JBOX2D for Tutorial!
@@ -67,6 +74,7 @@ public class Tutorial extends BasicGameState {
 
         debugDrawJ2D = new DebugDrawJ2D(gc);
         tutorialWorld.setDebugDraw(debugDrawJ2D);
+
         debugDrawJ2D.getViewportTranform();
 
         {  //WALLS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -76,7 +84,7 @@ public class Tutorial extends BasicGameState {
 
             BodyDef bdBot = new BodyDef();
             bdBot.type = BodyType.STATIC;
-            bdBot.position.set(40.0f, 0.0f); //The coordinates for the position of the bottom wall 
+            bdBot.position.set(40.0f, 0.0f); //The coordinates for the position of the bottom wall
                                              //Starts with the bottom right corner
             FixtureDef fdBot = new FixtureDef();
             fdBot.shape = psBot;
@@ -186,7 +194,8 @@ public class Tutorial extends BasicGameState {
         }
 
         tutorialWorld.setDebugDraw(debugDrawJ2D);
-        
+        debugDrawJ2D.setFlags( DebugDraw.e_shapeBit );
+        debugMode = false;
     }
 
 
@@ -284,6 +293,7 @@ public class Tutorial extends BasicGameState {
                 break;
 
             case Input.KEY_ESCAPE:
+                reset();
                 game.enterState(legendofmurrgame.LegendOfMurr.MENU_ID);
                 break;
 
