@@ -195,7 +195,19 @@ public class Tutorial extends BasicGameState {
 
         tutorialWorld.setDebugDraw(debugDrawJ2D);
         debugDrawJ2D.setFlags( DebugDraw.e_shapeBit );
-        debugMode = false;
+        debugMode = true;
+    }
+
+    public void DebugMode()
+    {
+        if( debugMode ){
+                    debugDrawJ2D.clearFlags( DebugDraw.e_shapeBit );
+                    debugMode = false;
+                }
+                else if( !debugMode ){
+                    debugDrawJ2D.setFlags( DebugDraw.e_shapeBit );
+                    debugMode = true;
+                }
     }
 
 
@@ -271,14 +283,7 @@ public class Tutorial extends BasicGameState {
     public void keyReleased(int key, char c) {
         switch (key) {
             case Input.KEY_Q:
-                if( debugMode ){
-                    debugDrawJ2D.clearFlags( DebugDraw.e_shapeBit );
-                    debugMode = false;
-                }
-                else if( !debugMode ){
-                    debugDrawJ2D.setFlags( DebugDraw.e_shapeBit );
-                    debugMode = true;
-                }
+                DebugMode();
                 break;
 
             case Input.KEY_P:
