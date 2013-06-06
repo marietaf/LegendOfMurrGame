@@ -6,7 +6,6 @@
 package Entities;
 
 import org.jbox2d.dynamics.BodyType;
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 

@@ -29,7 +29,7 @@ public class Entity {
     Shape fdShape;
     Body body;
 
-    public Entity(float x, float y, BodyType bdType, String bodyUserData, IViewportTransform viewportTransform ){
+    public Entity(float x, float y, BodyType bdType, String bodyUserData ){
         this.x = x;
         this.y = y;
         
