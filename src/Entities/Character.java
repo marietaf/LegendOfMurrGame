@@ -5,6 +5,7 @@
 
 package Entities;
 
+import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -21,8 +22,8 @@ public class Character extends Entity {
     String animColor;
 
     public Character( float x, float y,
-                      String animPathName, int[] duration ) throws SlickException {
-        super(x, y);
+                      String animPathName, int[] duration, String bodyUserData ) throws SlickException {
+        super( x, y, BodyType.DYNAMIC, bodyUserData );
         this.animColor = "white";
         //FIX PATH NAMES ONCE IMAGES ARE DONE
         animationUp = new Animation(new Image[]{new Image(animPathName + animColor +"_bk1.gif"), new Image(animPathName + "_bk2.gif")}, duration, false);

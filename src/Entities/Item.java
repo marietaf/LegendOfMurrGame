@@ -5,6 +5,7 @@
 
 package Entities;
 
+import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -19,8 +20,8 @@ public class Item extends Entity {
     String imagePathName;
 
     public Item( float x, float y,
-                 String imagePathName ) throws SlickException{
-        super(x, y);
+                 String imagePathName, String bodyUserData ) throws SlickException{
+        super(x, y, BodyType.KINEMATIC, bodyUserData);
         this.imagePathName = imagePathName;
         image = new Image( imagePathName );
     }
