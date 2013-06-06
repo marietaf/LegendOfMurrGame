@@ -26,10 +26,10 @@ public class Character extends Entity {
         super( x, y, BodyType.DYNAMIC, bodyUserData );
         this.animColor = "white";
         //FIX PATH NAMES ONCE IMAGES ARE DONE
-        animationUp = new Animation(new Image[]{new Image(animPathName + animColor +"_bk1.gif"), new Image(animPathName + "_bk2.gif")}, duration, false);
-        animationStill = new Animation(new Image[]{new Image(animPathName + "_fr1.gif"), new Image(animPathName + "_fr2.gif")}, duration, false);
-        animationLeft = new Animation(new Image[]{new Image(animPathName + "_lf1.gif"), new Image(animPathName + "_lf2.gif")}, duration, false);
-        animationRight = new Animation(new Image[]{new Image(animPathName + "_rt1.gif"), new Image(animPathName + "_rt2.gif")}, duration, false);
+        animationUp = new Animation(new Image[]{new Image(animPathName + "_jump_" + animColor +".png"), new Image(animPathName + "_jump_" + animColor + "2.png")}, duration, false);
+        animationStill = new Animation(new Image[]{new Image(animPathName + "_stand_" + animColor + ".png"), new Image(animPathName + "_stand_" + animColor + "2.png")}, duration, false);
+        animationRight = new Animation(new Image[]{new Image(animPathName + "_run1_" + animColor + "_rt.png"), new Image(animPathName + "_run2_" + animColor +"_rt.png")}, duration, false);
+        animationLeft = new Animation(new Image[]{new Image(animPathName + "_run1_" + animColor + "_lt.png"), new Image(animPathName + "_run2_" + animColor + "_lt.png")}, duration, false);
         currentAnimation = animationStill;
     }
 
