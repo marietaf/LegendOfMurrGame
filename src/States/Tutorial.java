@@ -200,6 +200,7 @@ public class Tutorial extends BasicGameState {
         tutorialWorld.setDebugDraw(debugDrawJ2D);
         debugDrawJ2D.setFlags( DebugDraw.e_shapeBit );
         debugMode = true;
+        worldPause = false;
     }
 
     public void UpdateDebugMode()
@@ -211,6 +212,20 @@ public class Tutorial extends BasicGameState {
         else if( !debugMode ){
             debugDrawJ2D.setFlags( DebugDraw.e_shapeBit );
             debugMode = true;
+        }
+    }
+    
+    public void Pause()
+    {
+        if( worldPause ){
+            tutorialWorld.step(timeStep, velocityIterations, positionInterations);
+            worldPause = false;
+        }
+        else if( !worldPause ){
+            tutorialWorld.step(0, velocityIterations, positionInterations);
+            worldPause = true;
+            game.enterState(legendofmurrgame.LegendOfMurr.GAMEPAUSE_ID);
+            worldPause = false;
         }
     }
 
@@ -235,7 +250,6 @@ public class Tutorial extends BasicGameState {
 
         if( !worldPause )
             tutorialWorld.step(timeStep, velocityIterations, positionInterations);
-        
         debugDrawJ2D.setCamera(player.getPosition().x,legendofmurrgame.LegendOfMurr.HEIGHT/20, 10.0f);
     }
 
@@ -243,7 +257,7 @@ public class Tutorial extends BasicGameState {
         graphics.setColor(Color.lightGray);
         graphics.drawString("Use 'W', 'A', 'S', 'D' to control your character!", 100, 200);
         graphics.drawString("Press Q to view debug mode.", 100, 220);
-        graphics.drawString("Time Step " + timeStep, 100, 240);
+        graphics.drawString("Press 'P' to toggle the pause.", 100, 240);
         debugDrawJ2D.drawCircle(new Vec2(0, 0), 2, Color3f.WHITE);
         tutorialWorld.drawDebugData();
     }
@@ -278,6 +292,10 @@ public class Tutorial extends BasicGameState {
                 keyAPressed = true;
                 break;
 
+            case Input.KEY_P:
+                Pause();
+                break;
+
             default:
                 break;
         }
@@ -288,17 +306,6 @@ public class Tutorial extends BasicGameState {
         switch (key) {
             case Input.KEY_Q:
                 UpdateDebugMode();
-                break;
-
-            case Input.KEY_P:
-                if( worldPause ){
-                    tutorialWorld.step(timeStep, velocityIterations, positionInterations);
-                    worldPause = false;
-                }
-                else if( !worldPause ){
-                    tutorialWorld.step(0, velocityIterations, positionInterations);
-                    worldPause = true;
-                }
                 break;
 
             case Input.KEY_ESCAPE:
