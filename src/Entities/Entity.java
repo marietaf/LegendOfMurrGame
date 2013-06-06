@@ -7,6 +7,8 @@ package Entities;
 
 import java.util.ArrayList;
 import org.jbox2d.collision.shapes.Shape;
+import org.jbox2d.common.IViewportTransform;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
@@ -27,13 +29,15 @@ public class Entity {
     Shape fdShape;
     Body body;
 
-    public Entity(float x, float y, BodyType bdType, String bodyUserData ){
+    public Entity(float x, float y, BodyType bdType, String bodyUserData, IViewportTransform viewportTransform ){
         this.x = x;
         this.y = y;
         
         fd = new FixtureDef();
         bd = new BodyDef();
+        
         bd.type = bdType;
+        bd.fixedRotation = true;
         bd.userData = bodyUserData;
     }
 
@@ -53,9 +57,11 @@ public class Entity {
         this.y = y;
     }
 
-    public void SetNewCoordinates( float x, float y ){
+    public void UpdatePosition( float x, float y, IViewportTransform viewportTransform ){
         this.x = x;
         this.y = y;
+        Vec2 position = new Vec2(x, y);
+        bd.position = position;
     }
 
     public void CreateBodyInWorld( World world ){

@@ -9,6 +9,7 @@ import org.jbox2d.callbacks.DebugDraw;      //JBox2D imports
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Color3f;
+import org.jbox2d.common.IViewportTransform;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -34,14 +35,16 @@ public class Tutorial extends BasicGameState {
     StateBasedGame game;
     GameContainer gc;
     //Physics
-    float timeStep = 1.0f / 30.0f;
+    float timeStep = 1.0f / 60.0f;
     int velocityIterations = 6;
     int positionInterations = 2;
     World tutorialWorld;
     Body player, circle, star;
     DebugDrawJ2D debugDrawJ2D;
     boolean debugMode;
-    boolean worldPause;  //Key presseing + releasing
+    IViewportTransform viewportTransform;
+    //Key presseing + releasing
+    boolean worldPause;
     boolean keyAPressed, keyDPressed;
     Vec2 f, p;
     float velChange, impulse;
@@ -75,7 +78,7 @@ public class Tutorial extends BasicGameState {
         debugDrawJ2D = new DebugDrawJ2D(gc);
         tutorialWorld.setDebugDraw(debugDrawJ2D);
 
-        debugDrawJ2D.getViewportTranform();
+        viewportTransform = debugDrawJ2D.getViewportTranform();
 
         {  //WALLS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             //BOTTOM
@@ -193,21 +196,22 @@ public class Tutorial extends BasicGameState {
             circle.createFixture(fd);
         }
 
+        //Debug Mode on automatically
         tutorialWorld.setDebugDraw(debugDrawJ2D);
         debugDrawJ2D.setFlags( DebugDraw.e_shapeBit );
         debugMode = true;
     }
 
-    public void DebugMode()
+    public void UpdateDebugMode()
     {
         if( debugMode ){
-                    debugDrawJ2D.clearFlags( DebugDraw.e_shapeBit );
-                    debugMode = false;
-                }
-                else if( !debugMode ){
-                    debugDrawJ2D.setFlags( DebugDraw.e_shapeBit );
-                    debugMode = true;
-                }
+            debugDrawJ2D.clearFlags( DebugDraw.e_shapeBit );
+            debugMode = false;
+        }
+        else if( !debugMode ){
+            debugDrawJ2D.setFlags( DebugDraw.e_shapeBit );
+            debugMode = true;
+        }
     }
 
 
@@ -283,7 +287,7 @@ public class Tutorial extends BasicGameState {
     public void keyReleased(int key, char c) {
         switch (key) {
             case Input.KEY_Q:
-                DebugMode();
+                UpdateDebugMode();
                 break;
 
             case Input.KEY_P:
