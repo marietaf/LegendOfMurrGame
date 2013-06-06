@@ -5,6 +5,8 @@
 
 package States;
 
+import legendofmurrgame.DebugDrawJ2D;
+import org.jbox2d.dynamics.World;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -21,6 +23,9 @@ public class Play extends BasicGameState {
 
     int ID;
     StateBasedGame game;
+    // Physics ~~~~~~~~~~~~~~~~~
+    World world;
+    DebugDrawJ2D debugDraw;
 
     public Play(int ID){
         this.ID = ID;
@@ -33,6 +38,7 @@ public class Play extends BasicGameState {
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         this.game = sbg;
+
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
