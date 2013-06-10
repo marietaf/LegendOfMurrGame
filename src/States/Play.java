@@ -6,6 +6,8 @@
 package States;
 
 import legendofmurrgame.DebugDrawJ2D;
+import org.jbox2d.common.IViewportTransform;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -23,9 +25,18 @@ public class Play extends BasicGameState {
 
     int ID;
     StateBasedGame game;
+    GameContainer gc;
     // Physics ~~~~~~~~~~~~~~~~~
+    float timeStep = 1.0f / 60.0f;
+    int velocityIterations = 6;
+    int positionInterations = 2;
     World world;
     DebugDrawJ2D debugDraw;
+    boolean debugMode;
+    private final Vec2 gravity = new Vec2(0.0f, -9.81f);
+    IViewportTransform viewportTransform;
+    // Key Pressing ~~~~~~~~~~~~
+    boolean worldPause;
 
     public Play(int ID){
         this.ID = ID;
@@ -38,7 +49,17 @@ public class Play extends BasicGameState {
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         this.game = sbg;
+        this.gc = gc;
 
+        Initialize();
+    }
+
+    public void Initialize(){
+        //INITIALIZE ALL VARIABLES HERE
+        worldPause = true;
+
+        world = new World(gravity);
+        world.step(0, 0, 0);
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
@@ -54,6 +75,7 @@ public class Play extends BasicGameState {
     public void keyReleased(int key, char c){
         switch( key ){
             case Input.KEY_ESCAPE:
+                Initialize();
                 game.enterState(legendofmurrgame.LegendOfMurr.MENU_ID);
                 break;
 

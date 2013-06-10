@@ -12,11 +12,11 @@ package Utilities;
 public class CommonCode {
 
     public enum CharacterMovement{
-        Still, Jump, Left, Right;
+        stand, jump, left, right;
     }
 
     public enum PlayerColour{
-        White, Red, Green, Blue, Cyan, Yellow, Pink, Gray, Orange, Purple;
+        white, red, green, blue, cyan, yellow, pink, gray, orange, purple;
     }
 
 }
