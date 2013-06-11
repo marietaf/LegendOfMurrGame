@@ -49,6 +49,7 @@ public class Tutorial extends BasicGameState {
     Vec2 f, p;
     float velChange, impulse;
     float verticalVel;
+    int keyW = 0;
 
     public Tutorial(int ID) {
         this.ID = ID;
@@ -71,7 +72,7 @@ public class Tutorial extends BasicGameState {
         worldPause = true;
 
         //TEST JBOX2D for Tutorial!
-        Vec2 gravity = new Vec2(0.0f, -9.81f);
+        Vec2 gravity = new Vec2(0.0f, -9.81f*2f);
         tutorialWorld = new World(gravity);
         tutorialWorld.step(0, 0, 0);
 
@@ -83,7 +84,7 @@ public class Tutorial extends BasicGameState {
         {  //WALLS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             //BOTTOM
             PolygonShape psBot = new PolygonShape();
-            psBot.setAsBox(40, 1);  //Dimensions of the wall
+            psBot.setAsBox(100, 0.1f);  //Dimensions of the wall
 
             BodyDef bdBot = new BodyDef();
             bdBot.type = BodyType.STATIC;
@@ -98,7 +99,7 @@ public class Tutorial extends BasicGameState {
 
             //TOP
             PolygonShape psTop = new PolygonShape();
-            psTop.setAsBox(40, 1);
+            psTop.setAsBox(100, 1);
 
             BodyDef bdTop = new BodyDef();
             bdTop.type = BodyType.STATIC;
@@ -113,11 +114,11 @@ public class Tutorial extends BasicGameState {
 
             //LEFT
             PolygonShape psLeft = new PolygonShape();
-            psLeft.setAsBox(1, 30);
+            psLeft.setAsBox(2, 30);
 
             BodyDef bdLeft = new BodyDef();
             bdLeft.type = BodyType.STATIC;
-            bdLeft.position.set(0.0f, 30.0f);
+            bdLeft.position.set(-60.0f, 30.0f);
 
             FixtureDef fdLeft = new FixtureDef();
             fdLeft.shape = psLeft;
@@ -133,7 +134,7 @@ public class Tutorial extends BasicGameState {
 
             BodyDef bdRight = new BodyDef();
             bdRight.type = BodyType.STATIC;
-            bdRight.position.set(80.0f, 30.0f);
+            bdRight.position.set(145.0f, 30.0f);
 
             FixtureDef fdRight = new FixtureDef();
             fdRight.shape = psRight;
@@ -153,7 +154,7 @@ public class Tutorial extends BasicGameState {
             bd.position.set(50.0f, 20.0f);
 
             FixtureDef fd = new FixtureDef();
-            fd.friction = 100.0f;
+            fd.friction = 10.0f;
             fd.shape = polygonShape;
             fd.userData = "player";
 
@@ -232,16 +233,16 @@ public class Tutorial extends BasicGameState {
 
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         this.game = sbg;
-
+        
         if( keyAPressed ){
-            velChange = Math.max( -10 - player.getLinearVelocity().x, -10.0f );
+            velChange = Math.max( -15 - player.getLinearVelocity().x, -10.0f );
             impulse = player.getMass() * velChange * 0.5f;
             f = player.getWorldVector(new Vec2(impulse, 0f));
             p = player.getWorldPoint(player.getLocalCenter().addLocal(0, 0));
             player.applyLinearImpulse(f, p);
         }
         if(keyDPressed){
-            velChange = 10 - player.getLinearVelocity().x;
+            velChange = 15 - player.getLinearVelocity().x;
             impulse = player.getMass() * velChange*0.5f;
             f = player.getWorldVector(new Vec2(impulse, 0f));
             p = player.getWorldPoint(player.getLocalCenter());
@@ -251,6 +252,10 @@ public class Tutorial extends BasicGameState {
         if( !worldPause )
             tutorialWorld.step(timeStep, velocityIterations, positionInterations);
         debugDrawJ2D.setCamera(player.getPosition().x,legendofmurrgame.LegendOfMurr.HEIGHT/20, 10.0f);
+        if (player.getLinearVelocity().y==0)
+        {
+            keyW =0;
+        }
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
@@ -267,9 +272,13 @@ public class Tutorial extends BasicGameState {
         
         switch(key){
             case Input.KEY_W:
-                f = player.getWorldVector(new Vec2(0f, 15f));
+                if (keyW==0)
+                {
+                f = player.getWorldVector(new Vec2(0f, 35f));
                 p = player.getWorldPoint(player.getLocalCenter().addLocal(0, 0));
                 player.applyLinearImpulse(f, p);
+                keyW= keyW+1;
+                }
                 break;
 
         }
