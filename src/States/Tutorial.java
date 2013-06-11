@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package States;
- 
+
 import legendofmurrgame.DebugDrawJ2D;       //Imports from classes within the code
 import org.jbox2d.callbacks.DebugDraw;      //JBox2D imports
 import org.jbox2d.collision.shapes.CircleShape;
@@ -35,6 +35,7 @@ public class Tutorial extends BasicGameState {
     StateBasedGame game;
     GameContainer gc;
     //Physics
+    double timestart, timeend, timedif;
     float timeStep = 1.0f / 60.0f;
     int velocityIterations = 6;
     int positionInterations = 2;
@@ -64,15 +65,14 @@ public class Tutorial extends BasicGameState {
         this.game = sbg;
         this.gc = gc;
         reset();
-        
+
     }
-    
-    public void reset()
-    {
+
+    public void reset() {
         worldPause = true;
 
         //TEST JBOX2D for Tutorial!
-        Vec2 gravity = new Vec2(0.0f, -9.81f*2f);
+        Vec2 gravity = new Vec2(0.0f, -9.81f * 2f);
         tutorialWorld = new World(gravity);
         tutorialWorld.step(0, 0, 0);
 
@@ -89,7 +89,7 @@ public class Tutorial extends BasicGameState {
             BodyDef bdBot = new BodyDef();
             bdBot.type = BodyType.STATIC;
             bdBot.position.set(40.0f, 0.0f); //The coordinates for the position of the bottom wall
-                                             //Starts with the bottom right corner
+            //Starts with the bottom right corner
             FixtureDef fdBot = new FixtureDef();
             fdBot.shape = psBot;
             fdBot.userData = "wall";
@@ -199,30 +199,26 @@ public class Tutorial extends BasicGameState {
 
         //Debug Mode on automatically
         tutorialWorld.setDebugDraw(debugDrawJ2D);
-        debugDrawJ2D.setFlags( DebugDraw.e_shapeBit );
+        debugDrawJ2D.setFlags(DebugDraw.e_shapeBit);
         debugMode = true;
         worldPause = false;
     }
 
-    public void UpdateDebugMode()
-    {
-        if( debugMode ){
-            debugDrawJ2D.clearFlags( DebugDraw.e_shapeBit );
+    public void UpdateDebugMode() {
+        if (debugMode) {
+            debugDrawJ2D.clearFlags(DebugDraw.e_shapeBit);
             debugMode = false;
-        }
-        else if( !debugMode ){
-            debugDrawJ2D.setFlags( DebugDraw.e_shapeBit );
+        } else if (!debugMode) {
+            debugDrawJ2D.setFlags(DebugDraw.e_shapeBit);
             debugMode = true;
         }
     }
-    
-    public void Pause()
-    {
-        if( worldPause ){
+
+    public void Pause() {
+        if (worldPause) {
             tutorialWorld.step(timeStep, velocityIterations, positionInterations);
             worldPause = false;
-        }
-        else if( !worldPause ){
+        } else if (!worldPause) {
             tutorialWorld.step(0, velocityIterations, positionInterations);
             worldPause = true;
             game.enterState(legendofmurrgame.LegendOfMurr.GAMEPAUSE_ID);
@@ -230,35 +226,35 @@ public class Tutorial extends BasicGameState {
         }
     }
 
-
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         this.game = sbg;
-        
-        if( keyAPressed ){
-            velChange = Math.max( -15 - player.getLinearVelocity().x, -10.0f );
+
+        if (keyAPressed) {
+            velChange = Math.max(-15 - player.getLinearVelocity().x, -10.0f);
             impulse = player.getMass() * velChange * 0.5f;
             f = player.getWorldVector(new Vec2(impulse, 0f));
             p = player.getWorldPoint(player.getLocalCenter().addLocal(0, 0));
             player.applyLinearImpulse(f, p);
         }
-        if(keyDPressed){
+        if (keyDPressed) {
             velChange = 15 - player.getLinearVelocity().x;
-            impulse = player.getMass() * velChange*0.5f;
+            impulse = player.getMass() * velChange * 0.5f;
             f = player.getWorldVector(new Vec2(impulse, 0f));
             p = player.getWorldPoint(player.getLocalCenter());
             player.applyLinearImpulse(f, p);
         }
 
-        if( !worldPause )
+        if (!worldPause) {
             tutorialWorld.step(timeStep, velocityIterations, positionInterations);
-        debugDrawJ2D.setCamera(player.getPosition().x,legendofmurrgame.LegendOfMurr.HEIGHT/20, 10.0f);
-        if (player.getLinearVelocity().y==0)
-        {
-            keyW =0;
+        }
+        debugDrawJ2D.setCamera(player.getPosition().x, legendofmurrgame.LegendOfMurr.HEIGHT / 20, 10.0f);
+        if (player.getLinearVelocity().y == 0) {
+            keyW = 0;
         }
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
+        timestart = System.currentTimeMillis();
         graphics.setColor(Color.lightGray);
         graphics.drawString("Use 'W', 'A', 'S', 'D' to control your character!", 100, 200);
         graphics.drawString("Press Q to view debug mode.", 100, 220);
@@ -267,25 +263,28 @@ public class Tutorial extends BasicGameState {
         tutorialWorld.drawDebugData();
     }
 
+    public void clearText(Graphics graphics)
+    {
+        graphics.drawString("Go!", 100, 200);
+    }
+
     @Override
-    public void keyPressed(int key, char c){
-        
-        switch(key){
+    public void keyPressed(int key, char c) {
+
+        switch (key) {
             case Input.KEY_W:
-                if (keyW==0)
-                {
-                f = player.getWorldVector(new Vec2(0f, 35f));
-                p = player.getWorldPoint(player.getLocalCenter().addLocal(0, 0));
-                player.applyLinearImpulse(f, p);
-                keyW= keyW+1;
+                if (keyW == 0) {
+                    f = player.getWorldVector(new Vec2(0f, 35f));
+                    p = player.getWorldPoint(player.getLocalCenter().addLocal(0, 0));
+                    player.applyLinearImpulse(f, p);
+                    keyW = keyW + 1;
                 }
                 break;
 
         }
-        switch(key){
+        switch (key) {
             case Input.KEY_D:
-                if (player.getLinearVelocity().x<0)
-                {
+                if (player.getLinearVelocity().x < 0) {
                     verticalVel = player.getLinearVelocity().y;
                     player.setLinearVelocity(new Vec2(0, verticalVel));
                 }
@@ -293,8 +292,7 @@ public class Tutorial extends BasicGameState {
                 break;
 
             case Input.KEY_A:
-                if (player.getLinearVelocity().x>0)
-                {
+                if (player.getLinearVelocity().x > 0) {
                     verticalVel = player.getLinearVelocity().y;
                     player.setLinearVelocity(new Vec2(0, verticalVel));
                 }
@@ -325,7 +323,7 @@ public class Tutorial extends BasicGameState {
             default:
                 break;
         }
-        switch(key){
+        switch (key) {
             case Input.KEY_D:
                 keyDPressed = false;
                 break;

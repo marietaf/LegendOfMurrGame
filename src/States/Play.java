@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package States;
 
 import legendofmurrgame.DebugDrawJ2D;
+import org.jbox2d.callbacks.DebugDraw;
 import org.jbox2d.common.IViewportTransform;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
@@ -38,7 +38,7 @@ public class Play extends BasicGameState {
     // Key Pressing ~~~~~~~~~~~~
     boolean worldPause;
 
-    public Play(int ID){
+    public Play(int ID) {
         this.ID = ID;
     }
 
@@ -54,7 +54,7 @@ public class Play extends BasicGameState {
         Initialize();
     }
 
-    public void Initialize(){
+    public void Initialize() {
         //INITIALIZE ALL VARIABLES HERE
         worldPause = true;
 
@@ -63,7 +63,11 @@ public class Play extends BasicGameState {
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-        
+        this.game = sbg;
+        if (!worldPause) {
+            world.step(timeStep, velocityIterations, positionInterations);
+        }
+
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
@@ -71,9 +75,45 @@ public class Play extends BasicGameState {
         graphics.drawString("Playing game...!", 50, 50);
     }
 
+    public void Pause() {
+        if (worldPause) {
+            world.step(timeStep, velocityIterations, positionInterations);
+            worldPause = false;
+        } else if (!worldPause) {
+            world.step(0, velocityIterations, positionInterations);
+            worldPause = true;
+            game.enterState(legendofmurrgame.LegendOfMurr.GAMEPAUSE_ID);
+            worldPause = false;
+        }
+    }
+
+    public void UpdateDebugMode() {
+        if (debugMode) {
+            debugDraw.clearFlags(DebugDraw.e_shapeBit);
+            debugMode = false;
+        } else if (!debugMode) {
+            debugDraw.setFlags(DebugDraw.e_shapeBit);
+            debugMode = true;
+        }
+    }
+
     @Override
-    public void keyReleased(int key, char c){
-        switch( key ){
+    public void keyPressed(int key, char c) {
+        switch (key) {
+            case Input.KEY_P:
+                Pause();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(int key, char c) {
+        switch (key) {
+            case Input.KEY_Q:
+                UpdateDebugMode();
+                break;
             case Input.KEY_ESCAPE:
                 Initialize();
                 game.enterState(legendofmurrgame.LegendOfMurr.MENU_ID);
@@ -83,5 +123,4 @@ public class Play extends BasicGameState {
                 break;
         }
     }
-
 }

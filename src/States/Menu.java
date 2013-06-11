@@ -44,7 +44,7 @@ public class Menu extends BasicGameState {
         graphics.drawString("Legend of Murrrrr!", 200, 100);
 
         graphics.drawString("1. Play game!", 100, 200);
-	graphics.drawString("2. Tutorial (Run this one!)", 100, 220);
+        graphics.drawString("2. Tutorial (Run this one!)", 100, 220);
         graphics.drawString("3. Exit", 100, 240);
 
         graphics.drawString("4. Test Game Over State", 100, 280);
