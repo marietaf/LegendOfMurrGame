@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="15" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Colour_Tiles2" tilewidth="64" tileheight="64">
+  <image source="../data/Colour_Tiles2.png" width="768" height="384"/>
+ </tileset>
+ <tileset firstgid="73" name="monster_sprite" tilewidth="64" tileheight="64">
+  <image source="../data/monster_sprite.png" width="384" height="64"/>
+ </tileset>
+ <tileset firstgid="79" name="backdrop_colourtiles" tilewidth="64" tileheight="64">
+  <image source="../data/backdrop_colourtiles.PNG" width="64" height="256"/>
+ </tileset>
+ <layer name="Backdrop" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJwLYmBgCBrFo3gUj+JRPIpH8SgexVTDAJ+awDE=
+  </data>
+ </layer>
+ <layer name="Main" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJwTY0AFYoMQo7tvsIBR92G3j1AcoqsnxoyBAIMtfkdq/iBGD7nmUst9pJZjlLiPmnZQAtDtdKCz/YQANveh44EEA1m2EQNg7hMhEuMDlOgl5D5q5D9a5CuQPgCivw3T
+  </data>
+ </layer>
+ <layer name="Lava" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYvkABD6YVAABkYADh
+  </data>
+ </layer>
+ <layer name="FallingTiles" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2DwA1YcmJrm0wLQylxqAkrdSMuwo8RsWob9YHUXNc0frOFHS7OoaS498j4pdrCi0dQGuMrooVAG0goAAEAiAJw=
+  </data>
+ </layer>
+ <layer name="Button" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFIxFoD7QDRsEoGAWjYBSMgmEMAEfnACw=
+  </data>
+ </layer>
+ <layer name="LockedDoor" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBj6QHGgHUAAjLpveAPbgXYAATDqPsrAYHffKBgFo2BwAgAOPAFY
+  </data>
+ </layer>
+ <layer name="Key" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUIAO5gXbAKBhwIDPQDhgFo2AUDHkAAD43ADs=
+  </data>
+ </layer>
+ <layer name="Spikes" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBdiAFhkYBABNoAIj
+  </data>
+ </layer>
+ <layer name="Coin" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgagHegHYAHDGa3wcCoGykDo26jDIy6kTIwmN02CkbBKMAOAOEWAHY=
+  </data>
+ </layer>
+ <layer name="Boxes" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AU0Aswo+FRMApGwSgYBcMTAABQWAAN
+  </data>
+ </layer>
+ <layer name="Monster" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIKhCfwG2gGjYBQMYjCaPwYWAADnLwCd
+  </data>
+ </layer>
+</map>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="30" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Colour_Tiles2" tilewidth="64" tileheight="64">
+  <image source="../Colour_Tiles2.png" width="768" height="384"/>
+ </tileset>
+ <tileset firstgid="73" name="monster_sprite" tilewidth="64" tileheight="64">
+  <image source="../data/monster_sprite.png" width="384" height="64"/>
+ </tileset>
+ <tileset firstgid="79" name="backdrop_colourtiles" tilewidth="64" tileheight="64">
+  <image source="../data/backdrop_colourtiles.PNG" width="64" height="256"/>
+ </tileset>
+ <layer name="Backdrop" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztw0ENAAAMA6GTWP9qZmMPSFg1VVVVVX36AG7xdxA=
+  </data>
+ </layer>
+ <layer name="Main" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztl90NgCAMhFmCERzD/dcyvhlC65X2pBK+pPEvoSdUr5SyWZlDiQx6qhIzyKCBQeTaM+rIMu/Ic/Ya9sZFavjLmpJyWe8zQedo5rfY5n67tnA2MUoFzr149N1U4RgFok/LafGgEe2aPs0HvRGh76nT8g4j40isUH8Smb9f5v/P69WZ/SOT//b67l5+pH/Z/d/mL2j7X+a+GM3F9HONDP1GhL4L04kW+g==
+  </data>
+ </layer>
+ <layer name="Cloud" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztyLkRACAQA7HLePuvF8c0QIA0s4HdqqqnkWZq115pP/wBAAAA+NsBKO0BeQ==
+  </data>
+ </layer>
+ <layer name="Spikes" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztw0EJAAAIBLDLY/+AVjjB5wZLAAAAAOBmHrYW5rgCyw==
+  </data>
+ </layer>
+ <layer name="LockedDoor" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt1rsJACAMAFFX0T10/7GsLBREg4k/7oFdimsMce5N6XTAwO19AOSCcN43r4hqRTVpXw99a+hbY9WHv/nxyBSr++3VPum/pq92S1+P1t4GgF0y8UAFng==
+  </data>
+ </layer>
+ <layer name="Key" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt1bsJADAIQEEHyWf/LdOHWAZB7kqrBwpG0NGsDgCAh1UdcNnJ3B/tIbu3bO/ww6gOAGjiAOaZANE=
+  </data>
+ </layer>
+ <layer name="Button" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIACBDOftH87GBcz6QgAi26jsAAAAjvwMAcKABKLMAaw==
+  </data>
+ </layer>
+ <layer name="Background" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzjEKACAIhWHPkXvtdf+76VDQILRZ0P/BAxHhKQIAAAAAwD+KR+es216D28z+pXpa0i+RU3/3jKRfXuzHHQYP6gIg
+  </data>
+ </layer>
+ <layer name="NoCollisionPlatform" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt1jEOACAIQ1EW739ldxejhCLy3+bUBhwwQ1ejQJ6qoycnuqN6T2ovz6/C/wMAAPjN7jbKvp3od2fNPX1H8fbK3ncnE7wJAH4=
+  </data>
+ </layer>
+ <layer name="Boxes" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztxaENAAAIA7Al/P8zfsFjWtMEAADgNjUAfFg6CAAH
+  </data>
+ </layer>
+ <layer name="MovingPlatform" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt0rEJAAAIA0E3c/+txM4NFLyDr9MkAgAA4J8cwVUXfrq9D60AwPUB+Q==
+  </data>
+ </layer>
+ <layer name="Monster" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzbEJADAIAEH3E9x/nMyQQkS5K7/5CKBbfnYAAICt6uiLWQ9WlgEz
+  </data>
+ </layer>
+</map>
