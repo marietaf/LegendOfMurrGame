@@ -9,6 +9,14 @@
  <tileset firstgid="145" name="monster_sprite" tilewidth="64" tileheight="64">
   <image source="../SPRITES FOR LEGEND OF MURR/monster_sprite.png" width="384" height="64"/>
  </tileset>
+ <tileset firstgid="151" name="backdrop_colourtiles" tilewidth="64" tileheight="64">
+  <image source="../SPRITES FOR LEGEND OF MURR/backdrop_colourtiles.PNG" width="64" height="256"/>
+ </tileset>
+ <layer name="Backdrop" width="25" height="15">
+  <data encoding="base64" compression="zlib">
+   eJybycDAMHMUj+JRPIpH8bDCAId64CA=
+  </data>
+ </layer>
  <layer name="Main" width="25" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBgFAw2kB9oBNADCZGBSzRIlA+MC5JhFLTtoDRzpYAelwACKyQVOUEwNvdRIm4QwPdImAN6sCUQ=

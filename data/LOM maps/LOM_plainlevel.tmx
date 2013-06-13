@@ -6,14 +6,14 @@
  <tileset firstgid="3" name="treasure test sprite" tilewidth="32" tileheight="32">
   <image source="../SPRITES FOR LEGEND OF MURR/treasure test sprite.png" width="128" height="192"/>
  </tileset>
- <layer name="Tile Layer 1" width="100" height="15">
+ <layer name="Main" width="100" height="15">
   <data encoding="base64" compression="zlib">
    eJzt1zEOgCAQRcFd738Ij2priIkERZdkiqlQi/8azIhIytgAAOAhd8x1Ntfq+80re/NfcvTd0bMKOzXP7Gezdp/dYwV5sffd5p092m/qocfv++qhR0+PA0GmI3s=
   </data>
  </layer>
- <layer name="Tile Layer 2" width="100" height="15">
+ <layer name="Chest" width="100" height="15">
   <data encoding="base64" compression="zlib">
-   eJzt0TsKACAMREE/hfe/sRewCBgiwkz/QmBbAwAAAF6ZyfdG8r0f9MR23TxyYI+6NsIedW2EPeraCHvktBuoXAAf
+   eJzt0cEJACAQA8FDH/bfsU0EDDhTwH52BgAAAHhlh3sr3PvNCff86OJHFz+6+JFxAYcAABU=
   </data>
  </layer>
 </map>
