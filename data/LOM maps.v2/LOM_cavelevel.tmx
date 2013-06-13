@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="40" height="15" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="Colour_Tiles2" tilewidth="64" tileheight="64">
-  <image source="../data/Colour_Tiles2.png" width="768" height="384"/>
+  <image source="../Colour_Tiles2.png" width="768" height="384"/>
  </tileset>
  <tileset firstgid="73" name="monster_sprite" tilewidth="64" tileheight="64">
-  <image source="../data/monster_sprite.png" width="384" height="64"/>
+  <image source="../monster_sprite.png" width="384" height="64"/>
  </tileset>
  <tileset firstgid="79" name="backdrop_colourtiles" tilewidth="64" tileheight="64">
-  <image source="../data/backdrop_colourtiles.PNG" width="64" height="256"/>
+  <image source="../backdrop_colourtiles.PNG" width="64" height="256"/>
  </tileset>
  <layer name="Backdrop" width="40" height="15">
   <data encoding="base64" compression="zlib">
