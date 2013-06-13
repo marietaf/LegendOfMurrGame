@@ -80,11 +80,10 @@ public class Tutorial extends BasicGameState {
         tutorialWorld.setDebugDraw(debugDrawJ2D);
 
         viewportTransform = debugDrawJ2D.getViewportTranform();
-
         {  //WALLS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             //BOTTOM
             PolygonShape psBot = new PolygonShape();
-            psBot.setAsBox(100, 0.1f);  //Dimensions of the wall
+            psBot.setAsBox(40, 0.1f);  //Dimensions of the wall
 
             BodyDef bdBot = new BodyDef();
             bdBot.type = BodyType.STATIC;
@@ -99,7 +98,7 @@ public class Tutorial extends BasicGameState {
 
             //TOP
             PolygonShape psTop = new PolygonShape();
-            psTop.setAsBox(100, 1);
+            psTop.setAsBox(40, 1);
 
             BodyDef bdTop = new BodyDef();
             bdTop.type = BodyType.STATIC;
@@ -108,6 +107,7 @@ public class Tutorial extends BasicGameState {
             FixtureDef fdTop = new FixtureDef();
             fdTop.shape = psTop;
             fdTop.userData = "wall";
+            fdTop.friction = 0.0f;
 
             Body topWall = tutorialWorld.createBody(bdTop);
             topWall.createFixture(fdTop);
@@ -118,7 +118,7 @@ public class Tutorial extends BasicGameState {
 
             BodyDef bdLeft = new BodyDef();
             bdLeft.type = BodyType.STATIC;
-            bdLeft.position.set(-60.0f, 30.0f);
+            bdLeft.position.set(0.0f, 30.0f);
 
             FixtureDef fdLeft = new FixtureDef();
             fdLeft.shape = psLeft;
@@ -134,7 +134,7 @@ public class Tutorial extends BasicGameState {
 
             BodyDef bdRight = new BodyDef();
             bdRight.type = BodyType.STATIC;
-            bdRight.position.set(145.0f, 30.0f);
+            bdRight.position.set(80.0f, 30.0f);
 
             FixtureDef fdRight = new FixtureDef();
             fdRight.shape = psRight;
@@ -168,11 +168,11 @@ public class Tutorial extends BasicGameState {
 
             BodyDef bd = new BodyDef();
             bd.type = BodyType.STATIC;
-            bd.position.set(12.0f, 15.0f);
+            bd.position.set(12.0f, 20.0f);
 
             FixtureDef fd = new FixtureDef();
             fd.userData = "circle1";
-            fd.isSensor = true;
+            fd.isSensor = false;
             fd.shape = pointShape;
 
             star = tutorialWorld.createBody(bd);
@@ -247,10 +247,38 @@ public class Tutorial extends BasicGameState {
         if (!worldPause) {
             tutorialWorld.step(timeStep, velocityIterations, positionInterations);
         }
-        debugDrawJ2D.setCamera(player.getPosition().x, legendofmurrgame.LegendOfMurr.HEIGHT / 20, 10.0f);
-        if (player.getLinearVelocity().y == 0) {
+
+        debugDrawJ2D.setCamera(setX(),setY(), 10.0f);
+        
+        if (player.getLinearVelocity().y == 0 && (player.getPosition().y)<=48.0f) {
             keyW = 0;
         }
+    }
+
+    public float setX()
+    {
+        if ((player.getPosition().x)>=40.0f && (player.getPosition().x) <=40.0f)
+            return player.getPosition().x;
+        else
+        {
+            return 40.0f;
+        }
+    }
+
+    public float setY()
+    {
+        if ((player.getPosition().y)<=24.0f)
+        {
+            return 24.0f;
+        }
+        else if ((player.getPosition().y)>=36.0f)
+        {
+            return 36.0f;
+        }
+        else{
+            return player.getPosition().y;
+        }
+
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
