@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="101" height="10" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Colour_Tiles2" tilewidth="64" tileheight="64">
+  <image source="../Colour_Tiles2.png" width="768" height="384"/>
+ </tileset>
+ <tileset firstgid="73" name="monster_sprite" tilewidth="64" tileheight="64">
+  <image source="../SPRITES FOR LEGEND OF MURR/monster_sprite.png" width="384" height="64"/>
+ </tileset>
+ <layer name="Main" width="101" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjALyASsSJlcfqXpHAXaAKxwJhS8++dE4Ig8QG17o6kbDmfqA3DClRB8+vexAzAHEnEDMBcTcQMxDgjgtAKVuItaN9E7f2OxDr3tGSp4baH+PlHAeLABbfI+0NE9NQGkZSW1xGAAAITsDbg==
+  </data>
+ </layer>
+ <layer name="MovingTiles" width="101" height="10">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAIA7A5w78r3h0I4GiTJgAAt6kAwA8Lrj8Avg==
+  </data>
+ </layer>
+ <layer name="Background" width="101" height="10">
+  <data encoding="base64" compression="zlib">
+   eJzt17sNADAIQ0F35Lf/vLGUJhMEpLyT3OAKOkJSc7oznOksHfFplz2vdIuMDgAAAEAd2f/R6/m9c1Ub8qQHsQ==
+  </data>
+ </layer>
+ <layer name="LockedDoor" width="101" height="10">
+  <data encoding="base64" compression="zlib">
+   eJzt0UEJAEAMBLFqqX+RFXBwr0L3kSgYmCrgp68DeHiSx5M8nuTxBIAtA1x6AKs=
+  </data>
+ </layer>
+ <layer name="Button" width="101" height="10">
+  <data encoding="base64" compression="zlib">
+   eJztzgEJAAAIA7AXsn89SxwE2RIsAQAA6JrrADy2p6gALg==
+  </data>
+ </layer>
+ <layer name="Coin" width="101" height="10">
+  <data encoding="base64" compression="zlib">
+   eJzt00EKACAIRFEv0P2v2zYixCakwv9A2mgLZcyAtzWn1HloIvsbe1avN8+N4pQ9zf1Ze/Yyu5tn9a8bdUKdJy+oJiuDAPCbDkGTBMc=
+  </data>
+ </layer>
+ <layer name="Monster" width="101" height="10">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAMwjD83b+f24CkFbAsAQDa3VB76RUAFj3xsAEt
+  </data>
+ </layer>
+</map>
