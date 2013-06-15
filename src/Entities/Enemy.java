@@ -13,8 +13,8 @@ import org.newdawn.slick.SlickException;
  */
 public class Enemy extends Character {
 
-    public Enemy(float x, float y,
+    public Enemy(float x, float y, float width, float height,
             String animPathName, int[] duration, String bodyUserData ) throws SlickException {
-        super(x, y, animPathName, duration, bodyUserData);
+        super(x, y, width, height, animPathName, duration, bodyUserData);
     }
 }

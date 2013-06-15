@@ -14,10 +14,9 @@ import org.newdawn.slick.SlickException;
 public class Player extends Character {
 
 
-
-    public Player(  float x, float y,
+    public Player(  float x, float y, float width, float height,
                     String animPathName, int[] duration, String bodyUserData ) throws SlickException{
-        super(x, y, animPathName, duration, "player");
+        super(x, y, width, height, animPathName, duration, "player");
     }
 
 }

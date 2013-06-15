@@ -5,6 +5,7 @@
 
 package Entities;
 
+import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
@@ -20,8 +21,9 @@ public class Character extends Entity {
     protected Animation currentAnimation;
     //CHANGE ANIM COLOR TO ENUM!
     String animColor;
+    PolygonShape shape;
 
-    public Character( float x, float y,
+    public Character( float x, float y, float width, float height,
                       String animPathName, int[] duration, String bodyUserData ) throws SlickException {
         super( x, y, BodyType.DYNAMIC, bodyUserData );
         this.animColor = "white";
@@ -31,6 +33,10 @@ public class Character extends Entity {
         animationRight = new Animation(new Image[]{new Image(animPathName + "_run1_" + animColor + "_rt.png"), new Image(animPathName + "_run2_" + animColor +"_rt.png")}, duration, false);
         animationLeft = new Animation(new Image[]{new Image(animPathName + "_run1_" + animColor + "_lt.png"), new Image(animPathName + "_run2_" + animColor + "_lt.png")}, duration, false);
         currentAnimation = animationStill;
+
+        shape = new PolygonShape();
+        shape.setAsBox(width, height);
+        fd.shape = shape;
     }
 
     public Animation GetCurrentAnimation(){
