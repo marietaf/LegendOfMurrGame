@@ -39,6 +39,8 @@ public class Entity {
         bd.type = bdType;
         bd.fixedRotation = true;
         bd.userData = bodyUserData;
+
+        bodyList = new ArrayList<Body>();
     }
 
     public float GetX(){

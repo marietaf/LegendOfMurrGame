@@ -4,11 +4,9 @@
  */
 package States;
 
-import legendofmurrgame.DebugDrawJ2D;
-import org.jbox2d.callbacks.DebugDraw;
-import org.jbox2d.common.IViewportTransform;
+import Utilities.Level;
+import java.util.logging.Logger;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.World;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -16,6 +14,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
 /**
  *
@@ -26,17 +25,7 @@ public class Play extends BasicGameState {
     int ID;
     StateBasedGame game;
     GameContainer gc;
-    // Physics ~~~~~~~~~~~~~~~~~
-    float timeStep = 1.0f / 60.0f;
-    int velocityIterations = 6;
-    int positionInterations = 2;
-    World world;
-    DebugDrawJ2D debugDraw;
-    boolean debugMode;
-    private final Vec2 gravity = new Vec2(0.0f, -9.81f);
-    IViewportTransform viewportTransform;
-    // Key Pressing ~~~~~~~~~~~~
-    boolean worldPause;
+    Level levelTest;
 
     public Play(int ID) {
         this.ID = ID;
@@ -54,46 +43,31 @@ public class Play extends BasicGameState {
         Initialize();
     }
 
-    public void Initialize() {
+    public void Initialize() throws SlickException {
         //INITIALIZE ALL VARIABLES HERE
-        worldPause = true;
-
-        world = new World(gravity);
-        world.step(0, 0, 0);
+        levelTest = new Level(00, gc, new Vec2(0.0f, -9.81f), new TiledMap("data/LOM maps.v2/LOM_cavelevel.tmx"));
+        levelTest.AddWallBody(0, 0, 40, 2, 10.0f);
+        levelTest.SetWorldPause(false);
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         this.game = sbg;
-        if (!worldPause) {
-            world.step(timeStep, velocityIterations, positionInterations);
-        }
+        levelTest.Update();
+        UpdatePause();
 
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
+        levelTest.Render();
         graphics.setColor(Color.lightGray);
         graphics.drawString("Playing game...!", 50, 50);
+        graphics.drawString("Debug Mode: " + levelTest.GetDebugMode(), 50, 70);
     }
 
-    public void Pause() {
-        if (worldPause) {
-            world.step(timeStep, velocityIterations, positionInterations);
-            worldPause = false;
-        } else if (!worldPause) {
-            world.step(0, velocityIterations, positionInterations);
-            worldPause = true;
+    public void UpdatePause() {
+        if (levelTest.GetWorldPause()) {
             game.enterState(legendofmurrgame.LegendOfMurr.GAMEPAUSE_ID);
-            worldPause = false;
-        }
-    }
-
-    public void UpdateDebugMode() {
-        if (debugMode) {
-            debugDraw.clearFlags(DebugDraw.e_shapeBit);
-            debugMode = false;
-        } else if (!debugMode) {
-            debugDraw.setFlags(DebugDraw.e_shapeBit);
-            debugMode = true;
+            levelTest.SetWorldPause(false);
         }
     }
 
@@ -101,7 +75,7 @@ public class Play extends BasicGameState {
     public void keyPressed(int key, char c) {
         switch (key) {
             case Input.KEY_P:
-                Pause();
+                levelTest.SetWorldPause(true);
                 break;
             default:
                 break;
@@ -112,10 +86,18 @@ public class Play extends BasicGameState {
     public void keyReleased(int key, char c) {
         switch (key) {
             case Input.KEY_Q:
-                UpdateDebugMode();
+                if( levelTest.GetDebugMode() )
+                    levelTest.SetDebugMode(false);
+                else
+                    levelTest.SetDebugMode(true);
                 break;
+                
             case Input.KEY_ESCAPE:
-                Initialize();
+                try {
+                    Initialize();
+                } catch (SlickException ex) {
+                    Logger.getLogger(Play.class.getName()).log(java.util.logging.Level.SEVERE, "Unable to initalize again~", ex);
+                }
                 game.enterState(legendofmurrgame.LegendOfMurr.MENU_ID);
                 break;
 

@@ -12,6 +12,8 @@ import Entities.Player;
 import Entities.Wall;
 import java.util.ArrayList;
 import legendofmurrgame.DebugDrawJ2D;
+import org.jbox2d.callbacks.DebugDraw;
+import org.jbox2d.common.Color3f;
 import org.jbox2d.common.IViewportTransform;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
@@ -58,6 +60,11 @@ public class Level {
         worldPause = true;
         width = tiledMap.getWidth();
         height = tiledMap.getHeight();
+
+        itemBodies = new ArrayList();
+        enemyBodies = new ArrayList();
+        wallBodies = new ArrayList();
+        platformBodies = new ArrayList();
     }
 
     public boolean GetDebugMode(){
@@ -81,6 +88,13 @@ public class Level {
             world.step(timeStep, velocityIterations, positionInterations);
         else
             world.step(0, 0, 0);
+
+        if (debugMode) {
+            debugDraw.clearFlags(DebugDraw.e_shapeBit);
+        }
+        else if (!debugMode) {
+            debugDraw.setFlags(DebugDraw.e_shapeBit);
+        }
     }
 
     public void AddPlayer( float x, float y, float width, float height, String animPathName, int[] duration ) throws SlickException{
@@ -115,9 +129,11 @@ public class Level {
     }
 
     public void Render(){
+        debugDraw.drawCircle(new Vec2(0, 0), 2, Color3f.WHITE);
         float viewportXPos = viewportTransform.getExtents().x;
         float viewportYPos = viewportTransform.getExtents().y;
-        player.Render();
+        if( player != null )
+            player.Render();
         for( Item item: itemBodies ){
             if( item.GetX() > viewportXPos && item.GetX() < (viewportXPos + width) &&
                 item.GetY() > viewportYPos && item.GetY() < (viewportYPos + height))
@@ -133,7 +149,6 @@ public class Level {
                 platform.GetY() > viewportYPos && platform.GetY() < (viewportYPos + height))
                 platform.Render();
         }
-
     }
 
 }
