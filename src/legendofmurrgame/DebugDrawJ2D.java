@@ -4,6 +4,7 @@
  */
 package legendofmurrgame;
 
+import Utilities.CommonCode;
 import org.jbox2d.callbacks.DebugDraw;
 import org.jbox2d.common.Color3f;
 import org.jbox2d.common.IViewportTransform;
@@ -44,7 +45,7 @@ public class DebugDrawJ2D extends DebugDraw {
         super(new OBBViewportTransform());
         this.gameContainer = gameContainer;
         this.g = gameContainer.getGraphics();
-        this.scale = 10;
+        this.scale = CommonCode.SCALE;
 
         this.viewportTransform.setYFlip(true);
         this.viewportTransform.setCamera(legendofmurrgame.LegendOfMurr.WIDTH / 2 / scale, legendofmurrgame.LegendOfMurr.HEIGHT / 2 / scale, scale);

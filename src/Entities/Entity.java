@@ -5,6 +5,7 @@
 
 package Entities;
 
+import Utilities.CommonCode;
 import java.util.ArrayList;
 import org.jbox2d.common.IViewportTransform;
 import org.jbox2d.common.Vec2;
@@ -22,6 +23,7 @@ public class Entity {
 
     static ArrayList <Body> bodyList;
 
+    //X and Y values are in WORLD
     float x, y;
     FixtureDef fd;
     BodyDef bd;
@@ -30,8 +32,7 @@ public class Entity {
 
     //Rectangle Shape
     public Entity(float x, float y, BodyType bdType, String bodyUserData ){
-        this.x = x;
-        this.y = y;
+        position = new Vec2(x, y);
         
         fd = new FixtureDef();
         bd = new BodyDef();
@@ -43,31 +44,22 @@ public class Entity {
         bodyList = new ArrayList<Body>();
     }
 
-    public float GetX(){
-        return x;
+    public Vec2 GetPosition(){
+        return position;
     }
 
-    public float GetY(){
-        return y;
+    public Body GetBody(){
+        return body;
     }
 
-    public void SetX( float x ){
-        this.x = x;
-    }
-
-    public void SetY( float y ){
-        this.y = y;
-    }
-
-    public void UpdatePosition( float x, float y, IViewportTransform viewportTransform ){
-        this.x = x;
-        this.y = y;
-        position = new Vec2(x, y);
-        bd.position = position;
+    public void UpdatePosition(){
+        position = body.getPosition();
     }
 
     public void CreateBodyInWorld( World world ){
-        body = new Body(bd, world);
+        bd.position = position;
+        //NEVER use = new Body() to create a new body in a world
+        body = world.createBody(bd);
         body.createFixture(fd);
         bodyList.add(body);
     }

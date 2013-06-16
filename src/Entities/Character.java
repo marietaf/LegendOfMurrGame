@@ -5,6 +5,7 @@
 
 package Entities;
 
+import Utilities.CommonCode;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.Animation;
@@ -60,7 +61,7 @@ public class Character extends Entity {
     }
 
     public void Render(){
-        currentAnimation.draw(x, y);
+        currentAnimation.draw(body.getPosition().x * CommonCode.SCALE, body.getPosition().y * CommonCode.SCALE);
     }
 
 }

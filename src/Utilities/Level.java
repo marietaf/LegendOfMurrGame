@@ -55,12 +55,15 @@ public class Level {
         this.tiledMap = tiledMap;
 
         world = new World(gravity);
-        debugMode = false;
+        debugMode = true;
         viewportTransform = debugDraw.GetViewportTransform();
+        viewportTransform.setCamera(0, 0, 10);
+        world.setDebugDraw(debugDraw);
         worldPause = true;
         width = tiledMap.getWidth();
         height = tiledMap.getHeight();
 
+        //ArrayLists
         itemBodies = new ArrayList();
         enemyBodies = new ArrayList();
         wallBodies = new ArrayList();
@@ -83,18 +86,34 @@ public class Level {
         this.worldPause = worldPause;
     }
 
+    public Player GetPlayer(){
+        return player;
+    }
+
     public void Update(){
+        //PAUSE WORLD UPDATE
         if( !worldPause )
             world.step(timeStep, velocityIterations, positionInterations);
         else
             world.step(0, 0, 0);
 
-        if (debugMode) {
+        //DEBUG MODE UPDATE
+        if ( !debugMode ) {
             debugDraw.clearFlags(DebugDraw.e_shapeBit);
         }
-        else if (!debugMode) {
+        else if ( debugMode ) {
             debugDraw.setFlags(DebugDraw.e_shapeBit);
         }
+
+        player.UpdatePosition();
+        System.out.println("Player x coord: " + player.GetPosition().x);
+        System.out.println("Player y coord: " + player.GetPosition().y);
+
+        //VIEWPORT TRANSFORM / CAMERA UPDATE
+        if( player != null )
+            viewportTransform.setCamera(player.GetPosition().x, player.GetPosition().y, CommonCode.SCALE);
+        else
+            viewportTransform.setCamera(0, 0, CommonCode.SCALE);
     }
 
     public void AddPlayer( float x, float y, float width, float height, String animPathName, int[] duration ) throws SlickException{
@@ -130,23 +149,25 @@ public class Level {
 
     public void Render(){
         debugDraw.drawCircle(new Vec2(0, 0), 2, Color3f.WHITE);
+        debugDraw.drawString(new Vec2(0, 20), "fjkslejflesjfles", Color3f.WHITE);
+        world.drawDebugData();
         float viewportXPos = viewportTransform.getExtents().x;
         float viewportYPos = viewportTransform.getExtents().y;
         if( player != null )
             player.Render();
         for( Item item: itemBodies ){
-            if( item.GetX() > viewportXPos && item.GetX() < (viewportXPos + width) &&
-                item.GetY() > viewportYPos && item.GetY() < (viewportYPos + height))
+            if( item.GetPosition().x > viewportXPos && item.GetPosition().x < (viewportXPos + width) &&
+                item.GetPosition().y > viewportYPos && item.GetPosition().y < (viewportYPos + height))
                 item.Render();
         }
         for( Enemy enemy: enemyBodies ){
-            if( enemy.GetX() > viewportXPos && enemy.GetX() < (viewportXPos + width) &&
-                enemy.GetY() > viewportYPos && enemy.GetY() < (viewportYPos + height))
+            if( enemy.GetPosition().x > viewportXPos && enemy.GetPosition().x < (viewportXPos + width) &&
+                enemy.GetPosition().y > viewportYPos && enemy.GetPosition().y < (viewportYPos + height))
                 enemy.Render();
         }
         for( Platform platform: platformBodies ){
-            if( platform.GetX() > viewportXPos && platform.GetX() < (viewportXPos + width) &&
-                platform.GetY() > viewportYPos && platform.GetY() < (viewportYPos + height))
+            if( platform.GetPosition().x > viewportXPos && platform.GetPosition().x < (viewportXPos + width) &&
+                platform.GetPosition().y > viewportYPos && platform.GetPosition().y < (viewportYPos + height))
                 platform.Render();
         }
     }
