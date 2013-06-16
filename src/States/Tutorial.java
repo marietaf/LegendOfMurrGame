@@ -291,14 +291,8 @@ public class Tutorial extends BasicGameState {
         tutorialWorld.drawDebugData();
     }
 
-    public void clearText(Graphics graphics)
-    {
-        graphics.drawString("Go!", 100, 200);
-    }
-
     @Override
     public void keyPressed(int key, char c) {
-
         switch (key) {
             case Input.KEY_W:
                 if (keyW == 0) {

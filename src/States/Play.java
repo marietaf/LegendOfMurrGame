@@ -55,7 +55,7 @@ public class Play extends BasicGameState {
 
     public void Initialize() throws SlickException {
         //INITIALIZE ALL VARIABLES HERE
-        levelTest = new Level(00, gc, new Vec2(0.0f, -9.81f), new TiledMap("data/LOM maps.v2/LOM_cavelevel.tmx"));
+        levelTest = new Level(00, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_cavelevel.tmx"));
         levelTest.AddWallBody(0, 0, 40, 1, 10.0f);
         levelTest.AddPlayer(0, 2, 0.5f, 2, "data/char", CommonCode.DURATION);
         playerBody = levelTest.GetPlayer().GetBody();
@@ -66,6 +66,7 @@ public class Play extends BasicGameState {
         this.game = sbg;
         levelTest.Update();
         UpdatePause();
+        UpdatePlayer();
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
@@ -97,9 +98,10 @@ public class Play extends BasicGameState {
             p = playerBody.getWorldPoint(playerBody.getLocalCenter());
             playerBody.applyLinearImpulse(f, p);
         }
-        if (playerBody.getLinearVelocity().y == 0 && (playerBody.getPosition().y)<=48.0f) {
+        if (playerBody.getLinearVelocity().y == 0)
             keyWPressed = false;
-        }
+        else
+            keyWPressed = true;
     }
 
     @Override
@@ -110,7 +112,6 @@ public class Play extends BasicGameState {
                     Vec2 f = playerBody.getWorldVector(new Vec2(0f, 35f));
                     Vec2 p = playerBody.getWorldPoint(playerBody.getLocalCenter().addLocal(0, 0));
                     playerBody.applyLinearImpulse(f, p);
-                    keyWPressed = true;
                 }
                 break;
 
@@ -157,6 +158,18 @@ public class Play extends BasicGameState {
                     Logger.getLogger(Play.class.getName()).log(java.util.logging.Level.SEVERE, "Unable to initalize again~", ex);
                 }
                 game.enterState(legendofmurrgame.LegendOfMurr.MENU_ID);
+                break;
+
+            default:
+                break;
+        }
+        switch (key) {
+            case Input.KEY_D:
+                keyDPressed = false;
+                break;
+
+            case Input.KEY_A:
+                keyAPressed = false;
                 break;
 
             default:

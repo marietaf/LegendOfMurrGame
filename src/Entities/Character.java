@@ -60,8 +60,4 @@ public class Character extends Entity {
         currentAnimation.update( delta );
     }
 
-    public void Render(){
-        currentAnimation.draw(body.getPosition().x * CommonCode.SCALE, body.getPosition().y * CommonCode.SCALE);
-    }
-
 }

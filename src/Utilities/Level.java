@@ -105,15 +105,9 @@ public class Level {
             debugDraw.setFlags(DebugDraw.e_shapeBit);
         }
 
-        player.UpdatePosition();
-        System.out.println("Player x coord: " + player.GetPosition().x);
-        System.out.println("Player y coord: " + player.GetPosition().y);
-
         //VIEWPORT TRANSFORM / CAMERA UPDATE
         if( player != null )
-            viewportTransform.setCamera(player.GetPosition().x, player.GetPosition().y, CommonCode.SCALE);
-        else
-            viewportTransform.setCamera(0, 0, CommonCode.SCALE);
+            viewportTransform.setCamera(player.GetBody().getPosition().x, player.GetBody().getPosition().y, CommonCode.SCALE);
     }
 
     public void AddPlayer( float x, float y, float width, float height, String animPathName, int[] duration ) throws SlickException{
@@ -154,7 +148,7 @@ public class Level {
         float viewportXPos = viewportTransform.getExtents().x;
         float viewportYPos = viewportTransform.getExtents().y;
         if( player != null )
-            player.Render();
+            player.Render(viewportTransform);
         for( Item item: itemBodies ){
             if( item.GetPosition().x > viewportXPos && item.GetPosition().x < (viewportXPos + width) &&
                 item.GetPosition().y > viewportYPos && item.GetPosition().y < (viewportYPos + height))
