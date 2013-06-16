@@ -55,9 +55,9 @@ public class Play extends BasicGameState {
 
     public void Initialize() throws SlickException {
         //INITIALIZE ALL VARIABLES HERE
-        levelTest = new Level(00, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_cavelevel.tmx"));
+        levelTest = new Level(00, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_grasslevel.tmx"));
         levelTest.AddWallBody(0, 0, 40, 1, 10.0f);
-        levelTest.AddPlayer(0, 2, 0.5f, 2, "data/char", CommonCode.DURATION);
+        levelTest.AddPlayer(0, 2, 1.5f, 3f, "data/char", CommonCode.DURATION);
         playerBody = levelTest.GetPlayer().GetBody();
         levelTest.SetWorldPause(false);
     }
@@ -109,8 +109,8 @@ public class Play extends BasicGameState {
         switch (key) {
             case Input.KEY_W:
                 if ( !keyWPressed ) {
-                    Vec2 f = playerBody.getWorldVector(new Vec2(0f, 35f));
-                    Vec2 p = playerBody.getWorldPoint(playerBody.getLocalCenter().addLocal(0, 0));
+                    f = playerBody.getWorldVector(new Vec2(0f, 35f));
+                    p = playerBody.getWorldPoint(playerBody.getLocalCenter().addLocal(0, 0));
                     playerBody.applyLinearImpulse(f, p);
                 }
                 break;

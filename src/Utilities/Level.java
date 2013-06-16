@@ -55,6 +55,7 @@ public class Level {
         this.tiledMap = tiledMap;
 
         world = new World(gravity);
+        //CHANGE DEBUG MODE ONCE TILEDMAPS ARE UP
         debugMode = true;
         viewportTransform = debugDraw.GetViewportTransform();
         viewportTransform.setCamera(0, 0, 10);
@@ -63,11 +64,15 @@ public class Level {
         width = tiledMap.getWidth();
         height = tiledMap.getHeight();
 
-        //ArrayLists
+        //ArrayLists of entities
         itemBodies = new ArrayList();
         enemyBodies = new ArrayList();
         wallBodies = new ArrayList();
         platformBodies = new ArrayList();
+    }
+
+    public int GetLevelID(){
+        return LEVEL_ID;
     }
 
     public boolean GetDebugMode(){
@@ -142,8 +147,9 @@ public class Level {
     }
 
     public void Render(){
+        //RENDER MAP BASED ON CHARACTER'S POSITION ON IT
+        tiledMap.render(0, 0);
         debugDraw.drawCircle(new Vec2(0, 0), 2, Color3f.WHITE);
-        debugDraw.drawString(new Vec2(0, 20), "fjkslejflesjfles", Color3f.WHITE);
         world.drawDebugData();
         float viewportXPos = viewportTransform.getExtents().x;
         float viewportYPos = viewportTransform.getExtents().y;
