@@ -32,6 +32,14 @@ public class CommonCode {
         return new Vec2( coords.x * SCALE, coords.y * SCALE * -1);
     }
 
+    public static float WorldToScreenX( float num ){
+        return ( num * SCALE );
+    }
+
+    public static float WorldToScreenY( float num ){
+        return ( num * SCALE * -1 );
+    }
+
     public enum CharacterMovement{
         stand, jump, left, right;
     }

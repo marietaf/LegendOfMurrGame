@@ -5,6 +5,7 @@
 
 package Utilities;
 
+import java.util.ArrayList;
 import org.jbox2d.common.Vec2;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -16,6 +17,7 @@ import org.newdawn.slick.tiled.TiledMap;
  */
 public final class Levels {
 
+    ArrayList<Level> levels;
     Level currentLevel, level1, level2, level3;
     GameContainer gc;
 
@@ -25,10 +27,12 @@ public final class Levels {
     }
 
     public void InitalizeLevels() throws SlickException{
+        levels = new ArrayList<Level>();
         {//LEVEL 1 - grass level
             level1 = new Level(01, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_grasslevel.tmx"));
             CreateBoundaries(level1);
             AddEntitiesFromProperties(level1);
+            levels.add(level1);
         }
         currentLevel = level1;
         currentLevel.SetWorldPause(false);
@@ -36,6 +40,19 @@ public final class Levels {
 
     public Level GetCurrentLevel(){
         return currentLevel;
+    }
+
+    public void UpdateLevel(){
+
+    }
+
+    public void UpdateLevel( int levelID ){
+        for( Level level: levels ){
+            if( level.GetLevelID() == levelID ){
+                currentLevel = level;
+                return;
+            }
+        }
     }
 
     public void CreateBoundaries(Level level){
@@ -62,12 +79,12 @@ public final class Levels {
                 CommonCode.TileProperty tileProperty = CheckTileProperty(level, row, col);
                 switch( tileProperty ){
                     case wall:
-                        level.AddWallBody(row*tileSize+row*tileSize+tileSize, col*tileSize+col*tileSize+tileSize, tileSize, tileSize, 0.8f);
+                        level.AddWallBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, 0.8f);
                         break;
 
                     case player:
                         if( level.GetPlayer() == null )
-                            level.AddPlayer(row*tileSize+(row*tileSize)+tileSize, col*tileSize+col*tileSize+tileSize, tileSize, tileSize, "data/char", CommonCode.DURATION);
+                            level.AddPlayer(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, "data/char", CommonCode.DURATION);
                         break;
 
                     default:
