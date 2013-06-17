@@ -5,9 +5,7 @@
 
 package Entities;
 
-import Utilities.CommonCode;
 import org.jbox2d.common.IViewportTransform;
-import org.jbox2d.common.Vec2;
 import org.newdawn.slick.SlickException;
 
 /**
@@ -24,10 +22,10 @@ public class Player extends Character {
 
     public void Render( IViewportTransform viewport ){
         //FIX RENDERING FOR PLAYER (in the middle unless viewport has stopped moving)
-//        float renderX = CommonCode.WorldToScreenX(body.getPosition().x);
-//        float renderY = CommonCode.WorldToScreenY(body.getPosition().y);
-        float renderX = body.getPosition().x - viewport.getCenter().x + legendofmurrgame.LegendOfMurr.WIDTH;
-        float renderY = body.getPosition().y - viewport.getCenter().y + legendofmurrgame.LegendOfMurr.HEIGHT;
+        float renderX = body.getPosition().x - viewport.getCenter().x + legendofmurrgame.LegendOfMurr.WIDTH/2 - 32;
+        float renderY = body.getPosition().y - viewport.getCenter().y + legendofmurrgame.LegendOfMurr.HEIGHT/2 - 48;
+        System.out.println("Renderx: " + renderX);
+        System.out.println("Rendery: " + renderY);
         currentAnimation.draw(renderX, renderY);
     }
 

@@ -42,11 +42,11 @@ public final class Levels {
         return currentLevel;
     }
 
-    public void UpdateLevel(){
+    public void ChangeLevel(){
 
     }
 
-    public void UpdateLevel( int levelID ){
+    public void ChangeLevel( int levelID ){
         for( Level level: levels ){
             if( level.GetLevelID() == levelID ){
                 currentLevel = level;

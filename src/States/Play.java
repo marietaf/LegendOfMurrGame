@@ -68,11 +68,12 @@ public class Play extends BasicGameState {
 
     }
 
-    public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
+    public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         this.game = sbg;
         currentLevel.Update();
         UpdatePause();
         UpdatePlayer();
+        UpdateEntityAnimations(delta);
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
@@ -108,6 +109,10 @@ public class Play extends BasicGameState {
             keyWPressed = false;
         else
             keyWPressed = true;
+    }
+
+    public void UpdateEntityAnimations( int delta ){
+        currentLevel.GetPlayer().Update(delta);
     }
 
     @Override

@@ -18,7 +18,7 @@ import org.newdawn.slick.SlickException;
  */
 public class Character extends Entity {
 
-    Animation animationUp, animationStill, animationLeft, animationRight;
+    Animation animationJump, animationStill, animationLeft, animationRight;
     protected Animation currentAnimation;
     //CHANGE ANIM COLOR TO ENUM!
     String animColor;
@@ -29,7 +29,7 @@ public class Character extends Entity {
         super( x, y, BodyType.DYNAMIC, bodyUserData );
         this.animColor = "white";
         //FIX PATH NAMES ONCE IMAGES ARE DONE
-        animationUp = new Animation(new Image[]{new Image(animPathName + "_jump_" + animColor +".png"), new Image(animPathName + "_jump_" + animColor + "2.png")}, duration, false);
+        animationJump = new Animation(new Image[]{new Image(animPathName + "_jump_" + animColor +".png"), new Image(animPathName + "_jump_" + animColor + "2.png")}, duration, false);
         animationStill = new Animation(new Image[]{new Image(animPathName + "_stand_" + animColor + ".png"), new Image(animPathName + "_stand_" + animColor + "2.png")}, duration, false);
         animationRight = new Animation(new Image[]{new Image(animPathName + "_run1_" + animColor + "_rt.png"), new Image(animPathName + "_run2_" + animColor +"_rt.png")}, duration, false);
         animationLeft = new Animation(new Image[]{new Image(animPathName + "_run1_" + animColor + "_lt.png"), new Image(animPathName + "_run2_" + animColor + "_lt.png")}, duration, false);
@@ -57,6 +57,14 @@ public class Character extends Entity {
     }
 
     public void Update( long delta ){
+        if( body.getLinearVelocity().x != 0 && body.getLinearVelocity().y != 0 )
+            currentAnimation = animationJump;
+        else if( body.getLinearVelocity().x > 0 )
+            currentAnimation = animationRight;
+        else if( body.getLinearVelocity().x < 0 )
+            currentAnimation = animationLeft;
+        else
+            currentAnimation = animationStill;
         currentAnimation.update( delta );
     }
 
