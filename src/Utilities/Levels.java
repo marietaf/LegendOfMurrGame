@@ -42,12 +42,13 @@ public final class Levels {
         //Find map width and height
         float mapWidth = level1.GetTiledMap().getWidth();
         float mapHeight = level1.GetTiledMap().getHeight();
+        float tileSize = level.GetTiledMap().getTileWidth();
         //Bottom, Top, Left, Right wall
         //AddWallBody: x, y, width, height, friction
-        level.AddWallBody(mapWidth/2, 0, mapWidth, 0.5f, 0.2f);
-        level.AddWallBody(mapWidth/2, mapHeight, mapWidth, 0.5f, 0.2f);
-        level.AddWallBody(0, mapHeight/2, 0.5f, mapHeight, 0.2f);
-        level.AddWallBody(mapWidth, mapHeight/2, 0.5f, mapHeight, 0.2f);
+        level.AddWallBody(mapWidth/2*tileSize, 0, mapWidth*tileSize, 0.5f, 0.2f);
+        level.AddWallBody(mapWidth/2*tileSize, mapHeight*tileSize, mapWidth*tileSize, 0.5f, 0.2f);
+        level.AddWallBody(0, mapHeight/2*tileSize, 0.5f, mapHeight*tileSize, 0.2f);
+        level.AddWallBody(mapWidth*tileSize, mapHeight/2*tileSize, 0.5f, mapHeight*tileSize, 0.2f);
     }
 
     public void AddEntitiesFromProperties( Level level ) throws SlickException{

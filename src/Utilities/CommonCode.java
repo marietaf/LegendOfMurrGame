@@ -17,15 +17,19 @@ public class CommonCode {
     public final static int[] DURATION = {300, 300};
 
     public static Vec2 ScreenToWorldVec2( Vec2 coords ){
-        return new Vec2( coords.x / SCALE, coords.y / SCALE);
+        return new Vec2( coords.x / SCALE, coords.y / SCALE * -1);
     }
 
-    public static float ScreenToWorldNum( float num ){
+    public static float ScreenToWorldX( float num ){
         return ( num / SCALE );
     }
 
+    public static float ScreenToWorldY( float num ){
+        return ( num / SCALE * -1 );
+    }
+
     public static Vec2 WorldToScreenVec2( Vec2 coords ){
-        return new Vec2( coords.x * SCALE, coords.y * SCALE);
+        return new Vec2( coords.x * SCALE, coords.y * SCALE * -1);
     }
 
     public enum CharacterMovement{
