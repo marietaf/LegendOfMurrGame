@@ -91,14 +91,14 @@ public class Play extends BasicGameState {
 
     public void UpdatePlayer(){
         if (keyAPressed) {
-            velChange = Math.max(-15 - playerBody.getLinearVelocity().x, -10.0f);
+            velChange = Math.max(-40 - playerBody.getLinearVelocity().x, -10.0f);
             impulse = playerBody.getMass() * velChange * 0.5f;
             f = playerBody.getWorldVector(new Vec2(impulse, 0f));
             p = playerBody.getWorldPoint(playerBody.getLocalCenter().addLocal(0, 0));
             playerBody.applyLinearImpulse(f, p);
         }
         if (keyDPressed) {
-            velChange = 15 - playerBody.getLinearVelocity().x;
+            velChange = 40 - playerBody.getLinearVelocity().x;
             impulse = playerBody.getMass() * velChange * 0.5f;
             f = playerBody.getWorldVector(new Vec2(impulse, 0f));
             p = playerBody.getWorldPoint(playerBody.getLocalCenter());
@@ -115,7 +115,7 @@ public class Play extends BasicGameState {
         switch (key) {
             case Input.KEY_W:
                 if ( !keyWPressed ) {
-                    f = playerBody.getWorldVector(new Vec2(0f, 25f));
+                    f = playerBody.getWorldVector(new Vec2(0f, 45f));
                     p = playerBody.getWorldPoint(playerBody.getLocalCenter().addLocal(0, 0));
                     playerBody.applyLinearImpulse(f, p);
                 }
