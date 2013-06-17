@@ -115,7 +115,7 @@ public class Play extends BasicGameState {
         switch (key) {
             case Input.KEY_W:
                 if ( !keyWPressed ) {
-                    f = playerBody.getWorldVector(new Vec2(0f, 35f));
+                    f = playerBody.getWorldVector(new Vec2(0f, 25f));
                     p = playerBody.getWorldPoint(playerBody.getLocalCenter().addLocal(0, 0));
                     playerBody.applyLinearImpulse(f, p);
                 }

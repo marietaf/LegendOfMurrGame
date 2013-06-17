@@ -35,7 +35,6 @@ public class Tutorial extends BasicGameState {
     StateBasedGame game;
     GameContainer gc;
     //Physics
-    double timestart, timeend, timedif;
     float timeStep = 1.0f / 60.0f;
     int velocityIterations = 6;
     int positionInterations = 2;
@@ -282,7 +281,6 @@ public class Tutorial extends BasicGameState {
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
-        timestart = System.currentTimeMillis();
         graphics.setColor(Color.lightGray);
         graphics.drawString("Use 'W', 'A', 'S', 'D' to control your character!", 100, 200);
         graphics.drawString("Press Q to view debug mode.", 100, 220);
