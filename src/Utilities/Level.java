@@ -109,14 +109,16 @@ public class Level {
         //DEBUG MODE UPDATE
         if ( !debugMode ) {
             debugDraw.clearFlags(DebugDraw.e_shapeBit);
+            debugDraw.clearFlags(DebugDraw.e_aabbBit);
         }
         else if ( debugMode ) {
             debugDraw.setFlags(DebugDraw.e_shapeBit);
+            debugDraw.setFlags(DebugDraw.e_aabbBit);
         }
 
         //VIEWPORT TRANSFORM / CAMERA UPDATE
         if( player != null )
-            viewportTransform.setCamera(player.GetBody().getPosition().x, player.GetBody().getPosition().y, CommonCode.SCALE);
+            viewportTransform.setCamera(player.GetBody().getPosition().x, player.GetBody().getPosition().y, 2);
     }
 
     public void AddPlayer( float x, float y, float width, float height, String animPathName, int[] duration ) throws SlickException{

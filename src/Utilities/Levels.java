@@ -45,10 +45,10 @@ public final class Levels {
         float tileSize = level.GetTiledMap().getTileWidth();
         //Bottom, Top, Left, Right wall
         //AddWallBody: x, y, width, height, friction
-        level.AddWallBody(mapWidth/2*tileSize, 0, mapWidth*tileSize, 0.5f, 0.2f);
-        level.AddWallBody(mapWidth/2*tileSize, mapHeight*tileSize, mapWidth*tileSize, 0.5f, 0.2f);
-        level.AddWallBody(0, mapHeight/2*tileSize, 0.5f, mapHeight*tileSize, 0.2f);
-        level.AddWallBody(mapWidth*tileSize, mapHeight/2*tileSize, 0.5f, mapHeight*tileSize, 0.2f);
+        level.AddWallBody(mapWidth/2*tileSize, 0, mapWidth*tileSize, 0.5f, 0.2f);                       //BOTTOM
+        level.AddWallBody(mapWidth/2*tileSize, mapHeight*tileSize, mapWidth*tileSize, 0.5f, 0.2f);      //TOP
+        level.AddWallBody(0, mapHeight/2*tileSize, 0.5f, mapHeight*tileSize, 0.2f);                     //LEFT
+        level.AddWallBody(mapWidth*tileSize, mapHeight/2*tileSize, 0.5f, mapHeight*tileSize, 0.2f);     //RIGHT
     }
 
     public void AddEntitiesFromProperties( Level level ) throws SlickException{
@@ -62,12 +62,12 @@ public final class Levels {
                 CommonCode.TileProperty tileProperty = CheckTileProperty(level, row, col);
                 switch( tileProperty ){
                     case wall:
-                        level.AddWallBody(row*tileSize, col*tileSize, tileSize, tileSize, 0.5f);
+                        level.AddWallBody(row*tileSize+row*tileSize, col*tileSize+col*tileSize, tileSize, tileSize, 0.8f);
                         break;
 
                     case player:
                         if( level.GetPlayer() == null )
-                            level.AddPlayer(row*tileSize, col*tileSize, tileSize, tileSize, "data/char", CommonCode.DURATION);
+                            level.AddPlayer(row*tileSize+(row*tileSize), col*tileSize+col*tileSize, tileSize, tileSize, "data/char", CommonCode.DURATION);
                         break;
 
                     default:
@@ -75,6 +75,7 @@ public final class Levels {
                 }
             }
         }
+        level.AddWallBody(0+(tileSize), 0+(tileSize), tileSize, tileSize, 0.8f);
     }
 
     public CommonCode.TileProperty CheckTileProperty( Level level, int row, int col ){
