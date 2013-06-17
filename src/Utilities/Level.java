@@ -95,6 +95,10 @@ public class Level {
         return player;
     }
 
+    public TiledMap GetTiledMap(){
+        return tiledMap;
+    }
+
     public void Update(){
         //PAUSE WORLD UPDATE
         if( !worldPause )
@@ -116,6 +120,10 @@ public class Level {
     }
 
     public void AddPlayer( float x, float y, float width, float height, String animPathName, int[] duration ) throws SlickException{
+        x = CommonCode.ScreenToWorldNum(x);
+        y = CommonCode.ScreenToWorldNum(y);
+        width = CommonCode.ScreenToWorldNum(width);
+        height = CommonCode.ScreenToWorldNum(height);
         if( player == null ){
             player = new Player(x, y, width, height, animPathName, duration, "player");
             player.CreateBodyInWorld(world);
@@ -123,24 +131,39 @@ public class Level {
     }
 
     public void AddItemBody( float x, float y, float radius, String animPathName, String bodyUserData ) throws SlickException{
+        x = CommonCode.ScreenToWorldNum(x);
+        y = CommonCode.ScreenToWorldNum(y);
+        radius = CommonCode.ScreenToWorldNum(radius);
         Item tempItem = new Item( x, y, radius, animPathName, bodyUserData );
         tempItem.CreateBodyInWorld(world);
         itemBodies.add( tempItem );
     }
 
     public void AddEnemyBody( float x, float y, float width, float height, String animPathName, int[] duration, String bodyUserData ) throws SlickException{
+        x = CommonCode.ScreenToWorldNum(x);
+        y = CommonCode.ScreenToWorldNum(y);
+        width = CommonCode.ScreenToWorldNum(width);
+        height = CommonCode.ScreenToWorldNum(height);
         Enemy tempEnemy = new Enemy(x, y, width, height, animPathName, duration, bodyUserData);
         tempEnemy.CreateBodyInWorld(world);
         enemyBodies.add(tempEnemy);
     }
 
     public void AddPlatformBody( float x, float y, float width, float height, String imagePathName, float startX, float startY, float endX, float endY, float speed ) throws SlickException{
+        x = CommonCode.ScreenToWorldNum(x);
+        y = CommonCode.ScreenToWorldNum(y);
+        width = CommonCode.ScreenToWorldNum(width);
+        height = CommonCode.ScreenToWorldNum(height);
         Platform tempPlatform = new Platform(x, y, width, height, imagePathName, startX, startY, endX, endY, speed);
         tempPlatform.CreateBodyInWorld(world);
         platformBodies.add(tempPlatform);
     }
 
     public void AddWallBody( float x, float y, float width, float height, float friction ){
+        x = CommonCode.ScreenToWorldNum(x);
+        y = CommonCode.ScreenToWorldNum(y);
+        width = CommonCode.ScreenToWorldNum(width);
+        height = CommonCode.ScreenToWorldNum(height);
         Wall tempWall = new Wall(x, y, width, height, friction);
         tempWall.CreateBodyInWorld(world);
         wallBodies.add(tempWall);

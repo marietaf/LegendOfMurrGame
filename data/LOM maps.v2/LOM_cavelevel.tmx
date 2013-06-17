@@ -9,6 +9,29 @@
  <tileset firstgid="79" name="backdrop_colourtiles" tilewidth="64" tileheight="64">
   <image source="../backdrop_colourtiles.PNG" width="64" height="256"/>
  </tileset>
+ <tileset firstgid="83" name="Properties Tileset" tilewidth="64" tileheight="64">
+  <image source="../PropertiesLayerTileset.png" width="320" height="320"/>
+  <tile id="0">
+   <properties>
+    <property name="wall" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="player" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="platform" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Properties" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJwLZoCAECgdPAgxMkDnDyQYdR92+wjFIbp6YswIw4GpBbCZRY3wo6YbaZU/KHUjLv2Uug8Wx8TowaaGkL8ocR+y2aSWY8SGNyn5A1kttdIcOeFHLbOpYRYl7sNnLrX0U+o+YuzAppbU9EcsxlVGhxGhlxxASTuCVLPIdR8A5uI5wg==
+  </data>
+ </layer>
  <layer name="Backdrop" width="40" height="15">
   <data encoding="base64" compression="zlib">
    eJwLYmBgCBrFo3gUj+JRPIpH8SgexVTDAJ+awDE=

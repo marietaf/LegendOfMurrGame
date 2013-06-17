@@ -20,6 +20,6 @@ public class Enemy extends Character {
     }
 
     public void Render(){
-        currentAnimation.draw(CommonCode.WorldToScreen(position).x, CommonCode.WorldToScreen(position).y);
+        currentAnimation.draw(CommonCode.WorldToScreenVec2(position).x, CommonCode.WorldToScreenVec2(position).y);
     }
 }

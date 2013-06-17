@@ -6,6 +6,39 @@
  <tileset firstgid="3" name="treasure test sprite" tilewidth="32" tileheight="32">
   <image source="../treasure test sprite.png" width="128" height="192"/>
  </tileset>
+ <tileset firstgid="27" name="Properties Tileset 32x32" tilewidth="32" tileheight="32">
+  <image source="../PropertiesLayerTileset32px.png" width="160" height="160"/>
+  <tile id="0">
+   <properties>
+    <property name="wall" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="player" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="item" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="platform" value="true"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="enemy" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Properties" width="100" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt10EOABAMRNHeo+L+x7S3klFV8l/SlRDtbHAzc6pMAQAA4Ix2+wKJeGPmU2dOVrofZxf5l1T3qmuZVvroUynnVcjjBdF9kMce8qiFPGrJymMA8fghsw==
+  </data>
+ </layer>
  <layer name="Main" width="100" height="15">
   <data encoding="base64" compression="zlib">
    eJzt1zEOgCAQRcFd738Ij2priIkERZdkiqlQi/8azIhIytgAAOAhd8x1Ntfq+80re/NfcvTd0bMKOzXP7Gezdp/dYwV5sffd5p092m/qocfv++qhR0+PA0GmI3s=
@@ -13,7 +46,7 @@
  </layer>
  <layer name="Chest" width="100" height="15">
   <data encoding="base64" compression="zlib">
-   eJzt0cEJACAQA8FDH/bfsU0EDDhTwH52BgAAAHhlh3sr3PvNCff86OJHFz+6+JFxAYcAABU=
+   eJztzkEJAAAIBDDBh/0b+zbBIWwJVgUAAACkdDrAMekAAK8tWvAACw==
   </data>
  </layer>
 </map>

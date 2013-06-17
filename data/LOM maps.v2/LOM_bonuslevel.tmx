@@ -9,6 +9,34 @@
  <tileset firstgid="79" name="backdrop_colourtiles" tilewidth="64" tileheight="64">
   <image source="../backdrop_colourtiles.PNG" width="64" height="256"/>
  </tileset>
+ <tileset firstgid="83" name="Properties Tileset" tilewidth="64" tileheight="64">
+  <image source="../PropertiesLayerTileset.png" width="320" height="320"/>
+  <tile id="0">
+   <properties>
+    <property name="wall" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="player" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="item" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="platform" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Properties" width="101" height="10">
+  <data encoding="base64" compression="zlib">
+   eJztlUkOgDAIRbmjtvc/iqsmhCBlqBYjL/lxYX+LDBWgKHLTBHn9hQ8ufx2JruGejfFRb9Vozl0tOHB+6R6Sb7zrkzWYE+SZtc6zd68dwmjzRWuj9Q3emBdrD2TDG3fEJ3mPoJ4gGpM2xhU9ZLlDuPPov+erfW1l93f/Jc9Z4Oodrf3qe6IU1wVobFq+
+  </data>
+ </layer>
  <layer name="Backdrop" width="101" height="10">
   <data encoding="base64" compression="zlib">
    eJztwwEJAAAMBKFr+P3bLMdAwVVTVVVVXzxoXje+

@@ -4,9 +4,8 @@
  */
 package States;
 
-import Entities.Player;
-import Utilities.CommonCode;
 import Utilities.Level;
+import Utilities.Levels;
 import java.util.logging.Logger;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -17,7 +16,6 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.tiled.TiledMap;
 
 /**
  *
@@ -29,7 +27,8 @@ public class Play extends BasicGameState {
     int ID;
     StateBasedGame game;
     GameContainer gc;
-    Level currentLevel, levelTest;
+    Levels levels;
+    Level currentLevel;
     //Player movement variables
     Body playerBody;
     boolean keyWPressed, keyAPressed,keyDPressed;
@@ -55,31 +54,38 @@ public class Play extends BasicGameState {
 
     public void Initialize() throws SlickException {
         //INITIALIZE ALL VARIABLES HERE
-        levelTest = new Level(00, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_grasslevel.tmx"));
-        levelTest.AddWallBody(0, 0, 40, 1, 10.0f);
-        levelTest.AddPlayer(0, 2, 1.5f, 3f, "data/char", CommonCode.DURATION);
-        playerBody = levelTest.GetPlayer().GetBody();
-        levelTest.SetWorldPause(false);
+        levels = new Levels(gc);
+        levels.InitalizeLevels();
+        currentLevel = levels.GetCurrentLevel();
+        playerBody = currentLevel.GetPlayer().GetBody();
+
+//        levelTest = new Level(00, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_plainlevel.tmx"));
+//        levelTest.AddWallBody(0, 0, 40, 1, 10.0f);
+//        levelTest.AddPlayer(0, 2, 1.5f, 3f, "data/char", CommonCode.DURATION);
+//        playerBody = levelTest.GetPlayer().GetBody();
+//        levelTest.SetWorldPause(false);
+
+
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         this.game = sbg;
-        levelTest.Update();
+        currentLevel.Update();
         UpdatePause();
         UpdatePlayer();
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
-        levelTest.Render();
+        currentLevel.Render();
         graphics.setColor(Color.lightGray);
         graphics.drawString("Playing game...!", 50, 50);
-        graphics.drawString("Debug Mode: " + levelTest.GetDebugMode(), 50, 70);
+        graphics.drawString("Debug Mode: " + currentLevel.GetDebugMode(), 50, 70);
     }
 
     public void UpdatePause() {
-        if (levelTest.GetWorldPause()) {
+        if (currentLevel.GetWorldPause()) {
             game.enterState(legendofmurrgame.LegendOfMurr.GAMEPAUSE_ID);
-            levelTest.SetWorldPause(false);
+            currentLevel.SetWorldPause(false);
         }
     }
 
@@ -134,7 +140,7 @@ public class Play extends BasicGameState {
                 break;
 
             case Input.KEY_P:
-                levelTest.SetWorldPause(true);
+                currentLevel.SetWorldPause(true);
                 break;
             default:
                 break;
@@ -145,10 +151,10 @@ public class Play extends BasicGameState {
     public void keyReleased(int key, char c) {
         switch (key) {
             case Input.KEY_Q:
-                if( levelTest.GetDebugMode() )
-                    levelTest.SetDebugMode(false);
+                if( currentLevel.GetDebugMode() )
+                    currentLevel.SetDebugMode(false);
                 else
-                    levelTest.SetDebugMode(true);
+                    currentLevel.SetDebugMode(true);
                 break;
                 
             case Input.KEY_ESCAPE:

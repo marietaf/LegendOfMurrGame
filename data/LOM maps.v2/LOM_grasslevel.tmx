@@ -12,6 +12,19 @@
  <tileset firstgid="151" name="backdrop_colourtiles" tilewidth="64" tileheight="64">
   <image source="../backdrop_colourtiles.PNG" width="64" height="256"/>
  </tileset>
+ <tileset firstgid="155" name="Properties Tileset" tilewidth="64" tileheight="64">
+  <image source="../PropertiesLayerTileset.png" width="320" height="320"/>
+  <tile id="1">
+   <properties>
+    <property name="player" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Properties" width="25" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFQwHMxUFTah41AbKZs8nAuAA5Zg0lO4YTmINFbC4D4fQ2D4rJBZTqRwZDJd0QwgCdWEDl
+  </data>
+ </layer>
  <layer name="Backdrop" width="25" height="15">
   <data encoding="base64" compression="zlib">
    eJybycDAMHMUj+JRPIpH8bDCAId64CA=

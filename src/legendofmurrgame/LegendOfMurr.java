@@ -47,8 +47,8 @@ public class LegendOfMurr extends StateBasedGame {
         AppGameContainer app = new AppGameContainer(new LegendOfMurr("Legend of Murr"));
         app.setDisplayMode(WIDTH, HEIGHT, false);
         app.setTargetFrameRate(120);
-        //app.setShowFPS(false);
-        //app.setFullscreen(true);
+//        app.setShowFPS(false);
+//        app.setFullscreen(true);
         app.start();
 
         Log.info("App successfully created.");
