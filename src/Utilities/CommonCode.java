@@ -33,11 +33,12 @@ public class CommonCode {
     }
 
     public static float WorldToScreenX( float num ){
-        return ( num * SCALE );
+        return (num * SCALE );
     }
 
     public static float WorldToScreenY( float num ){
-        return ( num * SCALE * -1 );
+        return (num * SCALE * -1 );
+
     }
 
     public enum CharacterMovement{

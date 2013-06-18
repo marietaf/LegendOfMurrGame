@@ -37,7 +37,7 @@ public class Platform extends Entity {
         shape = new PolygonShape();
         shape.setAsBox(width, height);
         fd.shape = shape;
-        image = new Image(imagePathName);
+        image = new Image("data/moving_platform.png");
     }
 
     public float GetStartX(){
@@ -52,9 +52,11 @@ public class Platform extends Entity {
         return speed;
     }
 
+
     public void UpdatePlatform(){
         if( x == startX && y == startY ){
             velocity.set(( endX - x ), ( endY - y ));
+
         }
         else if( x == endX && y == endY ){
             velocity.set(( startX - x ), ( startY - y ));
