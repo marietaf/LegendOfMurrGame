@@ -13,7 +13,7 @@ import org.jbox2d.common.Vec2;
  */
 public class CommonCode {
 
-    public final static int SCALE = 10;
+    public final static int SCALE = 8;
     public final static int[] DURATION = {300, 300};
 
     public static Vec2 ScreenToWorldVec2( Vec2 coords ){

@@ -61,7 +61,7 @@ public class Character extends Entity {
     }
 
     public void Update( long delta ){
-        if( body.getLinearVelocity().x != 0 && body.getLinearVelocity().y != 0 )
+        if( body.getLinearVelocity().y != 0 )
             currentAnimation = animationJump;
         else if( body.getLinearVelocity().x > 0 )
             currentAnimation = animationRight;
