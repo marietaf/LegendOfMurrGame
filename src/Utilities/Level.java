@@ -117,8 +117,34 @@ public class Level {
         }
 
         //VIEWPORT TRANSFORM / CAMERA UPDATE
-        if( player != null )
-            viewport.setCamera(player.GetBody().getPosition().x, player.GetBody().getPosition().y, 4);
+        float ltX = 100;
+        float rtX = 300;
+        float topY = -100;
+        float botY = -200;
+        if( player != null ){
+            if( player.GetBody().getPosition().x > ltX &&
+                player.GetBody().getPosition().x < rtX &&
+                player.GetBody().getPosition().y > topY &&
+                player.GetBody().getPosition().y < botY)
+                debugDraw.setCamera(player.GetBody().getPosition().x, player.GetBody().getPosition().y, 4);
+            else
+                debugDraw.setCamera(GetViewportX(ltX, rtX), GetViewportY(topY, botY), 4);
+        }
+    }
+
+    public float GetViewportX(float ltX, float rtX){
+        if( player.GetBody().getPosition().x < ltX )
+            return ltX;
+        else if( player.GetBody().getPosition().x > rtX )
+            return rtX;
+        return player.GetBody().getPosition().x;
+    }
+    public float GetViewportY(float topY, float botY){
+        if( player.GetBody().getPosition().y > topY )
+            return topY;
+        else if( player.GetBody().getPosition().y < botY )
+            return botY;
+        return player.GetBody().getPosition().y;
     }
 
     public void AddPlayer( float x, float y, float width, float height, String animPathName, int[] duration ) throws SlickException{
