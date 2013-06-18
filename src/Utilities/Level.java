@@ -117,10 +117,31 @@ public class Level {
         }
 
         //VIEWPORT TRANSFORM / CAMERA UPDATE
+        float mapWidth = tiledMap.getWidth();
+        float mapHeight = tiledMap.getHeight();
+        float tileSize = tiledMap.getTileWidth();
+        Vec2 mapCoords = new Vec2(mapWidth*tileSize, mapHeight*tileSize);
+        Vec2 origin = new Vec2(0, 0);
+        viewport.getScreenToWorld(mapCoords, origin);
+        //WORKS FOR GRASS MAP
+//        float ltX = 100;
+//        float rtX = 300;
+//        float topY = -60;
+//        float botY = -180;
+        //KINDA WORKS FOR GRASS MAP
+//        float ltX = 100;
+//        float rtX = mapCoords.x - 800;
+//        float topY = -60;
+//        float botY = mapCoords.y + 60;
         float ltX = 100;
-        float rtX = 300;
-        float topY = -100;
-        float botY = -200;
+        float rtX = mapCoords.x - 800;
+        float topY = -60;
+        float botY = mapCoords.y + 60;
+
+        System.out.println("mapcoordsX: ~" + mapCoords.x);
+        System.out.println("viewportX:  ~~" + viewport.getCenter().x);
+        System.out.println("playerX:    ~~~" + player.GetBody().getPosition().x);
+
         if( player != null ){
             if( player.GetBody().getPosition().x > ltX &&
                 player.GetBody().getPosition().x < rtX &&
@@ -155,6 +176,7 @@ public class Level {
         if( player == null ){
             player = new Player(x, y, width, height, animPathName, duration, "player");
             player.CreateBodyInWorld(world);
+            debugDraw.setCamera(player.GetBody().getPosition().x, player.GetBody().getPosition().y, 4);
         }
     }
 
@@ -187,12 +209,12 @@ public class Level {
         platformBodies.add(tempPlatform);
     }
 
-    public void AddWallBody( float x, float y, float width, float height, float friction ){
+    public void AddWallBody( float x, float y, float width, float height, float friction, String bodyUserData ){
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
         width = CommonCode.ScreenToWorldX(width);
         height = CommonCode.ScreenToWorldX(height);
-        Wall tempWall = new Wall(x, y, width, height, friction);
+        Wall tempWall = new Wall(x, y, width, height, friction, bodyUserData);
         tempWall.CreateBodyInWorld(world);
         wallBodies.add(tempWall);
     }
