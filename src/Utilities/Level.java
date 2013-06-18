@@ -36,7 +36,7 @@ public class Level {
     int positionInterations = 2;
     DebugDrawJ2D debugDraw;
     boolean debugMode;
-    IViewportTransform viewportTransform;
+    IViewportTransform viewport;
     boolean worldPause;
     //Slick2D variables
     TiledMap tiledMap;
@@ -57,8 +57,8 @@ public class Level {
         world = new World(gravity);
         //CHANGE DEBUG MODE ONCE TILEDMAPS ARE UP
         debugMode = true;
-        viewportTransform = debugDraw.GetViewportTransform();
-        viewportTransform.setCamera(0, 0, 10);
+        viewport = debugDraw.GetViewportTransform();
+        viewport.setCamera(0, 0, 10);
         world.setDebugDraw(debugDraw);
         worldPause = true;
         width = tiledMap.getWidth();
@@ -118,7 +118,7 @@ public class Level {
 
         //VIEWPORT TRANSFORM / CAMERA UPDATE
         if( player != null )
-            viewportTransform.setCamera(player.GetBody().getPosition().x, player.GetBody().getPosition().y, 2);
+            viewport.setCamera(player.GetBody().getPosition().x, player.GetBody().getPosition().y, 4);
     }
 
     public void AddPlayer( float x, float y, float width, float height, String animPathName, int[] duration ) throws SlickException{
@@ -173,13 +173,15 @@ public class Level {
 
     public void Render(){
         //RENDER MAP BASED ON CHARACTER'S POSITION ON IT
-        tiledMap.render(0, 0);
+        Vec2 tempVec2 = new Vec2(0, 0);
+        viewport.getWorldToScreen(tempVec2, tempVec2);
+        tiledMap.render((int)tempVec2.x, (int)tempVec2.y);
         debugDraw.drawCircle(new Vec2(0, 0), 2, Color3f.WHITE);
         world.drawDebugData();
-        float viewportXPos = viewportTransform.getExtents().x;
-        float viewportYPos = viewportTransform.getExtents().y;
+        float viewportXPos = viewport.getExtents().x;
+        float viewportYPos = viewport.getExtents().y;
         if( player != null )
-            player.Render(viewportTransform);
+            player.Render(viewport);
         for( Item item: itemBodies ){
             if( item.GetPosition().x > viewportXPos && item.GetPosition().x < (viewportXPos + width) &&
                 item.GetPosition().y > viewportYPos && item.GetPosition().y < (viewportYPos + height))
