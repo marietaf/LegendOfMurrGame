@@ -22,9 +22,12 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="108" name="moving_platform" tilewidth="64" tileheight="64">
+  <image source="../moving_platform.png" width="128" height="64"/>
+ </tileset>
  <layer name="Properties" width="40" height="30">
   <data encoding="base64" compression="zlib">
-   eJztVwEOwBAM9Efj/09ZJFsijWrLdUR2SWNG9cxRC+HHiUhPGTuWP+aUBT7UXh8rrkFugeGg9fUCYvyReX0xVkFLF1J8qR2lc863xYHTsOTXizMDLpb1vSe032gFNy62VF+BqHhejViVKeyjt4KXD7XE9Edzt+RFq6F5WuYwMo4Har1RHe6Anfev5/k3q1Vk/siVIdCK2Tv3PNdaezdB9EHwq0HXQ9Pudf61IOkFfbez6tSDH2KfUH9rXYORfDnLy/qfuyKfn8LvBtbFUdQ=
+   eJztV4sKwCAI9B9b/f+njMEGIZpWWm7sIKr18KhLXQKAFLj8GEO+69bZlsWcisCHuvsRjscgN2A4aNd6wWJ/y3dl/UYpXUj2pXErnXNrKQ4a/8Vx99AQZ6v3uye0Z7QzFmDbUn8HkqK9G6mqM8TR24WHDy6ZmW/N/S05VGu/Htur777WG9ZhBER+v57+b1arkeMHZbPl9zw5anMTizkW/Grg3Egz7uX/KEi5m3VuV6qinT8z3uIwA7y+t6/BSLyc5dX7n7sjnn+F3wlfi13K
   </data>
  </layer>
  <layer name="Backdrop" width="40" height="30">
@@ -34,7 +37,7 @@
  </layer>
  <layer name="Main" width="40" height="30">
   <data encoding="base64" compression="zlib">
-   eJztl90NgCAMhFmCERzD/dcyvhlC65X2pBK+pPEvoSdUr5SyWZlDiQx6qhIzyKCBQeTaM+rIMu/Ic/Ya9sZFavjLmpJyWe8zQedo5rfY5n67tnA2MUoFzr149N1U4RgFok/LafGgEe2aPs0HvRGh76nT8g4j40isUH8Smb9f5v/P69WZ/SOT//b67l5+pH/Z/d/mL2j7X+a+GM3F9HONDP1GhL4L04kW+g==
+   eJztl2EOgCAIhb0ER+j+V+x/A3qkL17Nb2NZbj5SFBxj82eOxBT8scQ6UPCBwcq1Z8RRZd6RfvYaeuMiMfxmTEVa1e9M0Dnq3ItX7bv3Dgxod2PBs8OHqA89O1b7nuXBWVvtZ+UfnozDQiH+IpT3L/P8m41V5fyhlH+9utvTR+qXXf9tvkJ2/2Xei1GtrnyuXm+gWieajhRb
   </data>
  </layer>
  <layer name="Cloud" width="40" height="30">
@@ -49,7 +52,7 @@
  </layer>
  <layer name="LockedDoor" width="40" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1rsJACAMAFFX0T10/7GsLBREg4k/7oFdimsMce5N6XTAwO19AOSCcN43r4hqRTVpXw99a+hbY9WHv/nxyBSr++3VPum/pq92S1+P1t4GgF0y8UAFng==
+   eJzt1jsKACEMAFGvovfQ+x/LymIFSeJnsyvzIJ3FICgJ4Z+Kd4Dg630A7JLxfOymyduKnqx9I/St0fblbiSe93dDnyf61mj6onxEZWZ/u7nP+q5P7b/0nbHr3waAt1QqSgg9
   </data>
  </layer>
  <layer name="Key" width="40" height="30">
@@ -79,7 +82,7 @@
  </layer>
  <layer name="MovingPlatform" width="40" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt0rEJAAAIA0E3c/+txM4NFLyDr9MkAgAA4J8cwVUXfrq9D60AwPUB+Q==
+   eJztzTENAAAIwDAEg/8XBCCAhDbZvQgAAADgqpzq0Rc2Dc1sAbM=
   </data>
  </layer>
  <layer name="Monster" width="40" height="30">

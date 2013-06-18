@@ -25,6 +25,9 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="180" name="moving_platform" tilewidth="64" tileheight="64">
+  <image source="../moving_platform.png" width="128" height="64"/>
+ </tileset>
  <layer name="Properties" width="25" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBgFQwHMxUFTah41AbKZs8nAuAA5Zg0lO4YTmINFbC4D4fQ2D4rJBZTqRwZDJd0QwgCdWEDl
@@ -37,12 +40,12 @@
  </layer>
  <layer name="Main" width="25" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFAw2kB9oBNADCZGBSzRIlA+MC5JhFLTtoDRzpYAelwACKyQVOUEwNvdRIm4QwPdImAN6sCUQ=
+   eJxjYBgFAw2kB9oBNADCZGBSzRIlA+MC5JhFLTtoDRzpYAelwACKBwI4QTEMUCNtEsL0SJsAUWQIwA==
   </data>
  </layer>
  <layer name="LockedDoor" width="25" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDEdgB8SKI8gOAzrYMZQAAFBCAa0=
+   eJxjYBgFo2AUDEdgB8SKo3YMGjvoDQAdQgF9
   </data>
  </layer>
  <layer name="Background" width="25" height="15" opacity="0.96">
@@ -52,7 +55,7 @@
  </layer>
  <layer name="MovingTiles" width="25" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKBBfZQPFD6hyMAADMjAP0=
+   eJxjYBgFo2AUjIKBBVuAeOsA6h+OAABlCQLT
   </data>
  </layer>
  <layer name="Key" width="25" height="15">
