@@ -89,6 +89,9 @@ public final class Levels {
 
                     case door:
 
+                    case platform:
+                        level.AddPlatformBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, "data/moving_platform.png", "vertical", 1);
+                        break;
 
                     default:
                         break;

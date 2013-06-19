@@ -23,15 +23,27 @@ public class Platform extends Entity {
     PolygonShape shape;
     String imagePathName;
     Image image;
+    String direction;
 
     public Platform( float x, float y, float width, float height, String imagePathName,
-                     float startX, float startY, float endX, float endY, float speed ) throws SlickException{
+                     String direction, float speed ) throws SlickException{
         super( x, y, BodyType.KINEMATIC, "platform");
         this.imagePathName = imagePathName;
-        this.startX = startX;
-        this.startY = startY;
-        this.endX = endX;
-        this.endY = endY;
+        this.startX = x;
+        this.startY = y;
+        this.direction = direction;
+        if( direction.equalsIgnoreCase("vertical") ){
+            this.endX = x;
+            this.endY = 4*y;
+        }
+        else if( direction.equalsIgnoreCase("horizontal") ){
+            this.endX = 4*x;
+            this.endY = y;
+        }
+        else{
+            this.endX = startX;
+            this.endY = startY;
+        }
         this.speed = speed;
 
         shape = new PolygonShape();
@@ -56,10 +68,11 @@ public class Platform extends Entity {
     public void UpdatePlatform(){
         if( x == startX && y == startY ){
             velocity.set(( endX - x ), ( endY - y ));
-
+            body.setLinearVelocity(velocity);
         }
         else if( x == endX && y == endY ){
             velocity.set(( startX - x ), ( startY - y ));
+            body.setLinearVelocity(velocity);
         }
     }
 

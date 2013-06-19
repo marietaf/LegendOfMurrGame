@@ -135,6 +135,10 @@ public class Level {
 //        float ltX = 100;
 //        float rtX = mapCoords.x - 800;
 //        float topY = -60;
+//        float botY = -180;
+//        float ltX = 100;
+//        float rtX = mapCoords.x - 800;
+//        float topY = -60;
 //        float botY = mapCoords.y + 60;
         float ltX = 100;
         float rtX = mapCoords.x/4 - 100;
@@ -156,6 +160,11 @@ public class Level {
                 debugDraw.setCamera(player.GetBody().getPosition().x, player.GetBody().getPosition().y, 4);
             else
                 debugDraw.setCamera(GetViewportX(ltX, rtX), GetViewportY(topY, botY), 4);
+        }
+
+        for( Platform platform: platformBodies ){
+            platform.UpdatePosition();
+            platform.UpdatePlatform();
         }
     }
 
@@ -206,12 +215,12 @@ public class Level {
         enemyBodies.add(tempEnemy);
     }
 
-    public void AddPlatformBody( float x, float y, float width, float height, String imagePathName, float startX, float startY, float endX, float endY, float speed ) throws SlickException{
+    public void AddPlatformBody( float x, float y, float width, float height, String imagePathName, String direction, float speed ) throws SlickException{
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
         width = CommonCode.ScreenToWorldX(width);
         height = CommonCode.ScreenToWorldX(height);
-        Platform tempPlatform = new Platform(x, y, width, height, imagePathName, startX, startY, endX, endY, speed);
+        Platform tempPlatform = new Platform(x, y, width, height, imagePathName, direction, speed);
         tempPlatform.CreateBodyInWorld(world);
         platformBodies.add(tempPlatform);
     }
@@ -257,8 +266,8 @@ public class Level {
                 enemy.Render();
         }
         for( Platform platform: platformBodies ){
-            if( platform.GetPosition().x > viewportXPos && platform.GetPosition().x < (viewportXPos + width) &&
-                platform.GetPosition().y > viewportYPos && platform.GetPosition().y < (viewportYPos + height))
+//            if( platform.GetPosition().x > viewportXPos && platform.GetPosition().x < (viewportXPos + width) &&
+//                platform.GetPosition().y > viewportYPos && platform.GetPosition().y < (viewportYPos + height))
                 platform.Render();
         }
     }
