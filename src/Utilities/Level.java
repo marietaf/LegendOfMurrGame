@@ -111,6 +111,11 @@ public class Level {
     public ArrayList<TransitionBlock> GetTransitionBodies(){
         return transitionBlockBodies;
     }
+
+    public World getWorld()
+    {
+        return world;
+    }
     
     public boolean getGameOver()
     {

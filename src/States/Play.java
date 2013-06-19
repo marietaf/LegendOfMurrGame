@@ -88,6 +88,7 @@ public class Play extends BasicGameState {
     {
         if (currentLevel.getGameOver())
         {
+            currentLevel.getWorld().clearForces();
             try {
                     Initialize();
                 } catch (SlickException ex) {
