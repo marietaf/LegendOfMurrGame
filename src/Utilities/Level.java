@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Utilities;
 
 import Entities.Door;
@@ -48,9 +47,9 @@ public class Level {
     ArrayList<Enemy> enemyBodies;
     ArrayList<Wall> wallBodies;
     ArrayList<Platform> platformBodies;
-    ArrayList<Door>doorBodies;
+    ArrayList<Door> doorBodies;
 
-    public Level( int LEVEL_ID, GameContainer gc, Vec2 gravity, TiledMap tiledMap ){
+    public Level(int LEVEL_ID, GameContainer gc, Vec2 gravity, TiledMap tiledMap) {
         this.LEVEL_ID = LEVEL_ID;
         this.gravity = gravity;
         this.debugDraw = new DebugDrawJ2D(gc);
@@ -74,47 +73,47 @@ public class Level {
         doorBodies = new ArrayList();
     }
 
-    public int GetLevelID(){
+    public int GetLevelID() {
         return LEVEL_ID;
     }
 
-    public boolean GetDebugMode(){
+    public boolean GetDebugMode() {
         return debugMode;
     }
 
-    public void SetDebugMode( boolean debugMode ){
+    public void SetDebugMode(boolean debugMode) {
         this.debugMode = debugMode;
     }
 
-    public boolean GetWorldPause(){
+    public boolean GetWorldPause() {
         return worldPause;
     }
 
-    public void SetWorldPause( boolean worldPause ){
+    public void SetWorldPause(boolean worldPause) {
         this.worldPause = worldPause;
     }
 
-    public Player GetPlayer(){
+    public Player GetPlayer() {
         return player;
     }
 
-    public TiledMap GetTiledMap(){
+    public TiledMap GetTiledMap() {
         return tiledMap;
     }
 
-    public void Update(){
+    public void Update() {
         //PAUSE WORLD UPDATE
-        if( !worldPause )
+        if (!worldPause) {
             world.step(timeStep, velocityIterations, positionInterations);
-        else
+        } else {
             world.step(0, 0, 0);
+        }
 
         //DEBUG MODE UPDATE
-        if ( !debugMode ) {
+        if (!debugMode) {
             debugDraw.clearFlags(DebugDraw.e_shapeBit);
             debugDraw.clearFlags(DebugDraw.e_aabbBit);
-        }
-        else if ( debugMode ) {
+        } else if (debugMode) {
             debugDraw.setFlags(DebugDraw.e_shapeBit);
             debugDraw.setFlags(DebugDraw.e_aabbBit);
         }
@@ -123,7 +122,7 @@ public class Level {
         float mapWidth = tiledMap.getWidth();
         float mapHeight = tiledMap.getHeight();
         float tileSize = tiledMap.getTileWidth();
-        Vec2 mapCoords = new Vec2(mapWidth*tileSize, mapHeight*tileSize);
+        Vec2 mapCoords = new Vec2(mapWidth * tileSize, mapHeight * tileSize);
         Vec2 origin = new Vec2(0, 0);
         viewport.getScreenToWorld(mapCoords, origin);
         //WORKS FOR GRASS MAP
@@ -141,9 +140,29 @@ public class Level {
 //        float topY = -60;
 //        float botY = mapCoords.y + 60;
         float ltX = 100;
-        float rtX = mapCoords.x/4 - 100;
+        float rtX = mapCoords.x / 4 - 100;
         float topY = -60;
-        float botY = -420;
+        float botY;
+        if (LEVEL_ID == 1) {    //plain
+            botY = -60;
+        }
+        else if (LEVEL_ID == 2) //grass
+        {
+            botY = -180;
+        }
+        else if (LEVEL_ID == 3) //cave
+        {
+            botY = -180;
+        }
+        else if (LEVEL_ID == 4) //snow
+        {
+            botY = -420;
+        }
+        else
+        {
+            botY = -60;
+        }
+
         //the first number is what you want the value of botY to be
         //the second value is the value of mapCoords.y
         //-60 for plain,480
@@ -151,61 +170,65 @@ public class Level {
         //-100 for bonus, 640
         //-420 for snow, 1920
 
-        
-        if( player != null ){
-            if( player.GetBody().getPosition().x > ltX &&
-                player.GetBody().getPosition().x < rtX &&
-                player.GetBody().getPosition().y > topY &&
-                player.GetBody().getPosition().y < botY)
+
+        if (player != null) {
+            if (player.GetBody().getPosition().x > ltX
+                    && player.GetBody().getPosition().x < rtX
+                    && player.GetBody().getPosition().y > topY
+                    && player.GetBody().getPosition().y < botY) {
                 debugDraw.setCamera(player.GetBody().getPosition().x, player.GetBody().getPosition().y, 4);
-            else
+            } else {
                 debugDraw.setCamera(GetViewportX(ltX, rtX), GetViewportY(topY, botY), 4);
+            }
         }
 
-        for( Platform platform: platformBodies ){
+        for (Platform platform : platformBodies) {
             platform.UpdatePosition();
             platform.UpdatePlatform();
         }
     }
 
-    public float GetViewportX(float ltX, float rtX){
-        if( player.GetBody().getPosition().x < ltX )
+    public float GetViewportX(float ltX, float rtX) {
+        if (player.GetBody().getPosition().x < ltX) {
             return ltX;
-        else if( player.GetBody().getPosition().x > rtX )
+        } else if (player.GetBody().getPosition().x > rtX) {
             return rtX;
+        }
         return player.GetBody().getPosition().x;
     }
-    public float GetViewportY(float topY, float botY){
-        if( player.GetBody().getPosition().y > topY )
+
+    public float GetViewportY(float topY, float botY) {
+        if (player.GetBody().getPosition().y > topY) {
             return -60;
-        else if( player.GetBody().getPosition().y < botY ){;
+        } else if (player.GetBody().getPosition().y < botY) {
+            ;
             return botY;
         }
         return player.GetBody().getPosition().y;
     }
 
-    public void AddPlayer( float x, float y, float width, float height, String animPathName, int[] duration ) throws SlickException{
+    public void AddPlayer(float x, float y, float width, float height, String animPathName, int[] duration) throws SlickException {
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
         width = CommonCode.ScreenToWorldX(width);
         height = CommonCode.ScreenToWorldX(height);
-        if( player == null ){
+        if (player == null) {
             player = new Player(x, y, width, height, animPathName, duration, "player");
             player.CreateBodyInWorld(world);
             debugDraw.setCamera(player.GetBody().getPosition().x, player.GetBody().getPosition().y, 4);
         }
     }
 
-    public void AddItemBody( float x, float y, float radius, String animPathName, String bodyUserData ) throws SlickException{
+    public void AddItemBody(float x, float y, float radius, String animPathName, String bodyUserData) throws SlickException {
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
         radius = CommonCode.ScreenToWorldX(radius);
-        Item tempItem = new Item( x, y, radius, animPathName, bodyUserData );
+        Item tempItem = new Item(x, y, radius, animPathName, bodyUserData);
         tempItem.CreateBodyInWorld(world);
-        itemBodies.add( tempItem );
+        itemBodies.add(tempItem);
     }
 
-    public void AddEnemyBody( float x, float y, float width, float height, String animPathName, int[] duration, String bodyUserData ) throws SlickException{
+    public void AddEnemyBody(float x, float y, float width, float height, String animPathName, int[] duration, String bodyUserData) throws SlickException {
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
         width = CommonCode.ScreenToWorldX(width);
@@ -215,7 +238,7 @@ public class Level {
         enemyBodies.add(tempEnemy);
     }
 
-    public void AddPlatformBody( float x, float y, float width, float height, String imagePathName, String direction, float speed ) throws SlickException{
+    public void AddPlatformBody(float x, float y, float width, float height, String imagePathName, String direction, float speed) throws SlickException {
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
         width = CommonCode.ScreenToWorldX(width);
@@ -225,7 +248,7 @@ public class Level {
         platformBodies.add(tempPlatform);
     }
 
-    public void AddWallBody( float x, float y, float width, float height, float friction, String bodyUserData ){
+    public void AddWallBody(float x, float y, float width, float height, float friction, String bodyUserData) {
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
         width = CommonCode.ScreenToWorldX(width);
@@ -235,7 +258,7 @@ public class Level {
         wallBodies.add(tempWall);
     }
 
-    public void AddDoorBody(float x, float y, float width, float height, String bodyUserData){
+    public void AddDoorBody(float x, float y, float width, float height, String bodyUserData) {
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
         width = CommonCode.ScreenToWorldX(width);
@@ -244,32 +267,34 @@ public class Level {
         doorBodies.add(tempDoor);
     }
 
-    public void Render(){
+    public void Render() {
         //RENDER MAP BASED ON CHARACTER'S POSITION ON IT
         Vec2 tempVec2 = new Vec2(0, 0);
         viewport.getWorldToScreen(tempVec2, tempVec2);
-        tiledMap.render((int)tempVec2.x, (int)tempVec2.y);
+        tiledMap.render((int) tempVec2.x, (int) tempVec2.y);
         debugDraw.drawCircle(new Vec2(0, 0), 2, Color3f.WHITE);
         world.drawDebugData();
         float viewportXPos = viewport.getExtents().x;
         float viewportYPos = viewport.getExtents().y;
-        if( player != null )
+        if (player != null) {
             player.Render(viewport);
-        for( Item item: itemBodies ){
-            if( item.GetPosition().x > viewportXPos && item.GetPosition().x < (viewportXPos + width) &&
-                item.GetPosition().y > viewportYPos && item.GetPosition().y < (viewportYPos + height))
+        }
+        for (Item item : itemBodies) {
+            if (item.GetPosition().x > viewportXPos && item.GetPosition().x < (viewportXPos + width)
+                    && item.GetPosition().y > viewportYPos && item.GetPosition().y < (viewportYPos + height)) {
                 item.Render();
+            }
         }
-        for( Enemy enemy: enemyBodies ){
-            if( enemy.GetPosition().x > viewportXPos && enemy.GetPosition().x < (viewportXPos + width) &&
-                enemy.GetPosition().y > viewportYPos && enemy.GetPosition().y < (viewportYPos + height))
+        for (Enemy enemy : enemyBodies) {
+            if (enemy.GetPosition().x > viewportXPos && enemy.GetPosition().x < (viewportXPos + width)
+                    && enemy.GetPosition().y > viewportYPos && enemy.GetPosition().y < (viewportYPos + height)) {
                 enemy.Render();
+            }
         }
-        for( Platform platform: platformBodies ){
+        for (Platform platform : platformBodies) {
 //            if( platform.GetPosition().x > viewportXPos && platform.GetPosition().x < (viewportXPos + width) &&
 //                platform.GetPosition().y > viewportYPos && platform.GetPosition().y < (viewportYPos + height))
-                platform.Render();
+            platform.Render();
         }
     }
-
 }
