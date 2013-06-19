@@ -9,6 +9,7 @@ import Entities.Enemy;
 import Entities.Item;
 import Entities.Platform;
 import Entities.Player;
+import Entities.TransitionBlock;
 import Entities.Wall;
 import java.util.ArrayList;
 import legendofmurrgame.DebugDrawJ2D;
@@ -48,6 +49,7 @@ public class Level {
     ArrayList<Wall> wallBodies;
     ArrayList<Platform> platformBodies;
     ArrayList<Door> doorBodies;
+    ArrayList<TransitionBlock> transitionBlockBodies;
 
     public Level(int LEVEL_ID, GameContainer gc, Vec2 gravity, TiledMap tiledMap) {
         this.LEVEL_ID = LEVEL_ID;
@@ -71,6 +73,7 @@ public class Level {
         wallBodies = new ArrayList();
         platformBodies = new ArrayList();
         doorBodies = new ArrayList();
+        transitionBlockBodies = new ArrayList();
     }
 
     public int GetLevelID() {
@@ -101,7 +104,11 @@ public class Level {
         return tiledMap;
     }
 
-    public void Update() {
+    public ArrayList<TransitionBlock> GetTransitionBodies(){
+        return transitionBlockBodies;
+    }
+
+    public void Update(){
         //PAUSE WORLD UPDATE
         if (!worldPause) {
             world.step(timeStep, velocityIterations, positionInterations);
