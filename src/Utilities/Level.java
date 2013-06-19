@@ -235,12 +235,12 @@ public class Level {
         wallBodies.add(tempWall);
     }
 
-    public void AddDoorBody(float x, float y, float width, float height){
+    public void AddDoorBody(float x, float y, float width, float height, String bodyUserData){
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
         width = CommonCode.ScreenToWorldX(width);
         height = CommonCode.ScreenToWorldX(height);
-        Door tempDoor = new Door(x, y, width, height);
+        Door tempDoor = new Door(x, y, width, height, bodyUserData);
         doorBodies.add(tempDoor);
     }
 

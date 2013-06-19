@@ -21,15 +21,15 @@ public class Door extends Entity {
     String imagePathName;
     Image image;
 
-    public Door(float x, float y, float width, float height){
-        super( x, y, BodyType.STATIC, "door");
+    public Door(float x, float y, float width, float height, String bodyUserData){
+        super( x, y, BodyType.STATIC, bodyUserData);
 
         shape = new PolygonShape();
         shape.setAsBox(width, height);
         fd.shape = shape;
-        
+        fd.isSensor=true;
 
         }
-               
+            
 
 }
