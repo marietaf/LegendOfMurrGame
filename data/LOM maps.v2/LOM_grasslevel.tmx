@@ -75,9 +75,4 @@
    H4sIAAAAAAAAC2NgGAWjYBSMglEAAiYD7QAqAgBn6SSY3AUAAA==
   </data>
  </layer>
- <layer name="Monster" width="25" height="15">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMgpEFpg20A+gAAGbo6mvcBQAA
-  </data>
- </layer>
 </map>
