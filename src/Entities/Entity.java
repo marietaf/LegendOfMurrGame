@@ -17,7 +17,7 @@ import org.jbox2d.dynamics.World;
 
 /**
  *
- * @author Marieta
+ * @author Marieta - This is a basic constructor for all entities in the game
  */
 public class Entity {
 

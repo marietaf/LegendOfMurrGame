@@ -43,6 +43,7 @@ public class GameOver extends BasicGameState {
         int appWidth = legendofmurrgame.LegendOfMurr.WIDTH;
         int appHeight = legendofmurrgame.LegendOfMurr.HEIGHT;
         graphics.setColor(Color.lightGray);
+        //Indicates to the player that they have lost the game :(
         graphics.drawString("Game Over!", (appWidth/2) - 40, (appHeight/2) - 20);
         graphics.drawString("Please try again.", (appWidth/2) - 75, (appHeight/2));
     }
@@ -50,6 +51,7 @@ public class GameOver extends BasicGameState {
     @Override
     public void keyReleased(int key, char c){
         switch( key ){
+            //Allows a player to escape to the main menu
             case Input.KEY_ESCAPE:
                 game.enterState(legendofmurrgame.LegendOfMurr.MENU_ID);
                 break;

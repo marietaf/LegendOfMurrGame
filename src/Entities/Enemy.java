@@ -10,7 +10,7 @@ import org.newdawn.slick.SlickException;
 
 /**
  *
- * @author Marieta
+ * @author Marieta - This is a subclass of the character class
  */
 public class Enemy extends Character {
 
@@ -20,6 +20,7 @@ public class Enemy extends Character {
     }
 
     public void Render(){
+        //assigns the image to its stating location in the level
         currentAnimation.draw(CommonCode.WorldToScreenVec2(position).x, CommonCode.WorldToScreenVec2(position).y);
     }
 }

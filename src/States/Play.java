@@ -91,20 +91,22 @@ public class Play extends BasicGameState {
     }
 
     public void UpdatePlayer(){
+        //Changes the player's horizontal velocity when a button is pressed
         if (keyAPressed) {
-            velChange = Math.max(-40 - playerBody.getLinearVelocity().x, -10.0f);
+            velChange = Math.max(-30 - playerBody.getLinearVelocity().x, -10.0f);
             impulse = playerBody.getMass() * velChange * 0.5f;
             f = playerBody.getWorldVector(new Vec2(impulse, 0f));
             p = playerBody.getWorldPoint(playerBody.getLocalCenter().addLocal(0, 0));
             playerBody.applyLinearImpulse(f, p);
         }
         if (keyDPressed) {
-            velChange = 40 - playerBody.getLinearVelocity().x;
+            velChange = 30 - playerBody.getLinearVelocity().x;
             impulse = playerBody.getMass() * velChange * 0.5f;
             f = playerBody.getWorldVector(new Vec2(impulse, 0f));
             p = playerBody.getWorldPoint(playerBody.getLocalCenter());
             playerBody.applyLinearImpulse(f, p);
         }
+        //This boolean checks to prevent jumping while mid-air
         if (playerBody.getLinearVelocity().y == 0)
             keyWPressed = false;
         else
@@ -119,8 +121,9 @@ public class Play extends BasicGameState {
     public void keyPressed(int key, char c) {
         switch (key) {
             case Input.KEY_W:
+                //Applies a force to jump instead of changing the velocity of the player
                 if ( !keyWPressed ) {
-                    f = playerBody.getWorldVector(new Vec2(0f, 45f));
+                    f = playerBody.getWorldVector(new Vec2(0f, 35f));
                     p = playerBody.getWorldPoint(playerBody.getLocalCenter().addLocal(0, 0));
                     playerBody.applyLinearImpulse(f, p);
                 }
@@ -144,6 +147,7 @@ public class Play extends BasicGameState {
                 keyAPressed = true;
                 break;
 
+                //Pause function
             case Input.KEY_P:
                 currentLevel.SetWorldPause(true);
                 break;
@@ -155,13 +159,15 @@ public class Play extends BasicGameState {
     @Override
     public void keyReleased(int key, char c) {
         switch (key) {
+            //Toggles debugmode
             case Input.KEY_Q:
                 if( currentLevel.GetDebugMode() )
                     currentLevel.SetDebugMode(false);
                 else
                     currentLevel.SetDebugMode(true);
                 break;
-                
+
+                //Exits the play State
             case Input.KEY_ESCAPE:
                 try {
                     Initialize();

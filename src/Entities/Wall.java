@@ -10,7 +10,7 @@ import org.jbox2d.dynamics.BodyType;
 
 /**
  *
- * @author Marieta
+ * @author Marieta - This is a subclass the extends the entity constructor
  */
 public class Wall extends Entity {
 
@@ -19,6 +19,7 @@ public class Wall extends Entity {
 
     public Wall(float x, float y, float width, float height, float friction, String bodyUserData ){
         super( x, y, BodyType.STATIC, bodyUserData);
+        //Basic constructor for the walls
         this.friction = friction;
 
         shape = new PolygonShape();
@@ -26,5 +27,6 @@ public class Wall extends Entity {
         fd.shape = shape;
         fd.friction = friction;
     }
+    //No methods are needed for the walls since they are static
 
 }

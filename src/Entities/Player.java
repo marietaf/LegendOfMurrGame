@@ -10,7 +10,8 @@ import org.newdawn.slick.SlickException;
 
 /**
  *
- * @author Marieta
+ * @author Marieta - This is a subclass of the character constructor
+ * A lot of the initializing is not done in this class but within the different states and utilities
  */
 public class Player extends Character {
 

@@ -135,24 +135,12 @@ public class Level {
         Vec2 mapCoords = new Vec2(mapWidth * tileSize, mapHeight * tileSize);
         Vec2 origin = new Vec2(0, 0);
         viewport.getScreenToWorld(mapCoords, origin);
-        //WORKS FOR GRASS MAP
-//        float ltX = 100;
-//        float rtX = 300;
-//        float topY = -60;
-//        float botY = -180;
-        //KINDA WORKS FOR GRASS MAP
-//        float ltX = 100;
-//        float rtX = mapCoords.x - 800;
-//        float topY = -60;
-//        float botY = -180;
-//        float ltX = 100;
-//        float rtX = mapCoords.x - 800;
-//        float topY = -60;
-//        float botY = mapCoords.y + 60;
         float ltX = 100;
         float rtX = mapCoords.x / 4 - 100;
         float topY = -60;
         float botY;
+        //there are specific values for the minimal y value depending on the map
+        //the if statements allocate the proper values
         if (LEVEL_ID == 1) {    //plain
             botY = -60;
         }
@@ -181,13 +169,14 @@ public class Level {
         //-420 for snow, 1920
 
 
-        if (player != null) {
+        if (player != null) {       //sets the center of the camera to the location of the player
             if (player.GetBody().getPosition().x > ltX
                     && player.GetBody().getPosition().x < rtX
                     && player.GetBody().getPosition().y > topY
                     && player.GetBody().getPosition().y < botY) {
                 debugDraw.setCamera(player.GetBody().getPosition().x, player.GetBody().getPosition().y, 4);
             } else {
+                //if the player approaches a wall, the ceiling or ground, the camera will stop moving when it hits it
                 debugDraw.setCamera(GetViewportX(ltX, rtX), GetViewportY(topY, botY), 4);
             }
         }
@@ -198,8 +187,8 @@ public class Level {
         }
     }
 
-    public float GetViewportX(float ltX, float rtX) {
-        if (player.GetBody().getPosition().x < ltX) {
+    public float GetViewportX(float ltX, float rtX) {   //returns the value of the x coordinate for the camera if the player
+        if (player.GetBody().getPosition().x < ltX) {   //approaches a wall
             return ltX;
         } else if (player.GetBody().getPosition().x > rtX) {
             return rtX;
@@ -207,8 +196,8 @@ public class Level {
         return player.GetBody().getPosition().x;
     }
 
-    public float GetViewportY(float topY, float botY) {
-        if (player.GetBody().getPosition().y > topY) {
+    public float GetViewportY(float topY, float botY) {     //returns the value of the y coordinate for the camera if the player
+        if (player.GetBody().getPosition().y > topY) {      //becomes too close to the ceiling or ground (e.g. a pit)
             return -60;
         } else if (player.GetBody().getPosition().y < botY) {
             ;
@@ -217,6 +206,7 @@ public class Level {
         return player.GetBody().getPosition().y;
     }
 
+    //adds the player into the level and the camera is set to the position of the player
     public void AddPlayer(float x, float y, float width, float height, String animPathName, int[] duration) throws SlickException {
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
@@ -229,6 +219,9 @@ public class Level {
         }
     }
 
+
+    //Adds an item (such as a key) into the level
+    //Not implemented yet
     public void AddItemBody(float x, float y, float radius, String animPathName, String bodyUserData) throws SlickException {
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
@@ -238,6 +231,8 @@ public class Level {
         itemBodies.add(tempItem);
     }
 
+    //Adds an enemy into the level
+    //Not implemented yet
     public void AddEnemyBody(float x, float y, float width, float height, String animPathName, int[] duration, String bodyUserData) throws SlickException {
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
@@ -248,6 +243,7 @@ public class Level {
         enemyBodies.add(tempEnemy);
     }
 
+    //Adds a platform into the level
     public void AddPlatformBody(float x, float y, float width, float height, String imagePathName, String direction, float speed) throws SlickException {
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
@@ -258,6 +254,7 @@ public class Level {
         platformBodies.add(tempPlatform);
     }
 
+    //Adds a wall into the level
     public void AddWallBody(float x, float y, float width, float height, float friction, String bodyUserData) {
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
@@ -268,6 +265,8 @@ public class Level {
         wallBodies.add(tempWall);
     }
 
+    //Adds a door into the level
+    //Not implemented yet
     public void AddDoorBody(float x, float y, float width, float height, String bodyUserData) {
         x = CommonCode.ScreenToWorldX(x);
         y = CommonCode.ScreenToWorldY(y);
@@ -299,13 +298,13 @@ public class Level {
         if (player != null) {
             player.Render(viewport);
         }
-        for (Item item : itemBodies) {
+        for (Item item : itemBodies) {      //loads the items into the level
             if (item.GetPosition().x > viewportXPos && item.GetPosition().x < (viewportXPos + width)
                     && item.GetPosition().y > viewportYPos && item.GetPosition().y < (viewportYPos + height)) {
                 item.Render();
             }
         }
-        for (Enemy enemy : enemyBodies) {
+        for (Enemy enemy : enemyBodies) {   //loads the enemies into the level
             if (enemy.GetPosition().x > viewportXPos && enemy.GetPosition().x < (viewportXPos + width)
                     && enemy.GetPosition().y > viewportYPos && enemy.GetPosition().y < (viewportYPos + height)) {
                 enemy.Render();

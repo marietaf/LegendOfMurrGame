@@ -12,7 +12,8 @@ import org.newdawn.slick.SlickException;
 
 /**
  *
- * @author Marieta
+ * @author Marieta - This is a subclass of the entity class
+ * Items have not yet been implemented into the game
  */
 public class Item extends Entity {
 
@@ -22,6 +23,7 @@ public class Item extends Entity {
 
     public Item( float x, float y, float radius,
                  String imagePathName, String bodyUserData ) throws SlickException{
+        //Constructor for the item
         super(x, y, BodyType.KINEMATIC, bodyUserData);
         this.imagePathName = imagePathName;
         image = new Image( imagePathName );

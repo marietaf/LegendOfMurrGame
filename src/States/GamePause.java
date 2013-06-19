@@ -39,7 +39,7 @@ public class GamePause extends BasicGameState{
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
-
+        //displays text to indicate the game has been paused
         int appWidth = legendofmurrgame.LegendOfMurr.WIDTH;
         int appHeight = legendofmurrgame.LegendOfMurr.HEIGHT;
         graphics.setColor(Color.lightGray);
@@ -50,6 +50,7 @@ public class GamePause extends BasicGameState{
     @Override
     public void keyPressed(int key, char c){
         switch( key ){
+            //Enters back into the play state, resuming the game
             case Input.KEY_P:
                 game.enterState(legendofmurrgame.LegendOfMurr.PLAY_ID);
                 break;

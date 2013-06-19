@@ -16,7 +16,8 @@ import org.newdawn.slick.SlickException;
 
 /**
  *
- * @author Marieta
+ * @author Marieta - This class serves as the basic constructor for all characters
+ * (players and enemies)
  */
 public class Character extends Entity {
 
@@ -62,6 +63,7 @@ public class Character extends Entity {
     }
 
     public void Update( long delta ){
+        //Changes the image of the character  based on its motion
         if( body.getLinearVelocity().y != 0 )
             currentAnimation = animationJump;
         else if( body.getLinearVelocity().x > 0 )

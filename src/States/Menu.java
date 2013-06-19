@@ -41,7 +41,7 @@ public class Menu extends BasicGameState {
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
         graphics.setColor(Color.lightGray);
-        graphics.drawString("Legend of Murrrrr!", 200, 100);
+        graphics.drawString("Legend of Murrrrr!", 200, 100);        //displays the menu
 
         graphics.drawString("1. Play game!", 100, 200);
         graphics.drawString("2. Tutorial (Run this one!)", 100, 220);
@@ -51,7 +51,7 @@ public class Menu extends BasicGameState {
     }
 
     @Override
-    public void keyReleased(int key, char c){
+    public void keyReleased(int key, char c){       //enters a different state based on what key was pressed
         switch( key ){
             case Input.KEY_1:
                 game.enterState(legendofmurrgame.LegendOfMurr.PLAY_ID);

@@ -60,7 +60,7 @@ public final class Levels {
         currentLevel.SetWorldPause(false);
     }
 
-    public Level GetCurrentLevel(){
+    public Level GetCurrentLevel(){     //returns the current level
         return currentLevel;
     }
 
@@ -104,21 +104,21 @@ public final class Levels {
             for( int col = 0; col < mapHeight; col++ ){
                 CommonCode.TileProperty tileProperty = CheckTileProperty(level, row, col);
                 switch( tileProperty ){
-                    case wall:
+                    case wall:      //assigns the tile properties to the wall
                         level.AddWallBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, 500.0f, "wall");
                         break;
 
-                    case player:
+                    case player:    //assigns the tile properties to the player
                         if( level.GetPlayer() == null )
                             level.AddPlayer(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, "data/char", CommonCode.DURATION);
                         break;
 
-                    case door:
+                    case door:      //assigns the tile properties for the door
                         level.AddDoorBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, "door");
                         
                         break;
 
-                    case platform:
+                    case platform:  //assigns tile properties for platforms
                         level.AddPlatformBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, "data/moving_platform.png", "vertical", 1);               
                         break;
 

@@ -11,7 +11,8 @@ import org.jbox2d.dynamics.BodyType;
 
 /**
  *
- * @author Aron Yoo
+ * @author Aron Yoo - This feature has not been implemented yet
+ * The door is a subclass of the Entity class
  */
 public class Door extends Entity {
 
