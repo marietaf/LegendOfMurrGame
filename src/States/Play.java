@@ -67,6 +67,7 @@ public class Play extends BasicGameState {
         UpdatePlayer();
         UpdateEntityAnimations(delta);
         CheckLevelChange();
+        UpdateGameOver();
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
@@ -74,6 +75,19 @@ public class Play extends BasicGameState {
         graphics.setColor(Color.lightGray);
         graphics.drawString("Playing game...!", 50, 50);
         graphics.drawString("Debug Mode: " + currentLevel.GetDebugMode(), 50, 70);
+    }
+
+    public void UpdateGameOver()
+    {
+        if (currentLevel.getGameOver())
+        {
+            try {
+                    Initialize();
+                } catch (SlickException ex) {
+                    Logger.getLogger(Play.class.getName()).log(java.util.logging.Level.SEVERE, "Unable to initalize again~", ex);
+                }
+            game.enterState(legendofmurrgame.LegendOfMurr.GAMEOVER_ID);
+        }
     }
 
     public void UpdatePause() {
@@ -124,7 +138,7 @@ public class Play extends BasicGameState {
             case Input.KEY_W:
                 //Applies a force to jump instead of changing the velocity of the player
                 if ( !keyWPressed ) {
-                    f = playerBody.getWorldVector(new Vec2(0f, 35f));
+                    f = playerBody.getWorldVector(new Vec2(0f, 45f));
                     p = playerBody.getWorldPoint(playerBody.getLocalCenter().addLocal(0, 0));
                     playerBody.applyLinearImpulse(f, p);
                 }

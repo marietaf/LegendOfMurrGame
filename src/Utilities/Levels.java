@@ -54,7 +54,7 @@ public final class Levels {
             AddEntitiesFromProperties(level4);
             levels.add(level4);
         }
-        currentLevel = level1;
+        currentLevel = level2;
         currentLevel.SetWorldPause(false);
     }
 

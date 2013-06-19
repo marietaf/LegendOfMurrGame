@@ -39,6 +39,7 @@ public class Level {
     boolean debugMode;
     IViewportTransform viewport;
     boolean worldPause;
+    boolean gameOver;
     ContactListener levelChangeListener;
     //Slick2D variables
     TiledMap tiledMap;
@@ -110,6 +111,12 @@ public class Level {
     public ArrayList<TransitionBlock> GetTransitionBodies(){
         return transitionBlockBodies;
     }
+    
+    public boolean getGameOver()
+    {
+        return gameOver;
+    }
+
 
     public void Update(){
         //PAUSE WORLD UPDATE
@@ -177,6 +184,19 @@ public class Level {
 //            platform.UpdatePosition();
 //            platform.UpdatePlatform();
 //        }
+        if (boundaryCollision(mapHeight,tileSize))
+        {
+            gameOver = true;
+        }
+    }
+
+    public boolean boundaryCollision(float mapHeight, float tileSize)
+    {
+        if (player.GetBody().getPosition().y <= mapHeight*tileSize/-4+9)
+        {
+            return true;
+        }
+        return false;
     }
 
     public float GetViewportX(float ltX, float rtX) {   //returns the value of the x coordinate for the camera if the player
@@ -201,6 +221,8 @@ public class Level {
     public ContactListener GetLevelChangeListener(){
         return levelChangeListener;
     }
+
+
 
     //adds the player into the level and the camera is set to the position of the player
     public void AddPlayer(float x, float y, float width, float height, String animPathName, int[] duration) throws SlickException {
