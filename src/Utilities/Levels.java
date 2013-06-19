@@ -84,10 +84,10 @@ public final class Levels {
         float tileSize = level.GetTiledMap().getTileWidth();
         //Bottom, Top, Left, Right wall
         //AddWallBody: x, y, width, height, friction
-        level.AddWallBody(mapWidth*tileSize, 0, mapWidth*tileSize, 0.5f, 0.2f, "boundary");                     //BOTTOM
-        level.AddWallBody(mapWidth*tileSize, mapHeight*tileSize*2, mapWidth*tileSize, 0.5f, 0.2f, "boundary");  //TOP
+        level.AddWallBody(mapWidth*tileSize, 0, mapWidth*tileSize, 0.5f, 500.0f, "boundary");                     //BOTTOM
+        level.AddWallBody(mapWidth*tileSize, mapHeight*tileSize*2, mapWidth*tileSize, 0.5f, 500.0f, "boundary");  //TOP
         level.AddWallBody(0, mapHeight*tileSize, 0.5f, mapHeight*tileSize, 0.2f, "boundary");                   //LEFT
-        level.AddWallBody(mapWidth*tileSize*2, mapHeight*tileSize, 0.5f, mapHeight*tileSize, 0.2f, "boundary"); //RIGHT
+        level.AddWallBody(mapWidth*tileSize*2, mapHeight*tileSize, 0.5f, mapHeight*tileSize, 500.0f, "boundary"); //RIGHT
     }
 
     public void AddEntitiesFromProperties( Level level ) throws SlickException{
@@ -101,7 +101,7 @@ public final class Levels {
                 CommonCode.TileProperty tileProperty = CheckTileProperty(level, row, col);
                 switch( tileProperty ){
                     case wall:
-                        level.AddWallBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, 0.8f, "wall");
+                        level.AddWallBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, 500.0f, "wall");
                         break;
 
                     case player:

@@ -51,7 +51,7 @@ public class GamePause extends BasicGameState{
     public void keyPressed(int key, char c){
         switch( key ){
             case Input.KEY_P:
-                game.enterState(legendofmurrgame.LegendOfMurr.TUTORIAL_ID);
+                game.enterState(legendofmurrgame.LegendOfMurr.PLAY_ID);
                 break;
 
             default:
