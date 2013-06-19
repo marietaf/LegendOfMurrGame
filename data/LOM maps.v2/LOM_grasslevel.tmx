@@ -24,13 +24,18 @@
     <property name="player" value="true"/>
    </properties>
   </tile>
+  <tile id="5">
+   <properties>
+    <property name="door" value="true"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="180" name="moving_platform" tilewidth="64" tileheight="64">
   <image source="../moving_platform.png" width="128" height="64"/>
  </tileset>
  <layer name="Properties" width="25" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFQwHMxUFTah41AbKZs8nAuAA5Zg0lO4YTmINFbC4D4fQ2D4rJBZTqRwZDJd0QwgCdWEDl
+   eJxjYBgFQwHMxUFTah41AbKZs8nAuAA5Zg0lO2gFFkAxLQG6HXOwqJnLQDi9zYNiYuwgVT8xANmOoZJuCGEApcFF5Q==
   </data>
  </layer>
  <layer name="Backdrop" width="25" height="15">
@@ -44,6 +49,9 @@
   </data>
  </layer>
  <layer name="LockedDoor" width="25" height="15">
+  <properties>
+   <property name="" value=""/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUDEdgB8SKo3YMGjvoDQAdQgF9
   </data>

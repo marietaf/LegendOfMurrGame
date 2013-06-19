@@ -27,7 +27,7 @@
  </tileset>
  <layer name="Properties" width="40" height="30">
   <data encoding="base64" compression="zlib">
-   eJztV4sKwCAI9B9b/f+njMEGIZpWWm7sIKr18KhLXQKAFLj8GEO+69bZlsWcisCHuvsRjscgN2A4aNd6wWJ/y3dl/UYpXUj2pXErnXNrKQ4a/8Vx99AQZ6v3uye0Z7QzFmDbUn8HkqK9G6mqM8TR24WHDy6ZmW/N/S05VGu/Htur777WG9ZhBER+v57+b1arkeMHZbPl9zw5anMTizkW/Grg3Egz7uX/KEi5m3VuV6qinT8z3uIwA7y+t6/BSLyc5dX7n7sjnn+F3wlfi13K
+   eJzdV4kKBCEI9R/bov//kmVhAxGvzJrjgcyRx5vGtAoAlBuLhK6M3QFX86v/qza37TCnZvDh/n2E4yfIDQQOXttdyPAf+a4Tvn7g8sKKb41n5Tm1Heua48DlcCcy7Gh9yMoh7FeaJ8/7XfWL+pXm0Xp3ih8X23qW/EjxsHj0ORTHvcdPJLZXp6BrBX0d7+InxRx8qFRBP1L3rLk5vYea4Yd5znxDxI+ElfzD+UbzMBorYvPE9VtA7ysr9W82V6X+YfW9K/oH10+1urez/1prszt0PH6y+GHQvZFnPJufBmvvln0+aEi8+ivjGocVUPvZZw8i/XKV1+w5d1c/1/AWfl+G+WyS
   </data>
  </layer>
  <layer name="Backdrop" width="40" height="30">

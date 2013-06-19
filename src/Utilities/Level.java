@@ -5,6 +5,7 @@
 
 package Utilities;
 
+import Entities.Door;
 import Entities.Enemy;
 import Entities.Item;
 import Entities.Platform;
@@ -47,6 +48,7 @@ public class Level {
     ArrayList<Enemy> enemyBodies;
     ArrayList<Wall> wallBodies;
     ArrayList<Platform> platformBodies;
+    ArrayList<Door>doorBodies;
 
     public Level( int LEVEL_ID, GameContainer gc, Vec2 gravity, TiledMap tiledMap ){
         this.LEVEL_ID = LEVEL_ID;
@@ -69,6 +71,7 @@ public class Level {
         enemyBodies = new ArrayList();
         wallBodies = new ArrayList();
         platformBodies = new ArrayList();
+        doorBodies = new ArrayList();
     }
 
     public int GetLevelID(){
@@ -195,6 +198,15 @@ public class Level {
         Wall tempWall = new Wall(x, y, width, height, friction);
         tempWall.CreateBodyInWorld(world);
         wallBodies.add(tempWall);
+    }
+
+    public void AddDoorBody(float x, float y, float width, float height){
+        x = CommonCode.ScreenToWorldX(x);
+        y = CommonCode.ScreenToWorldY(y);
+        width = CommonCode.ScreenToWorldX(width);
+        height = CommonCode.ScreenToWorldX(height);
+        Door tempDoor = new Door(x, y, width, height);
+        doorBodies.add(tempDoor);
     }
 
     public void Render(){

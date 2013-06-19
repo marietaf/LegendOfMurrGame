@@ -87,6 +87,9 @@ public final class Levels {
                             level.AddPlayer(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, "data/char", CommonCode.DURATION);
                         break;
 
+                    case door:
+
+
                     default:
                         break;
                 }

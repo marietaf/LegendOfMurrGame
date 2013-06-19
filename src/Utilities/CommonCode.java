@@ -50,7 +50,7 @@ public class CommonCode {
     }
 
     public enum TileProperty{
-        wall, player, item, platform, enemy, noproperty;
+        wall, player, item, platform, enemy, noproperty, door;
     }
 
 }
