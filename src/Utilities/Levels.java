@@ -83,8 +83,8 @@ public final class Levels {
 
     public void CreateBoundaries(Level level){
         //Find map width and height
-        float mapWidth = level1.GetTiledMap().getWidth();
-        float mapHeight = level1.GetTiledMap().getHeight();
+        float mapWidth = level.GetTiledMap().getWidth();
+        float mapHeight = level.GetTiledMap().getHeight();
         float tileSize = level.GetTiledMap().getTileWidth();
         //Bottom, Top, Left, Right wall
         //AddWallBody: x, y, width, height, friction

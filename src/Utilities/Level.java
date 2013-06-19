@@ -39,6 +39,7 @@ public class Level {
     boolean debugMode;
     IViewportTransform viewport;
     boolean worldPause;
+    ContactListener levelChangeListener;
     //Slick2D variables
     TiledMap tiledMap;
     int width, height;
@@ -64,6 +65,8 @@ public class Level {
         viewport.setCamera(0, 0, 10);
         world.setDebugDraw(debugDraw);
         worldPause = true;
+        levelChangeListener = new ContactListener();
+        world.setContactListener(levelChangeListener);
         width = tiledMap.getWidth();
         height = tiledMap.getHeight();
 

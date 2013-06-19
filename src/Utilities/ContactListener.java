@@ -16,10 +16,12 @@ import org.jbox2d.dynamics.contacts.Contact;
  */
 public class ContactListener implements org.jbox2d.callbacks.ContactListener {
 
+    boolean changeLevels;
+
     public void beginContact(Contact contact) {
         if( ((contact.getFixtureA().getUserData() == "player") && (contact.getFixtureB().getUserData() == "transition")) ||
             ((contact.getFixtureA().getUserData() == "transition") && (contact.getFixtureB().getUserData() == "player"))){
-            
+            changeLevels = true;
         }
     }
 
@@ -33,6 +35,10 @@ public class ContactListener implements org.jbox2d.callbacks.ContactListener {
 
     public void postSolve(Contact contact, ContactImpulse contactImpulse) {
 
+    }
+
+    public boolean GetLevelChange(){
+        return changeLevels;
     }
 
 }
