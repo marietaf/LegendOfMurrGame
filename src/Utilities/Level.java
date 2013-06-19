@@ -143,15 +143,15 @@ public class Level {
         float ltX = 100;
         float rtX = mapCoords.x/4 - 100;
         float topY = -60;
-        float botY = (mapCoords.y/-6)-40;
+        float botY = -420;
+        //the first number is what you want the value of botY to be
+        //the second value is the value of mapCoords.y
+        //-60 for plain,480
+        //-180 for grass/cave, 960
+        //-100 for bonus, 640
+        //-420 for snow, 1920
 
-        System.out.println("mapcoordsX: ~" + mapCoords.x);
-        System.out.println("viewportX:  ~~" + viewport.getCenter().x);
-        System.out.println("playerX:    ~~~" + player.GetBody().getPosition().x);
-        System.out.println("mapcoordsY: ~" + mapCoords.y);
-        System.out.println("viewportY:  ~~" + viewport.getCenter().y);
-        System.out.println("playerY:    ~~~" + player.GetBody().getPosition().y);
-
+        
         if( player != null ){
             if( player.GetBody().getPosition().x > ltX &&
                 player.GetBody().getPosition().x < rtX &&
