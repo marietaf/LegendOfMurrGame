@@ -21,6 +21,11 @@
     <property name="player" value="true"/>
    </properties>
   </tile>
+  <tile id="6">
+   <properties>
+    <property name="transition" value="true"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="Properties" width="40" height="30">
   <data encoding="base64" compression="gzip">
