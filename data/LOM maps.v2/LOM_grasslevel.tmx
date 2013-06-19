@@ -24,71 +24,60 @@
     <property name="player" value="true"/>
    </properties>
   </tile>
-  <tile id="5">
-   <properties>
-    <property name="door" value="true"/>
-   </properties>
-  </tile>
- </tileset>
- <tileset firstgid="180" name="moving_platform" tilewidth="64" tileheight="64">
-  <image source="../moving_platform.png" width="128" height="64"/>
  </tileset>
  <layer name="Properties" width="25" height="15">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFQwHMxUFTah41AbKZs8nAuAA5Zg0lO2gFFkAxLQG6HXOwqJnLQDi9zYNiYuwgVT8xANmOoZJuCGEApcFF5Q==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAVDAczFQVNqHjUBspmzycC4ADlmDSU7hhOYg0VsLgPh9DYPiskFlOqHgYUMQyfdEMIAUM3NF9wFAAA=
   </data>
  </layer>
  <layer name="Backdrop" width="25" height="15">
-  <data encoding="base64" compression="zlib">
-   eJybycDAMHMUj+JRPIpH8bDCAId64CA=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC5vJwMAwcxSP4lE8ikfxsMIAXhvxP9wFAAA=
   </data>
  </layer>
  <layer name="Main" width="25" height="15">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFAw2kB9oBNADCZGBSzRIlA+MC5JhFLTtoDRzpYAelwACKBwI4QTEMUCNtEsL0SJsAUWQIwA==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAUDDaQH2gE0AMJkYFLNEiUD4wLkmEUtO2gNHOlgB6XAAIrJBU5QTA291EibhDA90iYASwHnUdwFAAA=
   </data>
  </layer>
  <layer name="LockedDoor" width="25" height="15">
-  <properties>
-   <property name="" value=""/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDEdgB8SKo3YMGjvoDQAdQgF9
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBQMR2AHxIojyA4DOtgxlAAAS+5qVdwFAAA=
   </data>
  </layer>
  <layer name="Background" width="25" height="15" opacity="0.96">
-  <data encoding="base64" compression="zlib">
-   eJxjYKA9YAdiDizi3EDMg0WcE4i5iBTHZgYuc6lhHy2ANB3sQAZ+aDQ1QBQaPdSBIwPt48URiulthxSN7VQHYjUa22EMxEY0tmOoAwBMOwRP
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgoD1gB2IOLOLcQMyDRZwTiLmIFMdmBi5zqWEfLYA0HexABn5oNDVAFBo91IEjA+3jxRGK6W2HFI3tVAdiNRrbYQzERjS2Y6gDAGCXCMPcBQAA
   </data>
  </layer>
  <layer name="MovingTiles" width="25" height="15">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKBBVuAeOsA6h+OAABlCQLT
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMgoEF9lA8UPqHIwAAv5ECqNwFAAA=
   </data>
  </layer>
  <layer name="Key" width="25" height="15">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFIxHI0MBMeRqYOQpGwSggDwAA4TwAPA==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAUjEcjQwEx5Gpg5CkbBKCAPAAD7ZNgc3AUAAA==
   </data>
  </layer>
  <layer name="Water" width="25" height="15">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMNDAAgcmFwAAYbwBUQ==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEw0MACByYXAADUQuG63AUAAA==
   </data>
  </layer>
  <layer name="Coin" width="25" height="15">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFQwHw4qBHwSgY7ICXYTS9DgQAAM6MAEI=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAVDAfDioEfBKBjsgJdhNL0OBAAAhP4g8twFAAA=
   </data>
  </layer>
  <layer name="Button" width="25" height="15">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRAAImA+0AKgIAL0wANQ==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEAAiYD7QAqAgBn6SSY3AUAAA==
   </data>
  </layer>
  <layer name="Monster" width="25" height="15">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKRBaYNtAPoAACLdACX
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMgpEFpg20A+gAAGbo6mvcBQAA
   </data>
  </layer>
 </map>

@@ -33,48 +33,48 @@
   </tile>
  </tileset>
  <layer name="Properties" width="101" height="10">
-  <data encoding="base64" compression="zlib">
-   eJztlUkOgDAIRbmjtvc/iqsmhCBlqBYjL/lxYX+LDBWgKHLTBHn9hQ8ufx2JruGejfFRb9Vozl0tOHB+6R6Sb7zrkzWYE+SZtc6zd68dwmjzRWuj9Q3emBdrD2TDG3fEJ3mPoJ4gGpM2xhU9ZLlDuPPov+erfW1l93f/Jc9Z4Oodrf3qe6IU1wVobFq+
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2VSQqAMAxFc0dtwftfxFUhhJhm6CTkwceF/W3MUAGS5GyKIK8/8cHlryLRNdyzMD7qzRr1+aoFB84v3UPytXe1swZzgzyz1nn27rVDGG2+aG20vsaKebH2wGl44474JO8V1AyiMWljHNFDljuEO4/+e/7a11Z2ffeDzk/WwdU7WvvR90QqrhfRK+pGyA8AAA==
   </data>
  </layer>
  <layer name="Backdrop" width="101" height="10">
-  <data encoding="base64" compression="zlib">
-   eJztwwEJAAAMBKFr+P3bLMdAwVVTVVVVXzxoXje+
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DAQkAAAwEoWv4/dssx0DBVVNVVVVfPIy4ChjIDwAA
   </data>
  </layer>
  <layer name="Main" width="101" height="10">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjALyASsSJlcfqXpHAXaAKxwJhS8++dE4Ig8QG17o6kbDmfqA3DClRB8+vexAzAHEnEDMBcTcQMxDgjgtAKVuItaN9E7f2OxDr3tGSp4baH+PlHAeLABbfI+0NE9NQGkZSW1xGAAAITsDbg==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMAvIBKxImVx+pekcBdoArHAmFLz750TgiDxAbXujqRsOZ+oDcMKVEHz697EDMAcScQMwFxNxAzEOCOC0ApW4i1o30Tt/Y7EOve0ZKnhtof4+UcB4sAFt8j7Q0T01AaRlJbXEYAAAxNclyyA8AAA==
   </data>
  </layer>
  <layer name="MovingTiles" width="101" height="10">
-  <data encoding="base64" compression="zlib">
-   eJztwzENAAAIA7A5w78r3h0I4GiTJgAAt6kAwA8Lrj8Avg==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DMQ0AAAgDsDnDvyveHQjgaJMmAAC3qQDADwsyDcK+yA8AAA==
   </data>
  </layer>
  <layer name="Background" width="101" height="10">
-  <data encoding="base64" compression="zlib">
-   eJzt17sNADAIQ0F35Lf/vLGUJhMEpLyT3OAKOkJSc7oznOksHfFplz2vdIuMDgAAAEAd2f/R6/m9c1Ub8qQHsQ==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3Xuw0AMAhDQXfkt/+8sZQmEwSkvJPc4Ao6QlJzujOc6Swd8WmXPa90i4wOAAAAQB3Z/9Hr+b1zVRsRvuDayA8AAA==
   </data>
  </layer>
  <layer name="LockedDoor" width="101" height="10">
-  <data encoding="base64" compression="zlib">
-   eJzt0UEJAEAMBLFqqX+RFXBwr0L3kSgYmCrgp68DeHiSx5M8nuTxBIAtA1x6AKs=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RQQkAQAwEsWqpf5EVcHCvQveRKBiYKuCnrwN4eJLHkzye5PEEgC0DFtWB8sgPAAA=
   </data>
  </layer>
  <layer name="Button" width="101" height="10">
-  <data encoding="base64" compression="zlib">
-   eJztzgEJAAAIA7AXsn89SxwE2RIsAQAA6JrrADy2p6gALg==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OAQkAAAgDsBeyfz1LHATZEiwBAADomusAPLZiyANsyA8AAA==
   </data>
  </layer>
  <layer name="Coin" width="101" height="10">
-  <data encoding="base64" compression="zlib">
-   eJzt00EKACAIRFEv0P2v2zYixCakwv9A2mgLZcyAtzWn1HloIvsbe1avN8+N4pQ9zf1Ze/Yyu5tn9a8bdUKdJy+oJiuDAPCbDkGTBMc=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3TQQoAIAhEUS/Q/a/bNiLEJqTC/0DaaAtlzIC3NafUeWgi+xt7Vq83z43ilD3N/Vl79jK7m2f1rxt1Qp0nL6gmK4MA8JsOxHYCYcgPAAA=
   </data>
  </layer>
  <layer name="Monster" width="101" height="10">
-  <data encoding="base64" compression="zlib">
-   eJztzgENAAAMwjD83b+f24CkFbAsAQDa3VB76RUAFj3xsAEt
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OAQ0AAAzCMPzdv5/bgKQVsCwBANrdUHvpFQAWPfl+rd3IDwAA
   </data>
  </layer>
 </map>
