@@ -29,7 +29,7 @@ public final class Levels {
     public void InitalizeLevels() throws SlickException{
         levels = new ArrayList<Level>();
         {//LEVEL 1 - grass level
-            level1 = new Level(01, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_plainlevel.tmx"));
+            level1 = new Level(01, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_grasslevel.tmx"));
             CreateBoundaries(level1);
             AddEntitiesFromProperties(level1);
             levels.add(level1);

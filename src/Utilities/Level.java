@@ -137,13 +137,16 @@ public class Level {
 //        float topY = -60;
 //        float botY = mapCoords.y + 60;
         float ltX = 100;
-        float rtX = mapCoords.x - 800;
+        float rtX = mapCoords.x/4 - 100;
         float topY = -60;
-        float botY = mapCoords.y + 60;
+        float botY = (mapCoords.y/-6)-40;
 
         System.out.println("mapcoordsX: ~" + mapCoords.x);
         System.out.println("viewportX:  ~~" + viewport.getCenter().x);
         System.out.println("playerX:    ~~~" + player.GetBody().getPosition().x);
+        System.out.println("mapcoordsY: ~" + mapCoords.y);
+        System.out.println("viewportY:  ~~" + viewport.getCenter().y);
+        System.out.println("playerY:    ~~~" + player.GetBody().getPosition().y);
 
         if( player != null ){
             if( player.GetBody().getPosition().x > ltX &&
@@ -165,9 +168,10 @@ public class Level {
     }
     public float GetViewportY(float topY, float botY){
         if( player.GetBody().getPosition().y > topY )
-            return topY;
-        else if( player.GetBody().getPosition().y < botY )
+            return -60;
+        else if( player.GetBody().getPosition().y < botY ){;
             return botY;
+        }
         return player.GetBody().getPosition().y;
     }
 
