@@ -277,6 +277,16 @@ public class Level {
         doorBodies.add(tempDoor);
     }
 
+   public void AddTransitionBody(float x, float y, float width, float height){
+        x = CommonCode.ScreenToWorldX(x);
+        y = CommonCode.ScreenToWorldY(y);
+        width = CommonCode.ScreenToWorldX(width);
+        height = CommonCode.ScreenToWorldX(height);
+        TransitionBlock tempTransitionBlock = new TransitionBlock(x, y, width, height);
+        transitionBlockBodies.add(tempTransitionBlock);
+   }
+
+    
     public void Render() {
         //RENDER MAP BASED ON CHARACTER'S POSITION ON IT
         Vec2 tempVec2 = new Vec2(0, 0);

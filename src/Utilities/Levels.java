@@ -122,6 +122,9 @@ public final class Levels {
                         level.AddPlatformBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, "data/moving_platform.png", "vertical", 1);               
                         break;
 
+                    case transition:
+                        level.AddTransitionBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize);
+
                     default:
                         break;
                 }
