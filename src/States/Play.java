@@ -28,6 +28,7 @@ public class Play extends BasicGameState {
     StateBasedGame game;
     GameContainer gc;
     Levels levels;
+    Graphics graphics;
     Level currentLevel;
     //Player movement variables
     Body playerBody;
@@ -71,7 +72,15 @@ public class Play extends BasicGameState {
         UpdateGameOver();
     }
 
-    public void UpdateCurrentLevel(){
+//    public void TransitionBegin() throws SlickException{
+//        Transition.setTransitionText(currentLevel.LEVEL_ID);
+//        game.enterState(5);
+//    }
+
+
+    public void UpdateCurrentLevel() throws SlickException{
+//        if( currentLevel != levels.GetCurrentLevel() )
+//            TransitionBegin();
         currentLevel = levels.GetCurrentLevel();
         playerBody = currentLevel.GetPlayer().GetBody();
     }
@@ -80,7 +89,6 @@ public class Play extends BasicGameState {
         currentLevel.Render();
         System.out.println("currentlevel: " + currentLevel.GetLevelID());
         graphics.setColor(Color.lightGray);
-        graphics.drawString("Playing game...!", 50, 50);
         graphics.drawString("Debug Mode: " + currentLevel.GetDebugMode(), 50, 70);
     }
 

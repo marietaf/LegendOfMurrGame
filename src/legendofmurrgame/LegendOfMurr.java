@@ -12,6 +12,7 @@ import States.Menu;
 import States.Play;
 import States.Tutorial;
 import States.GamePause;
+import States.Transition;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -31,6 +32,7 @@ public class LegendOfMurr extends StateBasedGame {
     public final static int GAMEOVER_ID = 2;
     public final static int TUTORIAL_ID = 3;
     public final static int GAMEPAUSE_ID = 4;
+    public final static int TRANSITION_ID = 5;
     //Application specific final variables
     public final static int WIDTH = 800;
     public final static int HEIGHT = 480;
@@ -65,6 +67,7 @@ public class LegendOfMurr extends StateBasedGame {
         addState(new GameOver(GAMEOVER_ID));
         addState(new Tutorial(TUTORIAL_ID));
         addState(new GamePause(GAMEPAUSE_ID));
+        addState(new Transition(TRANSITION_ID));
 
         //Enter the main menu at first
         this.enterState(MENU_ID);
