@@ -29,7 +29,7 @@ public final class Levels {
     public void InitalizeLevels() throws SlickException{
         levels = new ArrayList<Level>();
         {//LEVEL 1 - grass level
-            level1 = new Level(01, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_grasslevel.tmx"));
+            level1 = new Level(01, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_plainlevel.tmx"));
             CreateBoundaries(level1);
             AddEntitiesFromProperties(level1);
             levels.add(level1);
@@ -62,10 +62,10 @@ public final class Levels {
         float tileSize = level.GetTiledMap().getTileWidth();
         //Bottom, Top, Left, Right wall
         //AddWallBody: x, y, width, height, friction
-        level.AddWallBody(mapWidth*tileSize, 0, mapWidth*tileSize, 0.5f, 0.2f);
-        level.AddWallBody(mapWidth*tileSize, mapHeight*tileSize*2, mapWidth*tileSize, 0.5f, 0.2f);
-        level.AddWallBody(0, mapHeight*tileSize, 0.5f, mapHeight*tileSize, 0.2f);
-        level.AddWallBody(mapWidth*tileSize*2, mapHeight*tileSize, 0.5f, mapHeight*tileSize, 0.2f);
+        level.AddWallBody(mapWidth*tileSize, 0, mapWidth*tileSize, 0.5f, 0.2f, "boundary");                     //BOTTOM
+        level.AddWallBody(mapWidth*tileSize, mapHeight*tileSize*2, mapWidth*tileSize, 0.5f, 0.2f, "boundary");  //TOP
+        level.AddWallBody(0, mapHeight*tileSize, 0.5f, mapHeight*tileSize, 0.2f, "boundary");                   //LEFT
+        level.AddWallBody(mapWidth*tileSize*2, mapHeight*tileSize, 0.5f, mapHeight*tileSize, 0.2f, "boundary"); //RIGHT
     }
 
     public void AddEntitiesFromProperties( Level level ) throws SlickException{
@@ -79,7 +79,7 @@ public final class Levels {
                 CommonCode.TileProperty tileProperty = CheckTileProperty(level, row, col);
                 switch( tileProperty ){
                     case wall:
-                        level.AddWallBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, 0.8f);
+                        level.AddWallBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, 0.8f, "wall");
                         break;
 
                     case player:

@@ -17,8 +17,8 @@ public class Wall extends Entity {
     PolygonShape shape;
     float friction;
 
-    public Wall(float x, float y, float width, float height, float friction ){
-        super( x, y, BodyType.STATIC, "wall");
+    public Wall(float x, float y, float width, float height, float friction, String bodyUserData ){
+        super( x, y, BodyType.STATIC, bodyUserData);
         this.friction = friction;
 
         shape = new PolygonShape();
