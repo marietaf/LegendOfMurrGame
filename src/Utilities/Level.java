@@ -61,7 +61,7 @@ public class Level {
 
         world = new World(gravity);
         //CHANGE DEBUG MODE ONCE TILEDMAPS ARE UP
-        debugMode = true;
+        debugMode = false;
         viewport = debugDraw.GetViewportTransform();
         viewport.setCamera(0, 0, 10);
         world.setDebugDraw(debugDraw);

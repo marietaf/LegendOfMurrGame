@@ -32,7 +32,7 @@
  </tileset>
  <layer name="Properties" width="25" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAVDAczFQVNqHjUBspmzycC4ADlmDSU7hhOYg0VsLgPh9DYPiskFlOqHgYUMQyfdEMIAUM3NF9wFAAA=
+   H4sIAAAAAAAAC2NgGAVDAczFQVNqHqlgHhQTMnM2GRgXIMcscuywh2Jq2YEeVshq7JHwcAJzsIjNZSCc3vClK2IApfphYCHD4Eyb5GAAxU8RjNwFAAA=
   </data>
  </layer>
  <layer name="Backdrop" width="25" height="15">
@@ -57,7 +57,7 @@
  </layer>
  <layer name="MovingTiles" width="25" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMgoEF9lA8UPqHIwAAv5ECqNwFAAA=
+   H4sIAAAAAAAAC2NgGAWjgHjgC8WjgDAYDSviAaVhNRrWmAAAZIrIaNwFAAA=
   </data>
  </layer>
  <layer name="Key" width="25" height="15">
