@@ -52,7 +52,7 @@ public final class Levels {
             AddEntitiesFromProperties(level4);
             levels.add(level4);
         }
-        currentLevel = level2;
+        currentLevel = level1;
         currentLevel.SetWorldPause(false);
     }
 
@@ -67,7 +67,7 @@ public final class Levels {
             if( level.GetLevelID() == tempID )
                 currentLevel = level;
         }
-        System.out.println("current level id: " + currentLevel.GetLevelID());
+        currentLevel.SetWorldPause(false);
     }
 
     public void ChangeLevel( int levelID ){
@@ -77,6 +77,7 @@ public final class Levels {
                 return;
             }
         }
+        currentLevel.SetWorldPause(false);
     }
 
     public void CreateBoundaries(Level level){

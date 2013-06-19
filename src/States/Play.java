@@ -63,6 +63,7 @@ public class Play extends BasicGameState {
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         this.game = sbg;
         currentLevel.Update();
+        UpdateCurrentLevel();
         UpdatePause();
         UpdatePlayer();
         UpdateEntityAnimations(delta);
@@ -70,8 +71,14 @@ public class Play extends BasicGameState {
         UpdateGameOver();
     }
 
+    public void UpdateCurrentLevel(){
+        currentLevel = levels.GetCurrentLevel();
+        playerBody = currentLevel.GetPlayer().GetBody();
+    }
+
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
         currentLevel.Render();
+        System.out.println("currentlevel: " + currentLevel.GetLevelID());
         graphics.setColor(Color.lightGray);
         graphics.drawString("Playing game...!", 50, 50);
         graphics.drawString("Debug Mode: " + currentLevel.GetDebugMode(), 50, 70);

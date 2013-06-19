@@ -27,7 +27,11 @@ public class ContactListener implements org.jbox2d.callbacks.ContactListener {
     }
 
     public void endContact(Contact contact) {
-
+        if( ((contact.getFixtureA().getBody().getUserData() == "player") && (contact.getFixtureB().getBody().getUserData() == "transition")) ||
+            ((contact.getFixtureA().getBody().getUserData() == "transition") && (contact.getFixtureB().getBody().getUserData() == "player"))){
+            System.out.println("CONTACT END");
+            changeLevel = false;
+        }
     }
 
     public void preSolve(Contact contact, Manifold manifold) {
