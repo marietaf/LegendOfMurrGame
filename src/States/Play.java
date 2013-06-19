@@ -125,11 +125,8 @@ public class Play extends BasicGameState {
     }
 
     public void CheckLevelChange(){
-        if( currentLevel.GetPlayer().GetLevelChange() == true ){
+        if( currentLevel.GetLevelChangeListener().GetLevelChange() )
             levels.ChangeLevel();
-//            currentLevel = levels.GetCurrentLevel();
-//            playerBody = currentLevel.GetPlayer().GetBody();
-        }
     }
 
     @Override

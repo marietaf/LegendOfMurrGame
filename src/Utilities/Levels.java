@@ -7,8 +7,6 @@ package Utilities;
 
 import java.util.ArrayList;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Fixture;
-import org.jbox2d.dynamics.contacts.ContactEdge;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
@@ -64,10 +62,12 @@ public final class Levels {
 
     public void ChangeLevel(){
         int tempID = currentLevel.GetLevelID() + 1;
+        System.out.println("tempID:" + tempID);
         for( Level level: levels ){
             if( level.GetLevelID() == tempID )
                 currentLevel = level;
         }
+        System.out.println("current level id: " + currentLevel.GetLevelID());
     }
 
     public void ChangeLevel( int levelID ){
@@ -155,28 +155,5 @@ public final class Levels {
         //ELSE RETURN NO PROPERTY
         return CommonCode.TileProperty.noproperty;
     }
-
-//    public void CheckPlayerTransitionCollision(){
-//        ContactEdge contactList = currentLevel.GetPlayer().GetBody().getContactList();
-//        if( contactList.contact != null ){
-//            Fixture a = contactList.contact.getFixtureA();
-//            Fixture b = contactList.contact.getFixtureB();
-//            if( (a.getUserData() == "player" && b.getUserData() == "transition") || (b.getUserData() == "player" && a.getUserData() == "transition") ){
-//                ChangeLevel();
-//                return;
-//            }
-//
-//            while( contactList.next != null ){
-//
-//            }
-//        }
-//
-//
-//        for( TransitionBlock transitionBlock: currentLevel.GetTransitionBodies() ){
-//            Fixture fixtureB = transitionBlock.GetBody().getFixtureList();
-//            if( fixtureA.equals(fixtureB) )
-//                ChangeLevel();
-//        }
-//    }
 
 }
