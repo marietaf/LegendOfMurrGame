@@ -18,7 +18,7 @@ import org.newdawn.slick.tiled.TiledMap;
 public final class Levels {
 
     ArrayList<Level> levels;
-    Level currentLevel, level1, level2, level3;
+    Level currentLevel, level1, level2, level3, level4;
     GameContainer gc;
 
     public Levels( GameContainer gc ) throws SlickException{
@@ -28,11 +28,29 @@ public final class Levels {
 
     public void InitalizeLevels() throws SlickException{
         levels = new ArrayList<Level>();
-        {//LEVEL 1 - grass level
-            level1 = new Level(01, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_snowlevel.tmx"));
+        {//LEVEL 1 - plain level
+            level1 = new Level(1, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_plainlevel.tmx"));
             CreateBoundaries(level1);
             AddEntitiesFromProperties(level1);
             levels.add(level1);
+        }
+        {//LEVEL 2 - grass level
+            level2 = new Level(2, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_grasslevel.tmx"));
+            CreateBoundaries(level2);
+            AddEntitiesFromProperties(level2);
+            levels.add(level2);
+        }
+        {//LEVEL 3 - cave level
+            level3 = new Level(3, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_cavelevel.tmx"));
+            CreateBoundaries(level3);
+            AddEntitiesFromProperties(level3);
+            levels.add(level3);
+        }
+        {//LEVEL 4 - snow level
+            level4 = new Level(4, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_snowlevel.tmx"));
+            CreateBoundaries(level4);
+            AddEntitiesFromProperties(level4);
+            levels.add(level4);
         }
         currentLevel = level1;
         currentLevel.SetWorldPause(false);
@@ -43,7 +61,11 @@ public final class Levels {
     }
 
     public void ChangeLevel(){
-
+        int tempID = currentLevel.GetLevelID() + 1;
+        for( Level level: levels ){
+            if( level.GetLevelID() == tempID )
+                currentLevel = level;
+        }
     }
 
     public void ChangeLevel( int levelID ){
