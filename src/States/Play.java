@@ -65,7 +65,6 @@ public class Play extends BasicGameState {
 //        playerBody = levelTest.GetPlayer().GetBody();
 //        levelTest.SetWorldPause(false);
 
-
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
@@ -74,6 +73,7 @@ public class Play extends BasicGameState {
         UpdatePause();
         UpdatePlayer();
         UpdateEntityAnimations(delta);
+        CheckLevelChange(currentLevel);
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
@@ -115,6 +115,14 @@ public class Play extends BasicGameState {
 
     public void UpdateEntityAnimations( int delta ){
         currentLevel.GetPlayer().Update(delta);
+    }
+
+    public void CheckLevelChange( Level currentLevel ){
+        if( currentLevel.GetLevelChangeListener().GetLevelChange() == true ){
+            levels.ChangeLevel();
+            currentLevel = levels.GetCurrentLevel();
+            playerBody = currentLevel.GetPlayer().GetBody();
+        }
     }
 
     @Override

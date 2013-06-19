@@ -139,27 +139,19 @@ public class Level {
         float rtX = mapCoords.x / 4 - 100;
         float topY = -60;
         float botY;
+
         //there are specific values for the minimal y value depending on the map
         //the if statements allocate the proper values
-        if (LEVEL_ID == 1) {    //plain
+        if (LEVEL_ID == 1)      //plain
             botY = -60;
-        }
         else if (LEVEL_ID == 2) //grass
-        {
             botY = -180;
-        }
         else if (LEVEL_ID == 3) //cave
-        {
             botY = -180;
-        }
         else if (LEVEL_ID == 4) //snow
-        {
             botY = -420;
-        }
         else
-        {
             botY = -60;
-        }
 
         //the first number is what you want the value of botY to be
         //the second value is the value of mapCoords.y
@@ -181,10 +173,10 @@ public class Level {
             }
         }
 
-        for (Platform platform : platformBodies) {
-            platform.UpdatePosition();
-            platform.UpdatePlatform();
-        }
+//        for (Platform platform : platformBodies) {
+//            platform.UpdatePosition();
+//            platform.UpdatePlatform();
+//        }
     }
 
     public float GetViewportX(float ltX, float rtX) {   //returns the value of the x coordinate for the camera if the player
@@ -204,6 +196,10 @@ public class Level {
             return botY;
         }
         return player.GetBody().getPosition().y;
+    }
+
+    public ContactListener GetLevelChangeListener(){
+        return levelChangeListener;
     }
 
     //adds the player into the level and the camera is set to the position of the player
@@ -273,6 +269,7 @@ public class Level {
         width = CommonCode.ScreenToWorldX(width);
         height = CommonCode.ScreenToWorldX(height);
         Door tempDoor = new Door(x, y, width, height, bodyUserData);
+        tempDoor.CreateBodyInWorld(world);
         doorBodies.add(tempDoor);
     }
 
@@ -282,6 +279,7 @@ public class Level {
         width = CommonCode.ScreenToWorldX(width);
         height = CommonCode.ScreenToWorldX(height);
         TransitionBlock tempTransitionBlock = new TransitionBlock(x, y, width, height);
+        tempTransitionBlock.CreateBodyInWorld(world);
         transitionBlockBodies.add(tempTransitionBlock);
    }
 

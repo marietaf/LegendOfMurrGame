@@ -18,6 +18,10 @@ public class ContactListener implements org.jbox2d.callbacks.ContactListener {
 
     boolean changeLevels;
 
+    public ContactListener(){
+        changeLevels = false;
+    }
+
     public void beginContact(Contact contact) {
         if( ((contact.getFixtureA().getUserData() == "player") && (contact.getFixtureB().getUserData() == "transition")) ||
             ((contact.getFixtureA().getUserData() == "transition") && (contact.getFixtureB().getUserData() == "player"))){

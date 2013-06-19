@@ -115,7 +115,6 @@ public final class Levels {
 
                     case door:      //assigns the tile properties for the door
                         level.AddDoorBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, "door");
-                        
                         break;
 
                     case platform:  //assigns tile properties for platforms
@@ -124,6 +123,7 @@ public final class Levels {
 
                     case transition:
                         level.AddTransitionBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize);
+                        break;
 
                     default:
                         break;
@@ -139,6 +139,21 @@ public final class Levels {
         //IF PLAYER, RETURN PLAYER
         else if(level.GetTiledMap().getTileProperty(level.GetTiledMap().getTileId(row, col, 0), "player", "noproperty").equalsIgnoreCase("true"))
             return CommonCode.TileProperty.player;
+        //IF ITEM, RETURN ITEM
+        else if(level.GetTiledMap().getTileProperty(level.GetTiledMap().getTileId(row, col, 0), "item", "noproperty").equalsIgnoreCase("true"))
+            return CommonCode.TileProperty.item;
+        //IF PLATFORM, RETURN PLATFORM
+        else if(level.GetTiledMap().getTileProperty(level.GetTiledMap().getTileId(row, col, 0), "platform", "noproperty").equalsIgnoreCase("true"))
+            return CommonCode.TileProperty.platform;
+        //IF ENEMY, RETURN ENEMY
+        else if(level.GetTiledMap().getTileProperty(level.GetTiledMap().getTileId(row, col, 0), "enemy", "noproperty").equalsIgnoreCase("true"))
+            return CommonCode.TileProperty.enemy;
+        //IF DOOR, RETURN DOOR
+        else if(level.GetTiledMap().getTileProperty(level.GetTiledMap().getTileId(row, col, 0), "door", "noproperty").equalsIgnoreCase("true"))
+            return CommonCode.TileProperty.door;
+        //IF TRANSITION, RETURN TRANSITION
+        else if(level.GetTiledMap().getTileProperty(level.GetTiledMap().getTileId(row, col, 0), "transition", "noproperty").equalsIgnoreCase("true"))
+            return CommonCode.TileProperty.transition;
         //ELSE RETURN NO PROPERTY
         return CommonCode.TileProperty.noproperty;
     }
