@@ -88,18 +88,12 @@ public final class Levels {
                         break;
 
                     case door:
-
-<<<<<<< HEAD
-                    case platform:
-                        level.AddPlatformBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, "data/moving_platform.png", "vertical", 1);
-=======
                         level.AddDoorBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, "door");
-
+                        
+                        break;
 
                     case platform:
-                        level.AddPlatformBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, "data/moving_platform.png", "vertical", 1);
-
->>>>>>> Commiting because Marieta said so
+                        level.AddPlatformBody(2*row*tileSize+tileSize, 2*col*tileSize+tileSize, tileSize, tileSize, "data/moving_platform.png", "vertical", 1);               
                         break;
 
                     default:
