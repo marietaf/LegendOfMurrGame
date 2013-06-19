@@ -5,11 +5,9 @@
 
 package Utilities;
 
-import Entities.TransitionBlock;
 import java.util.ArrayList;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Fixture;
-import org.jbox2d.dynamics.contacts.Contact;
 import org.jbox2d.dynamics.contacts.ContactEdge;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -158,27 +156,27 @@ public final class Levels {
         return CommonCode.TileProperty.noproperty;
     }
 
-    public void CheckPlayerTransitionCollision(){
-        ContactEdge contactList = currentLevel.GetPlayer().GetBody().getContactList();
-        if( contactList.contact != null ){
-            Fixture a = contactList.contact.getFixtureA();
-            Fixture b = contactList.contact.getFixtureB();
-            if( (a.getUserData() == "player" && b.getUserData() == "transition") || (b.getUserData() == "player" && a.getUserData() == "transition") ){
-                ChangeLevel();
-                return;
-            }
-            
-            while( contactList.next != null ){
-                
-            }
-        }
-
-
+//    public void CheckPlayerTransitionCollision(){
+//        ContactEdge contactList = currentLevel.GetPlayer().GetBody().getContactList();
+//        if( contactList.contact != null ){
+//            Fixture a = contactList.contact.getFixtureA();
+//            Fixture b = contactList.contact.getFixtureB();
+//            if( (a.getUserData() == "player" && b.getUserData() == "transition") || (b.getUserData() == "player" && a.getUserData() == "transition") ){
+//                ChangeLevel();
+//                return;
+//            }
+//
+//            while( contactList.next != null ){
+//
+//            }
+//        }
+//
+//
 //        for( TransitionBlock transitionBlock: currentLevel.GetTransitionBodies() ){
 //            Fixture fixtureB = transitionBlock.GetBody().getFixtureList();
 //            if( fixtureA.equals(fixtureB) )
 //                ChangeLevel();
 //        }
-    }
+//    }
 
 }

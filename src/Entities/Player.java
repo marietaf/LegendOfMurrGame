@@ -15,9 +15,20 @@ import org.newdawn.slick.SlickException;
  */
 public class Player extends Character {
 
+    boolean levelChange;
 
     public Player(  float x, float y, float width, float height,
                     String animPathName, int[] duration, String bodyUserData ) throws SlickException{
         super(x, y, width, height, animPathName, duration, "player");
+        levelChange = false;
     }
+
+    public void SetLevelChange( boolean levelChange ){
+        this.levelChange = levelChange;
+    }
+
+    public boolean GetLevelChange(){
+        return levelChange;
+    }
+
 }

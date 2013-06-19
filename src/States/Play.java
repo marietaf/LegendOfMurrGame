@@ -58,13 +58,6 @@ public class Play extends BasicGameState {
         levels.InitalizeLevels();
         currentLevel = levels.GetCurrentLevel();
         playerBody = currentLevel.GetPlayer().GetBody();
-
-//        levelTest = new Level(00, gc, new Vec2(0.0f, -9.81f * 2), new TiledMap("data/LOM maps.v2/LOM_plainlevel.tmx"));
-//        levelTest.AddWallBody(0, 0, 40, 1, 10.0f);
-//        levelTest.AddPlayer(0, 2, 1.5f, 3f, "data/char", CommonCode.DURATION);
-//        playerBody = levelTest.GetPlayer().GetBody();
-//        levelTest.SetWorldPause(false);
-
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
@@ -73,7 +66,7 @@ public class Play extends BasicGameState {
         UpdatePause();
         UpdatePlayer();
         UpdateEntityAnimations(delta);
-        CheckLevelChange(currentLevel);
+        CheckLevelChange();
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics graphics) throws SlickException {
@@ -117,11 +110,11 @@ public class Play extends BasicGameState {
         currentLevel.GetPlayer().Update(delta);
     }
 
-    public void CheckLevelChange( Level currentLevel ){
-        if( currentLevel.GetLevelChangeListener().GetLevelChange() == true ){
+    public void CheckLevelChange(){
+        if( currentLevel.GetPlayer().GetLevelChange() == true ){
             levels.ChangeLevel();
-            currentLevel = levels.GetCurrentLevel();
-            playerBody = currentLevel.GetPlayer().GetBody();
+//            currentLevel = levels.GetCurrentLevel();
+//            playerBody = currentLevel.GetPlayer().GetBody();
         }
     }
 
